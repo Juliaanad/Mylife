@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Glow Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#C47B8A;--rose:#E8A0AD;--blush:#F2C4CE;--cream:#FDF6F0;--warm:#FFFAF7;--brown:#8B6B6B;--dark:#3D2B2B;--gold:#D4A96A;--sage:#A8C5A0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#F9E4E8,#FDF0E8,#EEE8F4);padding:32px 20px 20px;text-align:center;border-bottom:1px solid var(--blush);position:relative;}
+.hdr-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;}
+.hdr h1{font-family:'Playfair Display',serif;font-size:26px;color:var(--dark);}
+.hdr h1 em{font-style:italic;color:var(--pink);}
+.hdr-date{font-size:12px;color:var(--brown);margin-top:6px;}
+.bible-btn{position:absolute;top:20px;right:14px;background:linear-gradient(135deg,var(--pink),var(--rose));border:none;border-radius:20px;padding:8px 13px;font-size:11px;font-weight:500;color:white;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* WEEK NAV */
+.wnav{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 20px;background:var(--warm);border-bottom:1px solid #F0E8E8;}
+.wnav button{background:none;border:1.5px solid var(--blush);border-radius:50%;width:34px;height:34px;font-size:16px;cursor:pointer;color:var(--pink);}
+.wlbl{font-family:'Playfair Display',serif;font-size:14px;color:var(--dark);font-weight:600;min-width:190px;text-align:center;}
+
+/* DAYS */
+.dstrip{display:flex;overflow-x:auto;gap:6px;padding:12px 14px 8px;background:var(--warm);scrollbar-width:none;}
+.dstrip::-webkit-scrollbar{display:none;}
+.dpill{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 12px;border-radius:18px;cursor:pointer;transition:all 0.2s;min-width:52px;}
+.dpill:hover{background:#F5E6D0;}
+.dpill.active{background:linear-gradient(135deg,var(--pink),var(--rose));color:white;box-shadow:0 3px 10px rgba(196,123,138,0.3);}
+.dpill .dn{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.7;}
+.dpill.active .dn{opacity:0.9;}
+.dpill .dd{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;line-height:1;}
+.dpill .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:0;}
+.dpill.today .dot{opacity:1;}
+.dpill.active .dot{background:white;opacity:0.8;}
+
+/* TABS */
+.tab{display:none;padding-bottom:88px;}
+.tab.active{display:block;}
+.main{padding:18px 14px;max-width:480px;margin:0 auto;}
+
+/* BANNER */
+.banner{background:linear-gradient(135deg,#F9E4E8,#FDF0E8);border-radius:18px;padding:18px;margin-bottom:18px;border:1px solid var(--blush);position:relative;overflow:hidden;}
+.banner::after{content:attr(data-e);position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:44px;opacity:0.13;}
+.b-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);font-weight:500;margin-bottom:3px;}
+.b-day{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--dark);margin-bottom:3px;}
+.b-vibe{font-size:12px;color:var(--brown);font-style:italic;}
+
+/* PROGRESS RING */
+.pring{background:white;border-radius:18px;padding:18px;margin-bottom:18px;border:1px solid #F5EAEA;display:flex;align-items:center;gap:18px;}
+.rw{position:relative;width:72px;height:72px;flex-shrink:0;}
+.rw svg{transform:rotate(-90deg);}
+.rc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.rn{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--dark);line-height:1;}
+.rl{font-size:8px;color:var(--brown);}
+.pt h3{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
+.pt p{font-size:11px;color:var(--brown);line-height:1.4;}
+
+/* SECTION */
+.sec{margin-bottom:18px;}
+.slbl{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--pink);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.slbl::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--blush),transparent);}
+
+/* TASK CARD */
+.tc{background:white;border-radius:14px;padding:14px;margin-bottom:9px;border:1px solid #F5EAEA;display:flex;align-items:center;gap:12px;}
+.tc.tap{cursor:pointer;position:relative;}
+.tc.tap::after{content:'▶';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:9px;color:var(--pink);opacity:0.5;}
+.te{font-size:24px;width:44px;height:44px;background:var(--cream);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ti{flex:1;}
+.tn{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:1px;}
+.td{font-size:11px;color:var(--brown);line-height:1.3;}
+.th{font-size:9px;color:var(--pink);font-style:italic;margin-top:2px;}
+.tt{font-size:9px;padding:2px 8px;border-radius:20px;font-weight:500;flex-shrink:0;}
+.tf{background:#FFE8E8;color:#C47B7B;}
+.th2{background:#E8F5E8;color:#6B9B6B;}
+.ts{background:#E8E8F5;color:#7B7BC4;}
+.tw{background:#FFF3E0;color:#C4956A;}
+.tb{background:#F5E8F5;color:#C47BC4;}
+
+/* FREQ */
+.fb{display:inline-flex;align-items:center;gap:3px;margin-top:4px;}
+.fl{font-size:9px;font-weight:600;color:#4CAF50;}
+.fds{display:inline-flex;gap:2px;}
+.fd{font-size:8px;font-weight:700;padding:1px 4px;border-radius:5px;background:#E8F5E8;color:#4CAF50;border:1px solid #C8E6C9;}
+.fd.off{background:#F5F5F5;color:#BDBDBD;border-color:#EEE;}
+.fm{font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:#FFF8E1;color:#F9A825;border:1px solid #FFE082;}
+
+/* AFFIRMATION */
+.aff{background:linear-gradient(135deg,var(--pink),#B8708A);border-radius:18px;padding:22px 18px;text-align:center;color:white;margin-bottom:18px;}
+.ae{font-size:28px;margin-bottom:8px;}
+.at{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;line-height:1.5;opacity:0.95;}
+
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #F0E8E8;display:flex;padding:10px 0 18px;z-index:100;}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:5px;}
+.ni .ne{font-size:20px;}
+.ni .nl{font-size:8px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:#B0A0A0;}
+.ni.active .nl{color:var(--pink);}
+
+/* WORKOUT */
+.wh{background:linear-gradient(135deg,#FFE8E8,#FFF3E8);border-radius:18px;padding:18px;margin-bottom:18px;text-align:center;border:1px solid #F0D8D8;}
+.wh h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:5px;}
+.wh p{font-size:12px;color:var(--brown);}
+.dbl{display:inline-block;font-size:10px;font-weight:600;color:var(--pink);background:rgba(255,255,255,0.7);border:1px solid var(--blush);border-radius:20px;padding:3px 12px;margin-bottom:8px;}
+.ec{background:white;border-radius:12px;padding:12px 14px;margin-bottom:7px;border:1px solid #F5EAEA;display:flex;justify-content:space-between;align-items:center;}
+.el{display:flex;align-items:center;gap:10px;}
+.en{width:26px;height:26px;background:linear-gradient(135deg,var(--rose),var(--pink));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:white;flex-shrink:0;}
+.enm{font-size:13px;font-weight:500;}
+.et{font-size:10px;color:var(--brown);margin-top:1px;}
+.es{font-size:11px;color:var(--pink);font-weight:500;background:#FFF0F3;padding:3px 9px;border-radius:18px;}
+
+/* HAIR */
+.hh{background:linear-gradient(135deg,#E8F5E8,#F0F5E8);border-radius:18px;padding:18px;margin-bottom:18px;text-align:center;border:1px solid #D0E8D0;}
+.hh h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:5px;}
+.hh p{font-size:12px;color:var(--brown);}
+.hdc{background:white;border-radius:14px;overflow:hidden;margin-bottom:10px;border:1px solid #F5EAEA;}
+.hdh{padding:10px 14px;background:linear-gradient(135deg,#E8F5E8,#F0F5E8);display:flex;align-items:center;gap:8px;}
+.hdh h3{font-size:13px;font-weight:500;}
+.hs{padding:10px 14px;border-bottom:1px solid #F8F0F0;display:flex;align-items:center;gap:10px;font-size:12px;}
+.hs:last-child{border-bottom:none;}
+.sn{width:20px;height:20px;border-radius:50%;background:var(--sage);color:white;font-size:9px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* REMINDERS */
+.rb{border-radius:14px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;border:1.5px solid;margin:10px 14px 0;}
+.rb.yes{background:linear-gradient(135deg,#E8F5E8,#F0FAF0);border-color:#A5D6A7;}
+.rb.no{background:linear-gradient(135deg,#FFF8E1,#FFF3CD);border-color:#FFE082;}
+.rb.mo{background:linear-gradient(135deg,#EDE7F6,#F3E5F5);border-color:#CE93D8;}
+.ri{font-size:22px;flex-shrink:0;margin-top:1px;}
+.rbd{flex:1;}
+.rbt{font-size:12px;font-weight:600;margin-bottom:2px;}
+.rb.yes .rbt{color:#2E7D32;}
+.rb.no .rbt{color:#F57F17;}
+.rb.mo .rbt{color:#6A1B9A;}
+.rbs{font-size:11px;color:var(--brown);line-height:1.3;}
+.rbn{font-size:10px;font-weight:600;margin-top:4px;padding:2px 9px;border-radius:18px;display:inline-block;background:rgba(255,255,255,0.7);color:var(--brown);}
+
+/* GLOW PLAN */
+.gh{background:linear-gradient(135deg,#F5E8F5,#EEE8F8);border-radius:18px;padding:18px;margin-bottom:18px;text-align:center;border:1px solid #E0D0E8;}
+.gh h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:5px;}
+.gh p{font-size:12px;color:var(--brown);}
+.tlc{background:linear-gradient(135deg,#FDF0F5,#F0EFF8);border-radius:14px;padding:14px;margin-bottom:9px;border:1px solid var(--blush);display:flex;align-items:center;gap:12px;}
+.tld{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pink),#C4B5D4);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.tli{flex:1;}
+.tln{font-size:13px;font-weight:500;color:var(--dark);}
+.tldt{font-size:11px;color:var(--pink);margin-top:1px;}
+.tls{font-size:9px;padding:3px 9px;border-radius:18px;font-weight:500;flex-shrink:0;background:#FFF3E0;color:#C4956A;}
+
+/* MODAL */
+.ov{position:fixed;inset:0;background:rgba(61,43,43,0.45);z-index:400;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(3px);}
+.ov.open{opacity:1;pointer-events:all;}
+.rm{position:fixed;bottom:0;left:0;right:0;background:var(--warm);border-radius:26px 26px 0 0;z-index:500;transform:translateY(100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);max-height:86vh;display:flex;flex-direction:column;overflow:hidden;}
+.rm.open{transform:translateY(0);}
+.rmh{width:38px;height:4px;background:#E0D0D0;border-radius:4px;margin:12px auto 0;flex-shrink:0;}
+.rmhd{padding:14px 18px 12px;border-bottom:1px solid #F0E8E8;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;}
+.rmhl{display:flex;align-items:center;gap:10px;}
+.rme{font-size:28px;}
+.rmt{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--dark);}
+.rms{font-size:11px;color:var(--brown);margin-top:1px;}
+.rmc{background:#F5EAEA;border:none;border-radius:50%;width:30px;height:30px;font-size:13px;cursor:pointer;color:var(--pink);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;}
+.rmb{overflow-y:auto;padding:14px 18px 36px;flex:1;}
+.tip{background:linear-gradient(135deg,#FFF8E1,#FFF3CD);border:1px solid #FFE082;border-radius:12px;padding:11px 13px;font-size:11px;color:#7B6B3D;margin-bottom:14px;line-height:1.5;}
+.msl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin:14px 0 8px;display:flex;align-items:center;gap:6px;}
+.msl::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--blush),transparent);}
+.ms{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #F5EAEA;}
+.ms:last-child{border-bottom:none;}
+.msn{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--rose));color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.msc{flex:1;}
+.mst{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:2px;}
+.msd{font-size:11px;color:var(--brown);line-height:1.4;}
+.mstm{font-size:9px;font-weight:600;background:#F5E8F0;color:var(--pink);padding:2px 7px;border-radius:18px;display:inline-block;margin-top:4px;}
+
+/* BIBLE */
+.bs{position:fixed;inset:0;background:var(--cream);z-index:600;transform:translateX(100%);transition:transform 0.36s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;overflow:hidden;}
+.bs.open{transform:translateX(0);}
+.btb{background:linear-gradient(135deg,#F9E4E8,#EEE8F4);padding:46px 18px 14px;border-bottom:1px solid var(--blush);flex-shrink:0;display:flex;align-items:center;gap:12px;}
+.bk{background:white;border:1.5px solid var(--blush);border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;color:var(--pink);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Sans',sans-serif;}
+.btit{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--dark);}
+.bsub{font-size:10px;color:var(--brown);margin-top:2px;}
+.bhome{flex:1;overflow-y:auto;padding:18px 14px 36px;}
+.bhlbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.bhlbl::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--blush),transparent);}
+.cbar{background:white;border-radius:16px;border:1px solid #F0E8E8;margin-bottom:10px;cursor:pointer;transition:transform 0.15s;}
+.cbar:active{transform:scale(0.98);}
+.cbi{display:flex;align-items:center;gap:14px;padding:16px 18px;}
+.cic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.ic-h{background:linear-gradient(135deg,#E8F5E8,#D4EDD4);}
+.ic-c{background:linear-gradient(135deg,#F5E8F5,#EDD4ED);}
+.ic-e{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);}
+.ic-l{background:linear-gradient(135deg,#FCE4EC,#F8BBD0);}
+.ct{flex:1;}
+.cn{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px;}
+.cd{font-size:11px;color:var(--brown);}
+.ca{font-size:16px;color:var(--pink);opacity:0.5;}
+.bcat{position:absolute;inset:0;background:var(--cream);transform:translateX(100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;overflow:hidden;z-index:10;}
+.bcat.open{transform:translateX(0);}
+.bctb{background:linear-gradient(135deg,#F9E4E8,#EEE8F4);padding:46px 18px 14px;border-bottom:1px solid var(--blush);flex-shrink:0;display:flex;align-items:center;gap:12px;}
+.bci{font-size:26px;}
+.bcit{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--dark);}
+.bcis{font-size:10px;color:var(--brown);margin-top:1px;}
+.bits{display:flex;overflow-x:auto;border-bottom:1px solid #F0E8E8;background:white;flex-shrink:0;scrollbar-width:none;}
+.bits::-webkit-scrollbar{display:none;}
+.bit{flex-shrink:0;padding:11px 14px;font-size:10px;font-weight:500;cursor:pointer;color:var(--brown);border-bottom:2px solid transparent;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.bit.active{color:var(--pink);border-bottom-color:var(--pink);}
+.bcb{flex:1;overflow-y:auto;padding:14px;}
+.bis{display:none;}
+.bis.active{display:block;}
+.acc{margin-bottom:9px;border-radius:14px;overflow:hidden;border:1px solid #F0E8E8;background:white;}
+.ach{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;}
+.acl{display:flex;align-items:center;gap:8px;}
+.ace{font-size:20px;}
+.act{font-size:13px;font-weight:500;color:var(--dark);}
+.acs{font-size:10px;color:var(--brown);margin-top:1px;}
+.acar{font-size:11px;color:var(--pink);transition:transform 0.25s;}
+.acc.open .acar{transform:rotate(180deg);}
+.acb{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.acc.open .acb{max-height:1800px;}
+.aci{padding:0 14px 14px;}
+.sr{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid #F8F0F0;}
+.sr:last-child{border-bottom:none;}
+.se{font-size:16px;flex-shrink:0;margin-top:1px;}
+.sn2{font-weight:500;color:var(--dark);font-size:12px;}
+.sd{font-size:11px;color:var(--brown);margin-top:1px;line-height:1.3;}
+.avr{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid #FFF0F0;}
+.avr:last-child{border-bottom:none;}
+.avt{font-size:9px;background:#FFE8E8;color:#C47B7B;padding:2px 7px;border-radius:18px;margin-top:2px;display:inline-block;}
+.mp{background:linear-gradient(135deg,#FFF0F3,#FFF8F0);border:1px solid var(--blush);border-radius:12px;padding:11px 13px;margin-bottom:7px;}
+.mpt{font-size:12px;font-weight:500;color:var(--dark);}
+.mpd{font-size:11px;color:var(--brown);margin-top:3px;line-height:1.3;}
+.ec2{background:white;border:1px solid #F0E8E8;border-radius:12px;padding:12px;margin-bottom:7px;display:flex;align-items:center;gap:10px;}
+.eic{font-size:22px;width:40px;height:40px;background:var(--cream);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ein{flex:1;}
+.enm2{font-size:12px;font-weight:500;color:var(--dark);}
+.ebr{font-size:10px;color:var(--brown);margin-top:1px;}
+.ewy{font-size:10px;color:var(--pink);margin-top:2px;font-style:italic;}
+.epr{font-size:10px;color:var(--gold);font-weight:500;flex-shrink:0;}
+.lh{background:linear-gradient(135deg,#C47B8A,#9B59B8);border-radius:18px;padding:20px 16px;text-align:center;color:white;margin-bottom:14px;}
+.lhe{font-size:32px;margin-bottom:6px;}
+.lht{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;margin-bottom:5px;}
+.lhs{font-size:11px;opacity:0.85;line-height:1.4;}
+.lq{background:white;border-left:3px solid var(--pink);border-radius:0 12px 12px 0;padding:12px 14px;margin-bottom:9px;}
+.lqt{font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:var(--dark);line-height:1.5;}
+.lqs{font-size:9px;color:var(--pink);margin-top:5px;font-weight:500;}
+.nc{background:linear-gradient(135deg,#FDF0F8,#F0EAF8);border:1px solid #E8C8E8;border-radius:12px;padding:11px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px;}
+.ni2{font-size:18px;flex-shrink:0;}
+.nt{font-size:12px;font-weight:500;color:var(--dark);line-height:1.3;}
+.rfc{background:linear-gradient(135deg,#FFF0F0,#FFF5F5);border:1px solid #F0C8C8;border-radius:12px;padding:11px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px;}
+.rfi{font-size:18px;flex-shrink:0;}
+.rft{font-size:12px;font-weight:500;color:#8B3A3A;line-height:1.3;}
+.rc2{background:white;}
+.rcc{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:11px;color:rgba(255,255,255,0.85);line-height:1.4;}
+.rcc:last-child{border-bottom:none;}
+.mw{background:linear-gradient(135deg,#2D1B3D,#1A0E2E);border-radius:18px;padding:18px;margin-bottom:9px;}
+.mwt{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#C47B8A;font-weight:600;margin-bottom:12px;text-align:center;}
+.mi{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:11px;color:rgba(255,255,255,0.85);line-height:1.4;}
+.mi:last-child{border-bottom:none;}
+.md{color:#C47B8A;font-size:14px;flex-shrink:0;}
+
+
+
+.al-card-e { font-size:24px; flex-shrink:0; }
+.al-card-t { flex:1; font-size:13px; color:#7A3050; line-height:1.55; }
+.al-card-del { background:none; border:none; color:rgba(196,123,138,0.4); font-size:14px; cursor:pointer; font-family:'DM Sans',sans-serif; }
+.al-empty { text-align:center; padding:36px 18px; border:1.5px dashed rgba(244,160,200,0.5); border-radius:18px; background:rgba(255,255,255,0.4); }
+.al-empty-e { font-size:36px; opacity:0.4; margin-bottom:8px; }
+.al-empty-t { font-size:12px; color:rgba(180,68,107,0.5); font-style:italic; line-height:1.5; }
+.al-grid { display:flex; flex-direction:column; gap:5px; margin-top:4px; }
+.al-row { display:flex; gap:5px; border-radius:14px; overflow:hidden; }
+.al-cell { position:relative; flex:1; min-height:90px; overflow:hidden; cursor:pointer; }
+.al-cell.tall { min-height:130px; flex:1.25; }
+.al-cell img { width:100%; height:100%; object-fit:cover; display:block; }
+.al-cell-del { position:absolute; top:5px; right:5px; background:rgba(255,255,255,0.9); border:none; border-radius:50%; width:24px; height:24px; color:#E8729A; font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'DM Sans',sans-serif; }
+.al-goal { background:rgba(255,255,255,0.75); border:1px solid rgba(244,160,200,0.35); border-radius:16px; padding:14px; margin-bottom:9px; display:flex; align-items:center; gap:12px; animation:alfade 0.3s ease; }
+.al-gcheck { width:24px; height:24px; border-radius:50%; border:2px solid #E8729A; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:13px; color:transparent; transition:all 0.2s; }
+.al-gcheck.done { background:#E8729A; color:white; }
+.al-gtext { flex:1; font-size:13px; color:#7A3050; line-height:1.4; }
+.al-gtext.done { text-decoration:line-through; opacity:0.5; }
+.al-gdel { background:none; border:none; color:rgba(196,123,138,0.4); font-size:14px; cursor:pointer; font-family:'DM Sans',sans-serif; }
+#al-lb { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:999; align-items:center; justify-content:center; }
+#al-lb.on { display:flex; }
+#al-lb img { max-width:95vw; max-height:90vh; border-radius:12px; object-fit:contain; }
+
+/* MANIFESTATION PAGE — light pink & gold */
+#tab-mf{background:linear-gradient(160deg,#FFF0F8,#FCE8F2,#FFF5E8);min-height:100vh;position:relative;overflow:hidden;}
+#mf-sparks{position:fixed;inset:0;pointer-events:none;z-index:50;display:none;}
+.mf-wrap{position:relative;z-index:1;padding:0 0 100px;}
+.mf-hdr{padding:44px 20px 18px;text-align:center;}
+.mf-crown{font-size:46px;margin-bottom:10px;display:block;animation:mf-float 4s ease-in-out infinite;}
+@keyframes mf-float{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-10px) rotate(3deg);}}
+.mf-title{font-family:'Playfair Display',serif;font-size:27px;font-style:italic;color:#8B2252;text-shadow:0 2px 14px rgba(196,123,138,0.3);margin-bottom:6px;}
+.mf-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,123,138,0.65);}
+.mf-divider{width:70px;height:1px;background:linear-gradient(to right,transparent,rgba(212,169,106,0.7),transparent);margin:14px auto 0;}
+.mf-tabs-row{display:flex;justify-content:center;gap:7px;padding:16px 16px 18px;flex-wrap:wrap;}
+.mf-tab{padding:9px 18px;border-radius:22px;border:1px solid rgba(196,123,138,0.25);font-size:11px;font-weight:500;color:rgba(139,34,82,0.55);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.25s;background:rgba(255,255,255,0.55);letter-spacing:0.5px;}
+.mf-tab.active{background:linear-gradient(135deg,#D4A96A,#C47B8A);color:white;border-color:rgba(212,169,106,0.4);box-shadow:0 4px 18px rgba(196,123,138,0.35);}
+.mf-sec{display:none;padding:0 16px;}
+.mf-sec.active{display:block;}
+.mf-inp-row{display:flex;gap:8px;margin-bottom:11px;}
+.mf-inp{flex:1;padding:12px 14px;border:1.5px solid rgba(196,123,138,0.3);border-radius:14px;font-family:'DM Sans',sans-serif;font-size:12px;color:#3D2B2B;background:rgba(255,255,255,0.8);outline:none;}
+.mf-inp::placeholder{color:rgba(196,123,138,0.45);}
+.mf-add{background:linear-gradient(135deg,#D4A96A,#C47B8A);border:none;border-radius:14px;padding:12px 18px;color:white;font-size:20px;cursor:pointer;line-height:1;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(196,123,138,0.4);}
+.mf-upload{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1.5px dashed rgba(196,123,138,0.3);border-radius:14px;cursor:pointer;font-size:11px;color:rgba(139,67,107,0.55);margin-bottom:12px;background:rgba(255,255,255,0.5);}.mf-aff-card{background:rgba(255,255,255,0.75);border:1px solid rgba(212,169,106,0.3);border-radius:18px;padding:16px;margin-bottom:9px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 16px rgba(196,123,138,0.12);}
+.mf-aff-star{font-size:20px;flex-shrink:0;}
+.mf-aff-t{flex:1;font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:#5C2533;line-height:1.6;}
+.mf-del{background:none;border:none;color:rgba(196,123,138,0.4);font-size:13px;cursor:pointer;padding:4px;font-family:'DM Sans',sans-serif;}
+.mf-goal-card{background:rgba(255,255,255,0.75);border:1px solid rgba(212,169,106,0.3);border-radius:18px;padding:14px 16px;margin-bottom:9px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 16px rgba(196,123,138,0.12);}
+.mf-check{width:24px;height:24px;border-radius:50%;border:2px solid rgba(196,123,138,0.45);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all 0.2s;}
+.mf-check.done{background:linear-gradient(135deg,#D4A96A,#C47B8A);color:white;border-color:transparent;box-shadow:0 0 12px rgba(212,169,106,0.5);}
+.mf-goal-t{flex:1;font-size:13px;color:#5C2533;line-height:1.4;}
+.mf-goal-t.done{text-decoration:line-through;opacity:0.4;}
+.mf-empty{text-align:center;padding:44px 20px;border:1.5px dashed rgba(196,123,138,0.25);border-radius:18px;background:rgba(255,255,255,0.45);}
+.mf-empty-e{font-size:38px;opacity:0.55;margin-bottom:10px;}
+.mf-empty-t{font-size:12px;color:rgba(139,67,107,0.5);font-style:italic;line-height:1.7;}
+.mf-board{display:flex;flex-wrap:wrap;gap:12px;padding:16px 4px 8px;justify-content:center;}
+.mf-polaroid{background:white;border-radius:4px;padding:10px 10px 0;box-shadow:0 4px 18px rgba(196,123,138,0.2),0 1px 4px rgba(0,0,0,0.08);position:relative;width:calc(50% - 10px);max-width:160px;transition:transform 0.2s;}
+.mf-polaroid:hover{transform:scale(1.04) rotate(0deg) !important;box-shadow:0 8px 28px rgba(196,123,138,0.35);}
+.mf-polaroid img{width:100%;aspect-ratio:1;object-fit:cover;display:block;border-radius:2px;cursor:pointer;}
+.mf-pol-bottom{display:flex;align-items:center;gap:4px;padding:5px 2px 6px;min-height:32px;}
+.mf-pol-label{flex:1;font-family:'Playfair Display',serif;font-size:10px;font-style:italic;color:#8B2252;text-align:center;cursor:pointer;line-height:1.35;word-break:break-word;opacity:0.85;}
+.mf-pol-label:hover{opacity:1;text-decoration:underline dotted rgba(196,123,138,0.5);}
+.mf-pol-del{background:none;border:none;color:rgba(196,123,138,0.45);font-size:11px;cursor:pointer;padding:0 2px;line-height:1;font-family:'DM Sans',sans-serif;flex-shrink:0;}
+.mf-pol-del:hover{color:#C47B8A;}
+.mf-vis-add{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:12px;padding:11px 20px;background:rgba(255,255,255,0.75);border:1.5px dashed rgba(196,123,138,0.35);border-radius:14px;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;color:rgba(139,34,82,0.65);width:100%;box-sizing:border-box;transition:all 0.2s;}
+.mf-vis-add:hover{background:rgba(255,255,255,0.95);border-color:rgba(196,123,138,0.6);}
+</style>
+</head>
+<body>
+
+<!-- BIBLE SCREEN -->
+<div class="bs" id="bs">
+  <div class="btb">
+    <button class="bk" onclick="CB()">&#8592;</button>
+    <div><div class="btit">&#10024; My Style Bible</div><div class="bsub">Your personal guide to everything</div></div>
+  </div>
+  <div class="bhome">
+    <div class="bhlbl">Choose a Category</div>
+    <div class="cbar" onclick="OC('h')"><div class="cbi"><div class="cic ic-h">&#9986;</div><div class="ct"><div class="cn">Hair Guide</div><div class="cd">Best styles · Colors · What to avoid</div></div><div class="ca">›</div></div></div>
+    <div class="cbar" onclick="OC('c')"><div class="cbi"><div class="cic ic-c">👗</div><div class="ct"><div class="cn">Fashion &amp; Style</div><div class="cd">Methods · Best clothes · Elegance rules</div></div><div class="ca">›</div></div></div>
+    <div class="cbar" onclick="OC('e')"><div class="cbi"><div class="cic ic-e">🛍️</div><div class="ct"><div class="cn">Essentials to Buy</div><div class="cd">Hair · Skincare · Makeup · Supplements</div></div><div class="ca">›</div></div></div>
+    <div class="cbar" onclick="OC('l')"><div class="cbi"><div class="cic ic-l">👑</div><div class="ct"><div class="cn">Love &amp; Standards</div><div class="cd">Non-negotiables · Rules · Mantras</div></div><div class="ca">›</div></div></div>
+    <div class="cbar" onclick="OC('gp')"><div class="cbi"><div class="cic" style="background:linear-gradient(135deg,#F5E8F5,#EEE8F8);">💉</div><div class="ct"><div class="cn">Glow Plan</div><div class="cd">Treatments · Timeline · April 2027</div></div><div class="ca">›</div></div></div>
+  </div>
+
+  <!-- HAIR -->
+  <div class="bcat" id="cat-h">
+    <div class="bctb"><button class="bk" onclick="CC('h')">&#8592;</button><div class="bci">&#9986;</div><div><div class="bcit">Hair Guide</div><div class="bcis">For your face shape</div></div></div>
+    <div class="bits"><div class="bit active" onclick="SI('h','hs',this)">Best Styles</div><div class="bit" onclick="SI('h','ha',this)">Avoid</div><div class="bit" onclick="SI('h','hc',this)">Colors</div></div>
+    <div class="bcb">
+      <div class="bis active" id="h-hs">
+        <div class="acc open" id="a1"><div class="ach" onclick="TA('a1')"><div class="acl"><span class="ace">&#9986;</span><div><div class="act">Best Hairstyles For You</div><div class="acs">Oval face · Short torso · Big head</div></div></div><span class="acar">&#9660;</span></div><div class="acb"><div class="aci">
+          <div class="sr"><span class="se">&#127945;</span><div><div class="sn2">Long Layers + Curtain Bangs</div><div class="sd">Your absolute best look. Frames face, slims visually. Keep length collarbone to mid-back.</div></div></div>
+          <div class="sr"><span class="se">&#127754;</span><div><div class="sn2">Voluminous Blowout</div><div class="sd">Volume at crown makes face look longer and slimmer.</div></div></div>
+          <div class="sr"><span class="se">&#127384;</span><div><div class="sn2">Half-Up Half-Down</div><div class="sd">Shows off your features. Keep face-framing pieces down always.</div></div></div>
+          <div class="sr"><span class="se">&#128154;</span><div><div class="sn2">Loose Waves / Soft Curls</div><div class="sd">Adds softness and femininity with your thick dark hair.</div></div></div>
+        </div></div></div>
+      </div>
+      <div class="bis" id="h-ha">
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Blunt Bob</div><div class="sd">Widens the face</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Super Short Pixie Cut</div><div class="sd">Loses length needed to balance face and head</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Center Part, No Layers</div><div class="sd">Emphasizes face roundness</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Tight Slicked-Back Bun</div><div class="sd">Exposes head size, removes softness</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Too Much Root Volume</div><div class="sd">Adds to head size — keep volume at mid-length</div><span class="avt">Avoid</span></div></div>
+      </div>
+      <div class="bis" id="h-hc">
+        <div class="sr"><span class="se">&#128154;</span><div><div class="sn2">Natural Black (Current)</div><div class="sd">Perfect contrast with your skin. Very flattering.</div></div></div>
+        <div class="sr"><span class="se">&#127851;</span><div><div class="sn2">Dark Chocolate Brown</div><div class="sd">Warms up your complexion beautifully.</div></div></div>
+        <div class="sr"><span class="se">&#10024;</span><div><div class="sn2">Caramel Highlights (Balayage)</div><div class="sd">Adds dimension. Gorgeous in sunlight.</div></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Ash/Cool Blonde or Platinum</div><div class="sd">Clashes with warm olive undertones</div><span class="avt">Avoid</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOTHES -->
+  <div class="bcat" id="cat-c">
+    <div class="bctb"><button class="bk" onclick="CC('c')">&#8592;</button><div class="bci">👗</div><div><div class="bcit">Fashion &amp; Style</div><div class="bcis">Rectangle · Short torso · 159cm</div></div></div>
+    <div class="bits"><div class="bit active" onclick="SI('c','cm',this)">Methods</div><div class="bit" onclick="SI('c','cb',this)">Best Clothes</div><div class="bit" onclick="SI('c','ca',this)">Avoid</div><div class="bit" onclick="SI('c','ce',this)">Elegance</div></div>
+    <div class="bcb">
+      <div class="bis active" id="c-cm">
+        <div class="mp"><div class="mpt">🥪 Sandwich Method</div><div class="mpd">Match top color = shoe color. Creates one visual line making legs look endless. Best for 159cm.</div></div>
+        <div class="mp"><div class="mpt">&#128154; Monochrome Method</div><div class="mpd">Head-to-toe one color. Instantly looks expensive and makes you look taller.</div></div>
+        <div class="mp"><div class="mpt">&#8597; Vertical Line Method</div><div class="mpd">Pinstripes, V-necks, open cardigans, long necklaces. Draws eye up = longer torso.</div></div>
+        <div class="mp"><div class="mpt">&#127912; Tonal Dressing</div><div class="mpd">Different shades of same color. Cream + beige + tan. Very quiet luxury.</div></div>
+        <div class="mp"><div class="mpt">&#9878; Proportion Method</div><div class="mpd">Fitted top + wide bottom OR volume top + slim bottom. Never both baggy.</div></div>
+        <div class="mp"><div class="mpt">👚 Tucking Method</div><div class="mpd">Half-tuck into high-waist bottoms always. Creates waist, lengthens torso.</div></div>
+        <div class="mp"><div class="mpt">&#127912; 60-30-10 Color Rule</div><div class="mpd">60% dominant · 30% secondary · 10% accent. Never more than 3 colors.</div></div>
+      </div>
+      <div class="bis" id="c-cb">
+        <div class="sr"><span class="se">👖</span><div><div class="sn2">High Waist Wide Leg Pants</div><div class="sd">Your #1 bottom. Adds hip curves + lengthens torso.</div></div></div>
+        <div class="sr"><span class="se">👗</span><div><div class="sn2">Empire Waist Dresses</div><div class="sd">Waist sits under bust — perfect for short torso.</div></div></div>
+        <div class="sr"><span class="se">👚</span><div><div class="sn2">Off-Shoulder / Puff Sleeve Tops</div><div class="sd">Widens shoulders to balance head.</div></div></div>
+        <div class="sr"><span class="se">🧣</span><div><div class="sn2">Wrap Tops &amp; Dresses</div><div class="sd">Creates waist definition, works for every occasion.</div></div></div>
+        <div class="sr"><span class="se">👕</span><div><div class="sn2">Fitted V-Neck Tops</div><div class="sd">Elongates neck and torso. Your go-to for short torso.</div></div></div>
+        <div class="sr"><span class="se">👠</span><div><div class="sn2">Platform Shoes / Pointed Heels</div><div class="sd">Nude pointed heels = legs for days.</div></div></div>
+      </div>
+      <div class="bis" id="c-ca">
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Low Rise Jeans</div><div class="sd">Makes short torso look even shorter</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Oversized Baggy Tops</div><div class="sd">Makes head look bigger, hides your slim frame</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Turtlenecks</div><div class="sd">Shortens neck and draws attention to head size</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Ankle Strap Shoes</div><div class="sd">Cuts the leg line — makes legs look shorter</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Drop Waist Dresses</div><div class="sd">Worsens short torso appearance</div><span class="avt">Avoid</span></div></div>
+      </div>
+      <div class="bis" id="c-ce">
+        <div class="mp" style="background:linear-gradient(135deg,#F5E8F5,#EEE8F8);border-color:#C4B5D4;"><div class="mpt">&#127775; Your Signature Elegant Formula</div><div class="mpd">Tonal outfit + V-neck tucked top + high waist wide leg pants + pointed nude heels + long pendant necklace + one gold piece</div></div>
+        <div class="sr"><span class="se">🪡</span><div><div class="sn2">Best Fabrics</div><div class="sd">Silk · Satin · Linen · Cashmere · Structured cotton. Avoid cheap polyester.</div></div></div>
+        <div class="sr"><span class="se">💍</span><div><div class="sn2">Accessory Rule</div><div class="sd">One statement piece at a time. Long earrings elongate neck. Delicate gold = quiet luxury.</div></div></div>
+        <div class="sr"><span class="se">👜</span><div><div class="sn2">Bag Size</div><div class="sd">Medium to large bags only. Small bags disappear on slim frames.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESSENTIALS -->
+  <div class="bcat" id="cat-e">
+    <div class="bctb"><button class="bk" onclick="CC('e')">&#8592;</button><div class="bci">🛍️</div><div><div class="bcit">Essentials to Buy</div><div class="bcis">Your complete shopping list</div></div></div>
+    <div class="bits"><div class="bit active" onclick="SI('e','eh',this)">Hair</div><div class="bit" onclick="SI('e','es',this)">Skincare</div><div class="bit" onclick="SI('e','em',this)">Makeup</div><div class="bit" onclick="SI('e','ew',this)">Wellness</div></div>
+    <div class="bcb">
+      <div class="bis active" id="e-eh">
+        <div class="ec2"><div class="eic">&#127965;</div><div class="ein"><div class="enm2">Coconut / Argan Oil</div><div class="ebr">Moroccanoil · Parachute · OGX</div><div class="ewy">Pre-shampoo treatment</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#129514;</div><div class="ein"><div class="enm2">Sulfate-Free Shampoo</div><div class="ebr">Maui Moisture · TRESemmé Keratin</div><div class="ewy">Cleanses without stripping</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#128154;</div><div class="ein"><div class="enm2">Weekly Hair Mask</div><div class="ebr">Garnier Fructis · Shea Moisture</div><div class="ewy">Deep repair every Sunday</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#127807;</div><div class="ein"><div class="enm2">Rosemary Oil</div><div class="ebr">Mielle Organics · The Ordinary</div><div class="ewy">Scalp massage 3x/week for growth</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">💎</div><div class="ein"><div class="enm2">Olaplex No.3</div><div class="ebr">Olaplex</div><div class="ewy">Monthly bond repair treatment</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">🛏️</div><div class="ein"><div class="enm2">Silk Pillowcase</div><div class="ebr">LilySilk · SLIP</div><div class="ewy">Reduces breakage overnight</div></div><div class="epr">&#128176;&#128176;</div></div>
+      </div>
+      <div class="bis" id="e-es">
+        <div class="ec2"><div class="eic">&#127819;</div><div class="ein"><div class="enm2">Vitamin C Serum</div><div class="ebr">The Ordinary · Paula's Choice</div><div class="ewy">Morning glow + brightens skin</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#9728;</div><div class="ein"><div class="enm2">SPF 50 Sunscreen</div><div class="ebr">Skin Aqua · Biore UV · La Roche-Posay</div><div class="ewy">#1 anti-aging. Every single day.</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#128167;</div><div class="ein"><div class="enm2">Hyaluronic Acid Serum</div><div class="ebr">The Ordinary · CeraVe</div><div class="ewy">Plumps skin, keeps you looking young</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#127769;</div><div class="ein"><div class="enm2">Retinol (Night)</div><div class="ebr">The Ordinary 0.5% · CeraVe</div><div class="ewy">Sandwich method — moisturizer first</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#128065;</div><div class="ein"><div class="enm2">Eye Cream</div><div class="ebr">Kiehl's · CeraVe · The INKEY List</div><div class="ewy">Start at 26 — prevents fine lines</div></div><div class="epr">&#128176;&#128176;</div></div>
+      </div>
+      <div class="bis" id="e-em">
+        <div class="ec2"><div class="eic">&#127775;</div><div class="ein"><div class="enm2">Tinted Moisturizer</div><div class="ebr">Charlotte Tilbury Flawless Filter · Fenty</div><div class="ewy">Warm golden shade — always dewy</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#128154;</div><div class="ein"><div class="enm2">Dark Brown/Black Eyeliner</div><div class="ebr">NYX Epic Ink · Maybelline Hyper Easy</div><div class="ewy">Enhances your almond eyes</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#10024;</div><div class="ein"><div class="enm2">Bronze/Peachy Blush</div><div class="ebr">NARS Orgasm · Charlotte Tilbury Pillow Talk</div><div class="ewy">Warm tones for golden-olive skin</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">💄</div><div class="ein"><div class="enm2">Nude/Peach Lip Liner + Gloss</div><div class="ebr">MAC Soar liner · Fenty Gloss Bomb</div><div class="ewy">Enhance lips — don't change them</div></div><div class="epr">&#128176;</div></div>
+      </div>
+      <div class="bis" id="e-ew">
+        <div class="ec2"><div class="eic">💊</div><div class="ein"><div class="enm2">Biotin 5000mcg</div><div class="ebr">Sports Research · Nature's Bounty</div><div class="ewy">Hair &amp; nail growth daily</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#10024;</div><div class="ein"><div class="enm2">Collagen Peptides</div><div class="ebr">Vital Proteins · Garden of Life</div><div class="ewy">Skin plumpness + hair strength</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">🔋</div><div class="ein"><div class="enm2">Iron + Vitamin E</div><div class="ebr">Thorne · Garden of Life</div><div class="ewy">Prevents hair loss, boosts glow</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#127947;</div><div class="ein"><div class="enm2">Protein Powder</div><div class="ebr">Optimum Nutrition · Orgain · Ghost</div><div class="ewy">100g protein daily for glute growth</div></div><div class="epr">&#128176;&#128176;</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOVE -->
+  <div class="bcat" id="cat-l">
+    <div class="bctb"><button class="bk" onclick="CC('l')">&#8592;</button><div class="bci">👑</div><div><div class="bcit">Love &amp; Standards</div><div class="bcis">Your non-negotiables</div></div></div>
+    <div class="bits"><div class="bit active" onclick="SI('l','ln',this)">Non-Negotiables</div><div class="bit" onclick="SI('l','lr',this)">7 Rules</div><div class="bit" onclick="SI('l','lf',this)">Red Flags</div><div class="bit" onclick="SI('l','lm',this)">Mantras</div></div>
+    <div class="bcb">
+      <div class="bis active" id="l-ln">
+        <div class="lh"><div class="lhe">👑</div><div class="lht">You are the prize.</div><div class="lhs">Read this whenever you feel yourself shrinking for someone.</div></div>
+        <div class="lq"><div class="lqt">"A woman becomes irresistible when she stops living for everyone else and starts living for herself."</div><div class="lqs">— Why Men Marry Bitches</div></div>
+        <div class="nc"><div class="ni2">💅</div><div class="nt">My happiness is not negotiable. I never sacrifice my peace to keep someone comfortable.</div></div>
+        <div class="nc"><div class="ni2">👑</div><div class="nt">I am a prize. His time and attention is a privilege — not something I beg for.</div></div>
+        <div class="nc"><div class="ni2">🌹</div><div class="nt">I give warmth freely — but never at the cost of my dignity.</div></div>
+        <div class="nc"><div class="ni2">🦋</div><div class="nt">I don't chase. I attract. If he's not pursuing, I step back — not forward.</div></div>
+        <div class="nc"><div class="ni2">🔥</div><div class="nt">My standards are non-negotiable. I enforce them calmly, without apology.</div></div>
+        <div class="nc"><div class="ni2">🌸</div><div class="nt">I have a full, beautiful life. He adds to it — he doesn't complete it.</div></div>
+        <div class="nc"><div class="ni2">&#10024;</div><div class="nt">I never change who I am to keep a man interested. The right one loves me as I am.</div></div>
+        <div class="nc"><div class="ni2">&#9878;</div><div class="nt">I match effort — never give more than I receive. I don't accept breadcrumbs.</div></div>
+      </div>
+      <div class="bis" id="l-lr">
+        <div class="nc"><div class="ni2" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--pink);min-width:22px;">1</div><div class="nt"><strong>Keep Your Mystery</strong> — Don't tell him everything immediately. Mystery creates attraction.</div></div>
+        <div class="nc"><div class="ni2" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--pink);min-width:22px;">2</div><div class="nt"><strong>Don't Chase</strong> — He should be reaching out, making plans, working to win your attention.</div></div>
+        <div class="nc"><div class="ni2" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--pink);min-width:22px;">3</div><div class="nt"><strong>Don't Be Always Available</strong> — Scarcity creates value. A little unavailability is deeply attractive.</div></div>
+        <div class="nc"><div class="ni2" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--pink);min-width:22px;">4</div><div class="nt"><strong>Have Opinions</strong> — Men don't respect women who agree with everything. Be intellectually independent.</div></div>
+        <div class="nc"><div class="ni2" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--pink);min-width:22px;">5</div><div class="nt"><strong>Let Him Miss You</strong> — Don't fill every silence with a text. Absence creates longing.</div></div>
+        <div class="nc"><div class="ni2" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--pink);min-width:22px;">6</div><div class="nt"><strong>He Fits Into Your Life</strong> — Don't cancel your plans for him. Your life comes first.</div></div>
+        <div class="nc"><div class="ni2" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--pink);min-width:22px;">7</div><div class="nt"><strong>Walk Away Power</strong> — Be genuinely willing to walk away from what doesn't serve you.</div></div>
+      </div>
+      <div class="bis" id="l-lf">
+        <div class="rfc"><div class="rfi">🚩</div><div class="rft">He only reaches out when convenient for him — not consistently</div></div>
+        <div class="rfc"><div class="rfi">🚩</div><div class="rft">He makes you feel like you're too much for having standards</div></div>
+        <div class="rfc"><div class="rfi">🚩</div><div class="rft">You're always the one initiating — texts, plans, effort</div></div>
+        <div class="rfc"><div class="rfi">🚩</div><div class="rft">He goes cold and you chase harder — that's a trap, not love</div></div>
+        <div class="rfc"><div class="rfi">🚩</div><div class="rft">You feel like you have to be "easier" or "less" to keep him</div></div>
+        <div class="rfc"><div class="rfi">🚩</div><div class="rft">He shows you who he is — and you keep making excuses for him</div></div>
+      </div>
+      <div class="bis" id="l-lm">
+        <div class="mw">
+          <div class="mwt">I Remind Myself Every Day</div>
+          <div class="mi"><span class="md">✦</span>I am confident, not arrogant. Warm, not desperate.</div>
+          <div class="mi"><span class="md">✦</span>I don't chase. I attract. I don't beg. I walk.</div>
+          <div class="mi"><span class="md">✦</span>I am mysterious, interesting, and always evolving.</div>
+          <div class="mi"><span class="md">✦</span>I never shrink myself to fit into someone's life.</div>
+          <div class="mi"><span class="md">✦</span>The right man will step up. The wrong one will reveal himself.</div>
+          <div class="mi"><span class="md">✦</span>My love is a gift — not a given. He earns it.</div>
+          <div class="mi"><span class="md">✦</span>A woman who knows she can walk away will never be taken for granted.</div>
+          <div class="mi"><span class="md">✦</span>I am already whole. He adds to my life — not completes it.</div>
+        </div>
+        <div class="lq"><div class="lqt">"The goal is not to be difficult. The goal is to be so secure in your own worth that you never compromise it for someone who isn't treating you the way you deserve."</div><div class="lqs">— Why Men Marry Bitches</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOW PLAN -->
+  <div class="bcat" id="cat-gp">
+    <div class="bctb"><button class="bk" onclick="CC('gp')">&#8592;</button><div class="bci">💉</div><div><div class="bcit">Glow Plan</div><div class="bcis">Your cosmetic timeline</div></div></div>
+    <div class="bits"><div class="bit active" onclick="SI('gp','gpt',this)">Timeline</div><div class="bit" onclick="SI('gp','gpa',this)">Avoid</div></div>
+    <div class="bcb">
+      <div class="bis active" id="gp-gpt">
+        <div class="gh" style="margin-bottom:14px;"><h2>💉 Cosmetic Glow Plan</h2><p>Your timeline to look stunning for April 2027</p></div>
+        <div class="tlc"><div class="tld">💉</div><div class="tli"><div class="tln">Masseter Botox — Round 1</div><div class="tldt">August / September 2026</div></div><div class="tls">Upcoming</div></div>
+        <div class="tlc"><div class="tld">&#10024;</div><div class="tli"><div class="tln">HIFU Skin Tightening</div><div class="tldt">October 2026</div></div><div class="tls">Upcoming</div></div>
+        <div class="tlc"><div class="tld">💉</div><div class="tli"><div class="tln">Masseter Botox — Round 2</div><div class="tldt">December 2026 / January 2027</div></div><div class="tls">Upcoming</div></div>
+        <div class="tlc"><div class="tld">💎</div><div class="tli"><div class="tln">Chin Filler</div><div class="tldt">February / March 2027</div></div><div class="tls">Upcoming</div></div>
+        <div class="tlc" style="border-color:#D4A96A;background:linear-gradient(135deg,#FFF8E8,#FFF0F8);"><div class="tld" style="background:linear-gradient(135deg,#D4A96A,#E8A0AD);">&#127775;</div><div class="tli"><div class="tln">See Boyfriend &#9992;</div><div class="tldt">April 2027 — You'll look amazing!</div></div><div class="tls" style="background:#FFF3E0;color:#C4956A;">Goal</div></div>
+        <div class="aff" style="margin-top:14px;"><div class="ae">💫</div><div class="at">Small enhancements — not transformation. You're already stunning.</div></div>
+      </div>
+      <div class="bis" id="gp-gpa">
+        <div class="tc" style="border-color:#FFE8E8;"><div class="te">&#10060;</div><div class="ti"><div class="tn">No Buccal Fat Removal</div><div class="td">Causes premature aging and hollowing as you get older</div></div></div>
+        <div class="tc" style="border-color:#FFE8E8;"><div class="te">&#10060;</div><div class="ti"><div class="tn">No Lip Filler</div><div class="td">Your lips are already full and beautiful — leave them alone!</div></div></div>
+        <div class="tc" style="border-color:#FFE8E8;"><div class="te">&#10060;</div><div class="ti"><div class="tn">No Face Fat Removal</div><div class="td">Your face fullness is youthful and will age beautifully</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <button class="bible-btn" onclick="OB()">📖 Style Bible</button>
+  <div class="hdr-lbl">Your Personal Guide</div>
+  <h1>My <em>Glow</em> Calendar &#10024;</h1>
+  <div class="hdr-date" id="hdate"></div>
+</div>
+
+<!-- NAV -->
+<div class="bnav">
+  <div class="ni active" onclick="ST('today',this)"><span class="ne">&#128197;</span><span class="nl">Today</span></div>
+  <div class="ni" onclick="ST('workout',this)"><span class="ne">&#127825;</span><span class="nl">Workout</span></div>
+  <div class="ni" onclick="ST('hair',this)"><span class="ne">&#9986;</span><span class="nl">Hair</span></div>
+  <div class="ni" onclick="ST('mf',this)"><span class="ne">🌙</span><span class="nl">Manifest</span></div>
+</div>
+
+<!-- TODAY TAB -->
+<div class="tab active" id="tab-today">
+  <div class="wnav">
+    <button onclick="CW(-1)">&#8249;</button>
+    <span class="wlbl" id="wlbl"></span>
+    <button onclick="CW(1)">&#8250;</button>
+  </div>
+  <div class="dstrip" id="dstrip"></div>
+  <div class="main">
+    <div class="banner" id="banner" data-e="&#10024;">
+      <div class="b-lbl">Today</div>
+      <div class="b-day" id="bday"></div>
+      <div class="b-vibe" id="bvibe"></div>
+    </div>
+    <div class="pring">
+      <div class="rw">
+        <svg width="72" height="72" viewBox="0 0 72 72">
+          <circle cx="36" cy="36" r="28" fill="none" stroke="#F5EAEA" stroke-width="5"/>
+          <circle cx="36" cy="36" r="28" fill="none" stroke="url(#gr)" stroke-width="5" stroke-dasharray="176" id="prc" stroke-dashoffset="52" stroke-linecap="round"/>
+          <defs><linearGradient id="gr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#C47B8A"/><stop offset="100%" style="stop-color:#D4A96A"/></linearGradient></defs>
+        </svg>
+        <div class="rc"><div class="rn" id="rnum">0</div><div class="rl">tasks</div></div>
+      </div>
+      <div class="pt"><h3 id="ptit">Today's Routine</h3><p id="pdesc">You've got everything you need</p></div>
+    </div>
+    <div class="sec">
+      <div class="slbl">Every Day</div>
+      <div class="tc"><div class="te">&#9728;</div><div class="ti"><div class="tn">Vitamin C Serum + SPF</div><div class="td">Apply before going out. SPF is your #1 anti-aging secret.</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd">M</span><span class="fd">Tu</span><span class="fd">W</span><span class="fd">Th</span><span class="fd">F</span><span class="fd">Sa</span></span><span class="fl">· Daily</span></div></div><span class="tt ts">Skin</span></div>
+      <div class="tc"><div class="te">💊</div><div class="ti"><div class="tn">Take Supplements</div><div class="td">Biotin · Collagen · Vitamin E · Iron</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd">M</span><span class="fd">Tu</span><span class="fd">W</span><span class="fd">Th</span><span class="fd">F</span><span class="fd">Sa</span></span><span class="fl">· Daily</span></div></div><span class="tt tw">Wellness</span></div>
+      <div class="tc"><div class="te">&#128167;</div><div class="ti"><div class="tn">Drink 2L Water</div><div class="td">Keeps skin plump, hair shiny, and body energized.</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd">M</span><span class="fd">Tu</span><span class="fd">W</span><span class="fd">Th</span><span class="fd">F</span><span class="fd">Sa</span></span><span class="fl">· Daily</span></div></div><span class="tt tw">Wellness</span></div>
+      <div class="tc"><div class="te">&#127769;</div><div class="ti"><div class="tn">Night Routine</div><div class="td">Remove makeup · Retinol · Hyaluronic acid · Eye cream</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd">M</span><span class="fd">Tu</span><span class="fd">W</span><span class="fd">Th</span><span class="fd">F</span><span class="fd">Sa</span></span><span class="fl">· Daily</span></div></div><span class="tt ts">Skin</span></div>
+    </div>
+    <div class="sec" id="dspec"></div>
+    <div class="aff"><div class="ae">&#127800;</div><div class="at" id="atext"></div></div>
+  </div>
+</div>
+
+<!-- WORKOUT TAB -->
+<div class="tab" id="tab-workout">
+  <div id="wrem"></div>
+  <div class="main">
+    <div class="wh">
+      <div class="dbl" id="wdate"></div>
+      <h2>&#127825; Booty &amp; Arms</h2>
+      <p>Monday · Wednesday · Friday · Gym</p>
+      <div style="margin-top:9px;display:flex;justify-content:center;"><div class="fb"><span class="fds"><span class="fd off">Su</span><span class="fd">M</span><span class="fd off">Tu</span><span class="fd">W</span><span class="fd off">Th</span><span class="fd">F</span><span class="fd off">Sa</span></span><span class="fl">· 3x/week</span></div></div>
+    </div>
+    <div class="sec">
+      <div class="slbl">Glutes — Bigger &amp; Rounder</div>
+      <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Barbell Hip Thrust</div><div class="et">Go heavy — your #1 growth exercise</div></div></div><div class="es">4 × 8–12</div></div>
+      <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Romanian Deadlift</div><div class="et">Feel the stretch at the bottom</div></div></div><div class="es">3 × 10–12</div></div>
+      <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Cable Kickbacks</div><div class="et">Squeeze hard at the top</div></div></div><div class="es">3 × 15 each</div></div>
+      <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Sumo Squat</div><div class="et">Wide stance · Band above knees</div></div></div><div class="es">3 × 12</div></div>
+      <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Abductor Machine</div><div class="et">Side booty activation</div></div></div><div class="es">3 × 15–20</div></div>
+      <div class="ec"><div class="el"><div class="en">6</div><div><div class="enm">Walking Lunges</div><div class="et">Keep torso upright</div></div></div><div class="es">3 × 12 each</div></div>
+    </div>
+    <div class="sec">
+      <div class="slbl">Quads &amp; Legs</div>
+      <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Leg Press</div><div class="et">Feet shoulder-width · Full range of motion</div></div></div><div class="es">4 × 10–12</div></div>
+      <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Hack Squat</div><div class="et">Toes slightly out · Go deep</div></div></div><div class="es">3 × 10–12</div></div>
+      <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Leg Extension</div><div class="et">Isolates quads — squeeze at top</div></div></div><div class="es">3 × 15</div></div>
+      <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Goblet Squat</div><div class="et">Deep squat · Chest up</div></div></div><div class="es">3 × 12</div></div>
+    </div>
+    <div class="sec">
+      <div class="slbl">Arms — Toned &amp; Defined</div>
+      <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Dumbbell Bicep Curls</div><div class="et">Slow and controlled</div></div></div><div class="es">3 × 12</div></div>
+      <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Hammer Curls</div><div class="et">Builds arm thickness</div></div></div><div class="es">3 × 12</div></div>
+      <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Tricep Rope Pushdown</div><div class="et">Squeeze at the bottom</div></div></div><div class="es">3 × 15</div></div>
+      <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Overhead Tricep Extension</div><div class="et">Full range of motion</div></div></div><div class="es">3 × 12</div></div>
+      <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Lateral Raises</div><div class="et">Widens shoulders for balance</div></div></div><div class="es">3 × 15</div></div>
+    </div>
+    <div class="tc" style="background:linear-gradient(135deg,#FFF0F3,#FFF8F0);"><div class="te">🥩</div><div class="ti"><div class="tn">Eat 100g+ Protein Today</div><div class="td">Eggs · Chicken · Fish · Greek yogurt · Protein shake</div></div></div>
+  </div>
+</div>
+
+<!-- HAIR TAB -->
+<div class="tab" id="tab-hair">
+  <div id="hrem"></div>
+  <div class="main">
+    <div class="hh">
+      <div class="dbl" id="hdate"></div>
+      <h2>&#128154; Hair Routine</h2>
+      <p>Your complete weekly hair care plan</p>
+    </div>
+    <div class="sec">
+      <div class="slbl">Wash Days — Mon · Wed · Fri</div>
+      <div class="hdc">
+        <div class="hdh"><span style="font-size:18px">🚿</span><h3>Hair Wash Routine</h3><div style="margin-left:auto"><div class="fb"><span class="fds"><span class="fd off">Su</span><span class="fd">M</span><span class="fd off">Tu</span><span class="fd">W</span><span class="fd off">Th</span><span class="fd">F</span><span class="fd off">Sa</span></span><span class="fl">3x</span></div></div></div>
+        <div class="hs"><div class="sn">1</div><span>Pre-shampoo oil (coconut/argan) — 30–60 mins before</span></div>
+        <div class="hs"><div class="sn">2</div><span>Sulfate-free shampoo — scalp only</span></div>
+        <div class="hs"><div class="sn">3</div><span>Deep conditioner — leave 5–10 mins on lengths</span></div>
+        <div class="hs"><div class="sn">4</div><span>Cold water rinse — seals cuticle for shine</span></div>
+        <div class="hs"><div class="sn">5</div><span>Air dry when possible — heat max 2x/week</span></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="slbl">Scalp Days — Tue · Thu · Sat</div>
+      <div class="tc"><div class="te">&#127807;</div><div class="ti"><div class="tn">Rosemary Oil Scalp Massage</div><div class="td">5 mins — clinically proven for hair growth!</div><div class="fb"><span class="fds"><span class="fd off">Su</span><span class="fd off">M</span><span class="fd">Tu</span><span class="fd off">W</span><span class="fd">Th</span><span class="fd off">F</span><span class="fd">Sa</span></span><span class="fl">· 3x/week</span></div></div><span class="tt th2">Growth</span></div>
+    </div>
+    <div class="sec">
+      <div class="slbl">Sunday — Deep Treatment</div>
+      <div class="tc tap" onclick="OM('mask')"><div class="te">💆</div><div class="ti"><div class="tn">Weekly Hair Mask</div><div class="td">Garnier Fructis Hair Bomb or Shea Moisture — 20–30 mins</div><div class="th">Tap to see full routine →</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd off">M</span><span class="fd off">Tu</span><span class="fd off">W</span><span class="fd off">Th</span><span class="fd off">F</span><span class="fd off">Sa</span></span><span class="fl">· 1x/week</span></div></div><span class="tt th2">Repair</span></div>
+      <div class="tc tap" onclick="OM('olaplex')"><div class="te">💎</div><div class="ti"><div class="tn">Olaplex No.3</div><div class="td">Protein treatment once a month</div><div class="th">Tap to see full routine →</div><div class="fb"><span class="fm">1x / month</span></div></div><span class="tt th2">Protein</span></div>
+    </div>
+    <div class="sec">
+      <div class="slbl">Every Night</div>
+      <div class="tc"><div class="te">&#127769;</div><div class="ti"><div class="tn">Loose Braid Before Bed</div><div class="td">Prevents breakage. Sleep on silk pillowcase!</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd">M</span><span class="fd">Tu</span><span class="fd">W</span><span class="fd">Th</span><span class="fd">F</span><span class="fd">Sa</span></span><span class="fl">· Daily</span></div></div><span class="tt th2">Daily</span></div>
+      <div class="tc"><div class="te">&#127807;</div><div class="ti"><div class="tn">Argan Oil on Ends</div><div class="td">Tiny amount to prevent dryness overnight</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd">M</span><span class="fd">Tu</span><span class="fd">W</span><span class="fd">Th</span><span class="fd">F</span><span class="fd">Sa</span></span><span class="fl">· Daily</span></div></div><span class="tt th2">Daily</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MANIFESTATION TAB -->
+<div class="tab" id="tab-mf">
+  <div class="mf-wrap">
+    <div class="mf-hdr">
+      <span class="mf-crown">🌙</span>
+      <div class="mf-title">My Manifestation Board</div>
+      <div class="mf-sub">Speak it · Believe it · Receive it</div>
+      <div class="mf-divider"></div>
+    </div>
+    <div class="mf-tabs-row">
+      <div class="mf-tab active" onclick="MFT('aff',this)">✨ Affirmations</div>
+      <div class="mf-tab" onclick="MFT('goals',this)">🎯 Goals</div>
+      <div class="mf-tab" onclick="MFT('vis',this)">🖼️ Vision Board</div>
+    </div>
+    <div class="mf-sec active" id="mf-aff-sec">
+      <div class="mf-inp-row">
+        <input id="aff-inp" class="mf-inp" placeholder="I am... I have... I attract...">
+        <button class="mf-add" onclick="addAff()">+</button>
+      </div>
+      <div id="aff-list"></div>
+    </div>
+    <div class="mf-sec" id="mf-goals-sec">
+      <div class="mf-inp-row">
+        <input id="goal-inp" class="mf-inp" placeholder="My goal is to...">
+        <button class="mf-add" onclick="addGoal()">+</button>
+      </div>
+      <div id="goal-list"></div>
+    </div>
+    <div class="mf-sec" id="mf-vis-sec">
+      <div style="text-align:center;margin-bottom:14px;">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#8B2252;margin-bottom:4px;">Your Vision Board</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,123,138,0.6);">See it · Feel it · Receive it</div>
+      </div>
+      <label class="mf-vis-add">
+        📸 Add a Photo
+        <input type="file" accept="image/*" multiple onchange="addVisFiles(this)" style="display:none;">
+      </label>
+      <div id="vis-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SPARKS CANVAS -->
+<canvas id="mf-sparks"></canvas>
+
+<!-- LIGHTBOX -->
+<div id="al-lb" onclick="this.classList.remove('on')"><img src="" alt=""></div>
+
+<!-- MODAL -->
+<div class="ov" id="ov" onclick="CM()"></div>
+<div class="rm" id="rm">
+  <div class="rmh"></div>
+  <div class="rmhd">
+    <div class="rmhl"><div class="rme" id="me"></div><div><div class="rmt" id="mt"></div><div class="rms" id="ms2"></div></div></div>
+    <button class="rmc" onclick="CM()">&#10005;</button>
+  </div>
+  <div class="rmb" id="mb"></div>
+</div>
+
+<script>
+var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+var DATA={
+  0:{e:'☁️',v:'Calm rest day — slow down, breathe, recharge',s:[
+    {e:'🧘',n:'Morning Slow Start',d:'No alarm · Wake up naturally · Gentle stretches in bed',t:'tw',tl:'Wellness',f:'1x/week',fd:[0]},
+    {e:'📖',n:'Read or Journal',d:'Something that nourishes your mind — no social media rush',t:'tw',tl:'Calm',f:'1x/week',fd:[0]},
+    {e:'🫖',n:'Make Your Favourite Drink',d:'Tea · Coffee · Whatever feels cozy and slow today',t:'tw',tl:'Self Care',f:'1x/week',fd:[0]},
+    {e:'🛁',n:'Long Bath or Shower',d:'Exfoliate · Body scrub · Moisturize all over — take your time',t:'tb',tl:'Beauty',f:'1x/week',fd:[0]},
+    {e:'😴',n:'Early to Bed',d:'In bed by 10pm — let your body fully recover for the week ahead',t:'tw',tl:'Wellness',f:'1x/week',fd:[0]}
+  ],a:'A calm Sunday is the most productive thing you can do for your whole week. 🌿'},
+  1:{e:'🍑',v:'Gym day! Booty & Arms workout',s:[
+    {e:'🍑',n:'Booty & Arms Workout',d:'Hip thrusts · RDL · Cable kickbacks · Bicep curls',t:'tf',tl:'Fitness',f:'3x/week',fd:[1,3,5]},
+    {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',t:'th2',tl:'Hair',f:'3x/week',fd:[1,3,5]},
+    {e:'🥩',n:'100g+ Protein',d:'Eggs · Chicken · Protein shake for muscle recovery',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+  ],a:'Every rep is sculpting the version of you that turns heads. 💪'},
+  2:{e:'🌿',v:'Scalp massage & skin focus day',s:[
+    {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes while watching TV — clinically proven for hair growth!',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
+    {e:'💆',n:'Facial Gua Sha / Massage',d:'Lymphatic drainage massage for face slimming & glow',t:'tb',tl:'Beauty',f:'2x/week',fd:[2,5]},
+    {e:'🥑',n:'Eat for Your Skin',d:'Avocado · Salmon · Spinach · Sweet potato',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+  ],a:'Consistency is the secret ingredient. Keep going. ✨'},
+  3:{e:'🍑',v:'Gym day! Booty & Arms workout',s:[
+    {e:'🍑',n:'Booty & Arms Workout',d:'Hip thrusts · Sumo squats · Abductor · Lateral raises',t:'tf',tl:'Fitness',f:'3x/week',fd:[1,3,5]},
+    {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',t:'th2',tl:'Hair',f:'3x/week',fd:[1,3,5]},
+    {e:'🥩',n:'100g+ Protein',d:'Fuel those growing glutes! Greek yogurt · Fish · Eggs',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+  ],a:"Halfway through the week — you're doing amazing. 🌟"},
+  4:{e:'🌿',v:'Recovery & scalp care day',s:[
+    {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes tonight — your hair will thank you',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
+    {e:'🧘',n:'Stretch & Recovery',d:'Hip flexor stretches · Glute stretches for recovery',t:'tf',tl:'Recovery',f:'2x/week',fd:[2,4]},
+    {e:'🍵',n:'Collagen Drink',d:'Add collagen powder to tea or water tonight',t:'tw',tl:'Wellness',f:'Daily',fd:[0,1,2,3,4,5,6]}
+  ],a:'Your body is changing even on rest days. Trust the process. 💖'},
+  5:{e:'🍑',v:'Last gym day of the week! Finish strong',s:[
+    {e:'🍑',n:'Booty & Arms Workout',d:'Walking lunges · RDL · Hammer curls · Overhead triceps',t:'tf',tl:'Fitness',f:'3x/week',fd:[1,3,5]},
+    {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',t:'th2',tl:'Hair',f:'3x/week',fd:[1,3,5]},
+    {e:'💅',n:'Treat Yourself Tonight',d:'Face mask · Nail care · Wind down — you earned it!',t:'tb',tl:'Beauty',f:'1x/week',fd:[5]}
+  ],a:"You showed up all week. That's what glow is made of. 🔥"},
+  6:{e:'🏠',v:'Home day — groceries, cleaning & reset your space',s:[
+    {e:'🛒',n:'Grocery Shopping',d:'Stock up on your weekly essentials — healthy foods, skincare, home needs',t:'tw',tl:'Home',f:'1x/week',fd:[6]},
+    {e:'🧹',n:'Full Home Clean',d:'Vacuum · Mop · Wipe surfaces · Bathroom · Kitchen deep clean',t:'tw',tl:'Home',f:'1x/week',fd:[6]},
+    {e:'🌿',n:'Freshen Up Your Space',d:'Change bedsheets · Open windows · Light a candle · Add fresh flowers if you can',t:'tw',tl:'Home',f:'1x/week',fd:[6]},
+    {e:'👗',n:'Laundry & Clothes',d:'Wash · Fold · Organise your wardrobe · Plan your outfits for the week',t:'tb',tl:'Style',f:'1x/week',fd:[6]},
+    {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes for hair growth while you tidy up',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]}
+  ],a:'A beautiful space creates a beautiful life. Your home is your sanctuary. 🏠✨'}
+};
+
+var sel=new Date(), woff=0;
+
+function GW(o){
+  var t=new Date(),sun=new Date(t);
+  sun.setDate(t.getDate()-t.getDay()+(o*7));
+  var a=[];
+  for(var i=0;i<7;i++){var d=new Date(sun);d.setDate(sun.getDate()+i);a.push(d);}
+  return a;
+}
+function SD(a,b){return a.getDate()===b.getDate()&&a.getMonth()===b.getMonth()&&a.getFullYear()===b.getFullYear();}
+function IT(d){return SD(d,new Date());}
+
+function RW(){
+  var dates=GW(woff),strip=document.getElementById('dstrip');
+  strip.innerHTML='';
+  var f=dates[0],l=dates[6];
+  document.getElementById('wlbl').textContent=MN[f.getMonth()].slice(0,3)+' '+f.getDate()+' - '+MN[l.getMonth()].slice(0,3)+' '+l.getDate()+', '+l.getFullYear();
+  dates.forEach(function(d){
+    var p=document.createElement('div');
+    p.className='dpill'+(IT(d)?' today':'')+(SD(d,sel)?' active':'');
+    p.innerHTML='<span class="dn">'+DN[d.getDay()]+'</span><span class="dd">'+d.getDate()+'</span><span class="dot"></span>';
+    p.onclick=(function(x){return function(){sel=new Date(x);RW();RD();};})(d);
+    strip.appendChild(p);
+  });
+}
+
+function FB(t){
+  var dl=['Su','M','Tu','W','Th','F','Sa'];
+  if(t.f==='Daily') return '<div class="fb"><span class="fds">'+dl.map(function(d){return '<span class="fd">'+d+'</span>';}).join('')+'</span><span class="fl">· Daily</span></div>';
+  if(t.f==='1x/mo') return '<div class="fb"><span class="fm">1x / month</span></div>';
+  var ad=t.fd||[];
+  return '<div class="fb"><span class="fds">'+dl.map(function(d,i){return '<span class="fd '+(ad.indexOf(i)>=0?'':'off')+'">'+d+'</span>';}).join('')+'</span><span class="fl">· '+t.f+'</span></div>';
+}
+
+function RD(){
+  var dow=sel.getDay(),data=DATA[dow];
+  document.getElementById('banner').setAttribute('data-e','✨');
+  document.getElementById('bday').textContent=DN[dow]+', '+MN[sel.getMonth()]+' '+sel.getDate();
+  document.getElementById('bvibe').textContent=data.v;
+  var cnt=data.s.length+4;
+  document.getElementById('rnum').textContent=cnt;
+  var ci=176,off=ci-(ci*(cnt/12));
+  document.getElementById('prc').setAttribute('stroke-dashoffset',Math.max(off,15));
+  document.getElementById('ptit').textContent=[1,3,5].indexOf(dow)>=0?'💪 Gym + Glow Day':'✨ Glow Day';
+  document.getElementById('pdesc').textContent=cnt+' routines keeping you radiant & strong';
+  var sec=document.getElementById('dspec');
+  if(data.s.length>0){
+    var h='<div class="slbl">'+DN[dow]+'day Focus</div>';
+    data.s.forEach(function(t){h+='<div class="tc"><div class="te">'+t.e+'</div><div class="ti"><div class="tn">'+t.n+'</div><div class="td">'+t.d+'</div>'+FB(t)+'</div><span class="tt '+t.t+'">'+t.tl+'</span></div>';});
+    sec.innerHTML=h;
+  } else sec.innerHTML='';
+  document.getElementById('atext').textContent=data.a;
+}
+
+function CW(d){woff+=d;RW();}
+
+function ST(n,el){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.ni').forEach(function(i){i.classList.remove('active');});
+  document.getElementById('tab-'+n).classList.add('active');
+  el.classList.add('active');
+  mfAnimating=(n==='mf');
+  document.getElementById('mf-sparks').style.display=mfAnimating?'block':'none';
+  document.querySelector('.hdr').style.display=mfAnimating?'none':'';
+  if(mfAnimating){resizeSparks();animSparks();}
+}
+
+function OB(){document.getElementById('bs').classList.add('open');document.body.style.overflow='hidden';}
+function CB(){document.getElementById('bs').classList.remove('open');document.body.style.overflow='';}
+function OC(n){document.getElementById('cat-'+n).classList.add('open');}
+function CC(n){document.getElementById('cat-'+n).classList.remove('open');}
+function SI(cat,sec,el){
+  var c=document.getElementById('cat-'+cat);
+  c.querySelectorAll('.bis').forEach(function(s){s.classList.remove('active');});
+  c.querySelectorAll('.bit').forEach(function(t){t.classList.remove('active');});
+  document.getElementById(cat+'-'+sec).classList.add('active');
+  el.classList.add('active');
+}
+function TA(id){var a=document.getElementById(id);if(a)a.classList.toggle('open');}
+
+// INIT
+var now=new Date();
+var ts=DN[now.getDay()]+', '+MN[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+var tdow=now.getDay();
+document.getElementById('hdate').textContent=ts;
+document.getElementById('wdate').textContent='📅 '+ts;
+
+document.getElementById('hdate').textContent=ts;
+var wd=document.getElementById('wdate'); if(wd) wd.textContent='📅 '+ts;
+var hd=document.getElementById('hdate'); if(hd) hd.textContent=ts;
+
+// set hair date badge
+setTimeout(function(){
+  var hdb=document.getElementById('hdate');
+  if(hdb) hdb.textContent=ts;
+},0);
+
+function GND(tdays){
+  var dn=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  for(var i=1;i<=7;i++){var nx=(tdow+i)%7;if(tdays.indexOf(nx)>=0)return dn[nx];}
+  return '';
+}
+function BR(el,tasks){
+  var h='';
+  tasks.forEach(function(t){
+    var isT=t.days.indexOf(tdow)>=0,isMo=t.freq==='1x/mo';
+    if(isMo) h+='<div class="rb mo"><div class="ri">'+t.e+'</div><div class="rbd"><div class="rbt">📆 Monthly — '+t.n+'</div><div class="rbs">'+t.d+'</div><span class="rbn">Schedule it this week!</span></div></div>';
+    else if(isT) h+='<div class="rb yes"><div class="ri">'+t.e+'</div><div class="rbd"><div class="rbt">✅ Do this today! — '+t.n+'</div><div class="rbs">'+t.d+'</div><span class="rbn">Today · '+t.freq+'</span></div></div>';
+    else{var nd=GND(t.days);h+='<div class="rb no"><div class="ri">'+t.e+'</div><div class="rbd"><div class="rbt">⏰ Not today — '+t.n+'</div><div class="rbs">'+t.d+'</div><span class="rbn">Next: '+nd+' · '+t.freq+'</span></div></div>';}
+  });
+  el.innerHTML=h;
+}
+BR(document.getElementById('wrem'),[{e:'🍑',n:'Booty & Arms Workout',d:'Hip thrusts · RDL · Cable kickbacks · Bicep curls',days:[1,3,5],freq:'3x/week'}]);
+BR(document.getElementById('hrem'),[
+  {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',days:[1,3,5],freq:'3x/week'},
+  {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 mins massage while watching TV',days:[2,4,6],freq:'3x/week'},
+  {e:'💆',n:'Weekly Hair Mask',d:'Garnier Fructis or Shea Moisture — 20-30 mins',days:[0],freq:'1x/week'},
+  {e:'💎',n:'Olaplex No.3',d:'Bond repair & strength — schedule this month!',days:[],freq:'1x/mo'}
+]);
+RW();RD();
+
+// MODALS
+var RTS={
+  mask:{e:'💆',t:'Weekly Hair Mask',s:'Every Sunday · 20-30 minutes',
+    tip:'<strong>💡 Pro tip:</strong> Use a shower cap + warm towel — opens the cuticle for 2x better results!',
+    steps:[
+      {n:1,t:'Shampoo First',d:'Wash with sulfate-free shampoo. Do NOT condition yet.',tm:'5 mins'},
+      {n:2,t:'Squeeze Out Water',d:'Hair should be damp — not soaking.',tm:'1 min'},
+      {n:3,t:'Apply Mask — Mid to Ends Only',d:'Apply generously from mid-lengths to ends. Avoid scalp.',tm:'2 mins'},
+      {n:4,t:'Comb Through',d:'Wide tooth comb to distribute evenly.',tm:'1 min'},
+      {n:5,t:'Cover with Shower Cap',d:'Clip into bun, cover with shower cap.',tm:'1 min'},
+      {n:6,t:'Leave It On',d:'Leave 20-30 minutes. Longer = better results.',tm:'20-30 mins'},
+      {n:7,t:'Cold Rinse',d:'Rinse until clear. Cold water seals cuticle. No conditioner needed!',tm:'3 mins'},
+      {n:8,t:'Air Dry',d:'Squeeze with microfiber towel. Air dry or diffuse on low.',tm:''}
+    ],
+    prod:'💚 Garnier Fructis Hair Bomb · Shea Moisture Manuka Honey Mask'},
+  olaplex:{e:'💎',t:'Olaplex No.3 Treatment',s:'Once a month · 30-60 minutes (or overnight!)',
+    tip:'<strong>💡 Key difference:</strong> A hair mask adds moisture. Olaplex No.3 repairs broken bonds <em>inside</em> the hair shaft. Both essential!',
+    steps:[
+      {n:1,t:'Start on Dry Hair',d:'Apply BEFORE washing. Do NOT shampoo first.',tm:''},
+      {n:2,t:'Apply Root to Ends',d:'Saturate fully. Every strand needs coating.',tm:'3 mins'},
+      {n:3,t:'Comb Through',d:'Wide tooth comb through all sections.',tm:'2 mins'},
+      {n:4,t:'Leave On 30+ Minutes',d:'Braid and leave overnight for maximum repair.',tm:'30-60 mins or overnight'},
+      {n:5,t:'Rinse Out',d:'Rinse thoroughly until water runs clear.',tm:'2 mins'},
+      {n:6,t:'Shampoo',d:'Shampoo normally to remove residue.',tm:'3 mins'},
+      {n:7,t:'Follow with Hair Mask',d:'Perfect time for your weekly mask too!',tm:'20-30 mins'},
+      {n:8,t:'Cold Rinse & Air Dry',d:'Cold water seals cuticle. Air dry for best results.',tm:''}
+    ],
+    prod:'💎 Olaplex No.3 Hair Perfector · Available at Sephora, ULTA, or online'}
+};
+
+function OM(type){
+  var r=RTS[type];
+  document.getElementById('me').textContent=r.e;
+  document.getElementById('mt').textContent=r.t;
+  document.getElementById('ms2').textContent=r.s;
+  var h='<div class="tip">'+r.tip+'</div><div class="msl">Step by Step</div>';
+  r.steps.forEach(function(s){h+='<div class="ms"><div class="msn">'+s.n+'</div><div class="msc"><div class="mst">'+s.t+'</div><div class="msd">'+s.d+'</div>'+(s.tm?'<span class="mstm">⏱ '+s.tm+'</span>':'')+'</div></div>';});
+  h+='<div class="msl">Products</div><div class="tip" style="background:linear-gradient(135deg,#E8F5E8,#F0FAF0);border-color:#A5D6A7;color:#2E7D32;">'+r.prod+'</div>';
+  if(type==='olaplex') h+='<div class="msl">Do Both Same Day?</div><div class="tip" style="background:linear-gradient(135deg,#EDE7F6,#F3E5F5);border-color:#CE93D8;color:#4A148C;"><strong>✅ Yes! Once a month combo:</strong><br>1. Olaplex No.3 on dry hair (30-60 mins)<br>2. Rinse → Shampoo<br>3. Hair Mask on damp hair (20-30 mins)<br>4. Cold rinse → Air dry<br><br>This combo = the most luscious hair of your life 🖤</div>';
+  document.getElementById('mb').innerHTML=h;
+  document.getElementById('rm').classList.add('open');
+  document.getElementById('ov').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function CM(){
+  document.getElementById('rm').classList.remove('open');
+  document.getElementById('ov').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// MANIFESTATION
+function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+var MF_DEF_GOALS=[
+  {t:'🌏 Visit Australia — April 2027',done:false},
+  {t:'📚 Pass PST Exam — May 2027',done:false},
+  {t:'📋 Work & Holiday Visa (Subclass 462) activated — July 1, 2027',done:false},
+  {t:'💍 Get engaged & receive Prospective Marriage Visa (Subclass 300)',done:false},
+  {t:'👰 Get married — 2028',done:false},
+  {t:'🇦🇺 Australian Citizenship — 2031',done:false},
+  {t:'👶 Two beautiful children — a precious son and a daughter',done:false},
+  {t:'🏡 Living in Brighton, Melbourne — big backyard & beautiful scenery',done:false},
+  {t:'🏠 Two-storey house, fully paid — our forever home',done:false},
+  {t:'👑 Husband gives me the princess treatment — generous provider who gives his all',done:false},
+  {t:'🛍️ Etsy ecommerce business earning 6 figures per month',done:false},
+  {t:'💪 Living my best life — healthy, radiant & thriving every single day',done:false},
+  {t:'💑 Husband deeply in love with me — emotionally intelligent, stable career & financial freedom',done:false},
+  {t:'💰 Husband is a full-time trader with stable income — our family has everything',done:false},
+  {t:'❤️ My happiness is his priority — he loves me forever, sealed & eternal',done:false}
+];
+var MF_DEF_AFF=[
+  "I wake up every morning in a life that used to be a dream.",
+  "I am magnetic, radiant, and deeply loved by a man who chooses me every single day.",
+  "Australia is my home. It was always meant for me. I belong there.",
+  "My business flows with ease — six figures of abundance find me every single month.",
+  "I am the woman my husband prays he never loses. His love is fierce, loyal, and forever.",
+  "I am healthy, glowing, and living in my most beautiful, strongest body.",
+  "I am a woman of standards. I receive exactly what I deserve — and I deserve everything.",
+  "Money flows to me freely. My dream home is paid. My family has everything they need.",
+  "My husband sees me, chooses me, and gives me the princess treatment every single day.",
+  "I trust the timeline of my life. Everything I have prayed for is already on its way.",
+  "Brighton, Melbourne is home — big backyard, beautiful views, and a life I built.",
+  "My children are safe, loved, and raised in a home full of warmth and endless laughter.",
+  "I am irreplaceable. I am rare. I am exactly who the right man has been waiting for.",
+  "I am the kind of woman who makes a man want to be better just by choosing to love him.",
+  "My love is a gift. My standards are my crown. I will never settle for less than magic."
+];
+var mfData={
+  aff:JSON.parse(localStorage.getItem('mf_aff')||JSON.stringify(MF_DEF_AFF)),
+  goals:JSON.parse(localStorage.getItem('mf_goals')||JSON.stringify(MF_DEF_GOALS)),
+  vis:(function(){
+    var MF_DEF_VIS=[
+      {src:'736a9db8825e711df2b2fcc841baab0c.jpg',label:'Dream Life'},
+      {src:'Body Gaols.png',label:'Body Goals'},
+      {src:'Divine Feminine Energy.jpg',label:'Divine Feminine'},
+      {src:'Dream House.jpg',label:'Dream Home'},
+      {src:'DreamK Kitchen.jpg',label:'Dream Kitchen'},
+      {src:'Engaged.jpg',label:'Engaged 💍'},
+      {src:'Goals.png',label:'My Goals'},
+      {src:'Melbourne Visa.png',label:'Melbourne Bound 🇦🇺'},
+      {src:'Trader.jpg',label:'My Trader 💰'},
+      {src:'i am.jpg',label:'I Am Her'}
+    ];
+    var v=localStorage.getItem('mf_vis');
+    var p=v?JSON.parse(v):[];
+    if(!p.length) return MF_DEF_VIS;
+    return p.map(function(x){return typeof x==='string'?{src:x,label:''}:x;});
+  })()
+};
+function mfSave(k){try{localStorage.setItem('mf_'+k,JSON.stringify(mfData[k]));}catch(e){alert('Storage full — try removing some vision board images.');}}
+
+function MFT(sec,el){
+  document.querySelectorAll('.mf-sec').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.mf-tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('mf-'+sec+'-sec').classList.add('active');
+  el.classList.add('active');
+}
+
+// SPARKS
+var mfAnimating=false,mfSparksArr=[];
+var SPARK_COLORS=['#E91E8C','#D4A96A','#C47B8A','#FF1493','#CC8800','#E8729A','#B8388A','#C4956A','#D4547A'];
+function newSpark(){return{x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,r:Math.random()*1.8+0.4,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35,a:Math.random(),da:Math.random()*0.007+0.002,c:SPARK_COLORS[Math.floor(Math.random()*SPARK_COLORS.length)],star:Math.random()<0.3};}
+function resizeSparks(){var c=document.getElementById('mf-sparks');c.width=window.innerWidth;c.height=window.innerHeight;}
+function drawStar(ctx,x,y,r,a,col){ctx.save();ctx.globalAlpha=a;ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=8;ctx.translate(x,y);ctx.beginPath();for(var j=0;j<5;j++){ctx.lineTo(Math.cos((18+j*72)*Math.PI/180)*r,-Math.sin((18+j*72)*Math.PI/180)*r);ctx.lineTo(Math.cos((54+j*72)*Math.PI/180)*(r*0.45),-Math.sin((54+j*72)*Math.PI/180)*(r*0.45));}ctx.closePath();ctx.fill();ctx.restore();}
+function animSparks(){
+  if(!mfAnimating)return;
+  var c=document.getElementById('mf-sparks'),ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  mfSparksArr.forEach(function(s){
+    s.x+=s.vx;s.y+=s.vy;s.a+=s.da;
+    if(s.a>=1||s.a<=0)s.da*=-1;
+    if(s.x<-10)s.x=c.width+10;else if(s.x>c.width+10)s.x=-10;
+    if(s.y<-10)s.y=c.height+10;else if(s.y>c.height+10)s.y=-10;
+    if(s.star){drawStar(ctx,s.x,s.y,s.r*2.8,s.a*0.7,s.c);}
+    else{ctx.save();ctx.globalAlpha=s.a*0.8;ctx.fillStyle=s.c;ctx.shadowColor=s.c;ctx.shadowBlur=s.r*5;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();ctx.restore();}
+  });
+  requestAnimationFrame(animSparks);
+}
+(function(){for(var i=0;i<90;i++)mfSparksArr.push(newSpark());}());
+window.addEventListener('resize',function(){if(mfAnimating)resizeSparks();});
+
+// Affirmations
+var MF_STARS=['✨','🌟','💫','⭐','🌸','🌙','💎','🦋'];
+function addAff(){var inp=document.getElementById('aff-inp'),v=inp.value.trim();if(!v)return;mfData.aff.unshift(v);mfSave('aff');inp.value='';renderAff();}
+function delAff(i){mfData.aff.splice(i,1);mfSave('aff');renderAff();}
+function renderAff(){
+  var el=document.getElementById('aff-list');if(!el)return;
+  if(!mfData.aff.length){el.innerHTML='<div class="mf-empty"><div class="mf-empty-e">🌸</div><div class="mf-empty-t">Add your first affirmation.<br>Write it like it\'s already true.</div></div>';return;}
+  el.innerHTML=mfData.aff.map(function(a,i){
+    return '<div class="mf-aff-card"><span class="mf-aff-star">'+MF_STARS[i%MF_STARS.length]+'</span><span class="mf-aff-t">'+escH(a)+'</span><button class="mf-del" onclick="delAff('+i+')">✕</button></div>';
+  }).join('');
+}
+
+// Goals
+function addGoal(){var inp=document.getElementById('goal-inp'),v=inp.value.trim();if(!v)return;mfData.goals.unshift({t:v,done:false});mfSave('goals');inp.value='';renderGoals();}
+function togGoal(i){mfData.goals[i].done=!mfData.goals[i].done;mfSave('goals');renderGoals();}
+function delGoal(i){mfData.goals.splice(i,1);mfSave('goals');renderGoals();}
+function renderGoals(){
+  var el=document.getElementById('goal-list');if(!el)return;
+  if(!mfData.goals.length){el.innerHTML='<div class="mf-empty"><div class="mf-empty-e">🎯</div><div class="mf-empty-t">Add your first goal.<br>Dream big — then make it happen.</div></div>';return;}
+  el.innerHTML=mfData.goals.map(function(g,i){
+    return '<div class="mf-goal-card"><div class="mf-check'+(g.done?' done':'')+'" onclick="togGoal('+i+')">'+(g.done?'✓':'')+'</div><span class="mf-goal-t'+(g.done?' done':'')+'" >'+escH(g.t)+'</span><button class="mf-del" onclick="delGoal('+i+')">✕</button></div>';
+  }).join('');
+}
+
+// Vision Board
+function delVis(i){mfData.vis.splice(i,1);mfSave('vis');renderVis();}
+function openVis(i){var lb=document.getElementById('al-lb');lb.querySelector('img').src=mfData.vis[i].src;lb.classList.add('on');}
+function editVisLabel(i){
+  var cur=mfData.vis[i].label||'';
+  var nl=prompt('Edit label:',cur);
+  if(nl===null)return;
+  mfData.vis[i].label=nl.trim();
+  mfSave('vis');renderVis();
+}
+function addVisFiles(inp){
+  var files=Array.from(inp.files),pending=files.length;if(!pending)return;
+  files.forEach(function(f){
+    var r=new FileReader();
+    r.onload=function(e){
+      var name=f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+      mfData.vis.unshift({src:e.target.result,label:name});
+      pending--;if(!pending){mfSave('vis');renderVis();}
+    };
+    r.readAsDataURL(f);
+  });
+  inp.value='';
+}
+var VIS_ROTATIONS=[-2.5,-1,1.5,-1.8,2,-.8,1.2,-2,1.8,-.5,2.2,-1.5];
+function renderVis(){
+  var el=document.getElementById('vis-grid');if(!el)return;
+  if(!mfData.vis.length){el.innerHTML='<div class="mf-empty"><div class="mf-empty-e">🖼️</div><div class="mf-empty-t">Add photos of your dream life.<br>Your Brighton home · Your family · Your Etsy success.</div></div>';return;}
+  el.innerHTML='<div class="mf-board">'+mfData.vis.map(function(item,i){
+    var rot=VIS_ROTATIONS[i%VIS_ROTATIONS.length];
+    var lbl=escH(item.label||'tap ✏ to label');
+    return '<div class="mf-polaroid" style="transform:rotate('+rot+'deg)">'+
+      '<img src="'+escH(item.src)+'" alt="" onclick="openVis('+i+')">'+
+      '<div class="mf-pol-bottom">'+
+        '<span class="mf-pol-label" onclick="editVisLabel('+i+')">'+lbl+'</span>'+
+        '<button class="mf-pol-del" onclick="delVis('+i+')">✕</button>'+
+      '</div>'+
+    '</div>';
+  }).join('')+'</div>';
+}
+
+document.getElementById('aff-inp').addEventListener('keydown',function(e){if(e.key==='Enter')addAff();});
+document.getElementById('goal-inp').addEventListener('keydown',function(e){if(e.key==='Enter')addGoal();});
+renderAff();renderGoals();renderVis();
+
+// SWIPE GESTURES
+var _sx=0,_sy=0,_se=null;
+document.addEventListener('touchstart',function(e){_sx=e.touches[0].clientX;_sy=e.touches[0].clientY;_se=e.target;},{passive:true});
+document.addEventListener('touchend',function(e){
+  var dx=e.changedTouches[0].clientX-_sx;
+  var dy=e.changedTouches[0].clientY-_sy;
+  if(Math.abs(dx)<50||Math.abs(dy)>Math.abs(dx))return;
+  var bs=document.getElementById('bs');
+  var ds=document.getElementById('dstrip');
+  var wn=document.querySelector('.wnav');
+  // Date strip — swipe to change week
+  if(ds&&ds.contains(_se)){if(dx<0)CW(1);else CW(-1);return;}
+  if(wn&&wn.contains(_se)){if(dx<0)CW(1);else CW(-1);return;}
+  // Style Bible — swipe inside category to change sub-tabs or go back
+  if(bs&&bs.classList.contains('open')){
+    var oc=document.querySelector('.bcat.open');
+    if(oc){
+      var bits=Array.from(oc.querySelectorAll('.bit'));
+      var bi=bits.indexOf(oc.querySelector('.bit.active'));
+      if(dx<0&&bi<bits.length-1)bits[bi+1].click();
+      else if(dx>0&&bi>0)bits[bi-1].click();
+      else if(dx>0&&bi===0)oc.querySelector('.bk').click();
+    }
+    return;
+  }
+  // Manifestation sub-tabs
+  var tmf=document.getElementById('tab-mf');
+  if(tmf&&tmf.classList.contains('active')){
+    var mfts=Array.from(document.querySelectorAll('.mf-tab'));
+    var mfi=mfts.indexOf(document.querySelector('.mf-tab.active'));
+    if(dx<0&&mfi<mfts.length-1){mfts[mfi+1].click();return;}
+    if(dx>0&&mfi>0){mfts[mfi-1].click();return;}
+  }
+  // Main tabs
+  var tabs=['today','workout','hair','mf'];
+  var nis=document.querySelectorAll('.ni');
+  var ci=tabs.findIndex(function(t){var el=document.getElementById('tab-'+t);return el&&el.classList.contains('active');});
+  if(dx<0&&ci<tabs.length-1)ST(tabs[ci+1],nis[ci+1]);
+  else if(dx>0&&ci>0)ST(tabs[ci-1],nis[ci-1]);
+},{passive:true});
+</script>
+
+</body>
+</html>
