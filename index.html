@@ -333,6 +333,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 .mf-pol-del:hover{color:#C47B8A;}
 .mf-vis-add{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:12px;padding:11px 20px;background:rgba(255,255,255,0.75);border:1.5px dashed rgba(196,123,138,0.35);border-radius:14px;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;color:rgba(139,34,82,0.65);width:100%;box-sizing:border-box;transition:all 0.2s;}
 .mf-vis-add:hover{background:rgba(255,255,255,0.95);border-color:rgba(196,123,138,0.6);}
+.mf-drag-handle{cursor:grab;color:rgba(255,150,180,0.28);font-size:15px;flex-shrink:0;padding:0 4px;user-select:none;touch-action:none;letter-spacing:-1px;}
+.mf-drag-handle:active{cursor:grabbing;}
+.sort-ghost{opacity:0.3;background:rgba(255,182,200,0.12) !important;border:1.5px dashed rgba(255,150,180,0.4) !important;}
+.mf-polaroid{cursor:grab;}
+.mf-polaroid:active{cursor:grabbing;}
 </style>
 </head>
 <body>
@@ -350,6 +355,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
     <div class="cbar" onclick="OC('e')"><div class="cbi"><div class="cic ic-e">🛍️</div><div class="ct"><div class="cn">Essentials to Buy</div><div class="cd">Hair · Skincare · Makeup · Supplements</div></div><div class="ca">›</div></div></div>
     <div class="cbar" onclick="OC('l')"><div class="cbi"><div class="cic ic-l">👑</div><div class="ct"><div class="cn">Love &amp; Standards</div><div class="cd">Non-negotiables · Rules · Mantras</div></div><div class="ca">›</div></div></div>
     <div class="cbar" onclick="OC('gp')"><div class="cbi"><div class="cic" style="background:linear-gradient(135deg,#F5E8F5,#EEE8F8);">💉</div><div class="ct"><div class="cn">Glow Plan</div><div class="cd">Treatments · Timeline · April 2027</div></div><div class="ca">›</div></div></div>
+    <div class="cbar" onclick="OC('nn')"><div class="cbi"><div class="cic" style="background:linear-gradient(135deg,#FFF0F3,#FFE8EA);">📌</div><div class="ct"><div class="cn">Non-Negotiables</div><div class="cd">Daily rules · Times · Standards</div></div><div class="ca">›</div></div></div>
   </div>
 
   <!-- HAIR -->
@@ -523,6 +529,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
         <div class="tc" style="border-color:#FFE8E8;"><div class="te">&#10060;</div><div class="ti"><div class="tn">No Buccal Fat Removal</div><div class="td">Causes premature aging and hollowing as you get older</div></div></div>
         <div class="tc" style="border-color:#FFE8E8;"><div class="te">&#10060;</div><div class="ti"><div class="tn">No Lip Filler</div><div class="td">Your lips are already full and beautiful — leave them alone!</div></div></div>
         <div class="tc" style="border-color:#FFE8E8;"><div class="te">&#10060;</div><div class="ti"><div class="tn">No Face Fat Removal</div><div class="td">Your face fullness is youthful and will age beautifully</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NON-NEGOTIABLES -->
+  <div class="bcat" id="cat-nn">
+    <div class="bctb"><button class="bk" onclick="CC('nn')">&#8592;</button><div class="bci">📌</div><div><div class="bcit">Non-Negotiables</div><div class="bcis">Your daily rules — no exceptions</div></div></div>
+    <div class="bcb">
+      <div class="lh" style="background:linear-gradient(135deg,#C47B8A,#E8A0AD);"><div class="lhe">📌</div><div class="lht">Your Daily Standards</div><div class="lhs">These are not optional. They are your foundation — the minimum you owe yourself every single day.</div></div>
+      <div class="msl">Daily Times</div>
+      <div class="nc"><div class="ni2">💧</div><div class="nt"><strong>First Thing — Drink a Full Glass of Water</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Before your phone, before coffee. Hydrate your body the moment you wake.</span></div></div>
+      <div class="nc"><div class="ni2">📓</div><div class="nt"><strong>First Thing — Journal</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Write before the world gets in. Thoughts, gratitude, intentions — 5 mins is enough.</span></div></div>
+      <div class="nc"><div class="ni2">⏰</div><div class="nt"><strong>7:00 AM — Morning Skincare</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Vitamin C serum · SPF 50 · Eye cream. No skipping, ever.</span></div></div>
+      <div class="nc"><div class="ni2">🌙</div><div class="nt"><strong>7:00 PM — Night Skincare</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Remove makeup · Retinol · Hyaluronic acid · Eye cream.</span></div></div>
+      <div class="nc"><div class="ni2">🏋️</div><div class="nt"><strong>5:30 PM — Workout Time</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">This slot is protected. Nothing gets scheduled here.</span></div></div>
+      <div class="msl">Home Standards</div>
+      <div class="nc"><div class="ni2">🍽️</div><div class="nt"><strong>Wash Plates Immediately</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">No dishes left in the sink. Clean as you go — always.</span></div></div>
+      <div class="nc"><div class="ni2">🏡</div><div class="nt"><strong>Clean Environment Before Sleeping</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">10 minutes to reset your space every night. Never sleep in mess.</span></div></div>
+      <div class="msl">Mindset</div>
+      <div class="mw" style="border-radius:14px;">
+        <div class="mwt">Say This Every Day</div>
+        <div class="mi"><span class="md">✦</span>I don't chase. I attract. My energy stays inward.</div>
+        <div class="mi"><span class="md">✦</span>A disciplined woman is an unstoppable woman.</div>
+        <div class="mi"><span class="md">✦</span>My home reflects my mind — I keep both clean.</div>
+        <div class="mi"><span class="md">✦</span>Skincare is self-respect. Morning and night, always.</div>
+        <div class="mi"><span class="md">✦</span>My body is my priority — 5:30 PM is sacred time.</div>
       </div>
     </div>
   </div>
@@ -750,6 +782,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="rmb" id="mb"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
 var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -1072,6 +1105,19 @@ function animSparks(){
 (function(){for(var i=0;i<90;i++)mfSparksArr.push(newSpark());}());
 window.addEventListener('resize',function(){if(mfAnimating)resizeSparks();});
 
+// Drag-to-reorder
+var _sAff=null,_sGoal=null,_sVis=null;
+function initSortables(){
+  if(!window.Sortable)return;
+  var so={animation:150,delay:200,delayOnTouchOnly:true,ghostClass:'sort-ghost'};
+  var ae=document.getElementById('aff-list');
+  if(ae&&ae.children.length){if(_sAff)_sAff.destroy();_sAff=Sortable.create(ae,Object.assign({},so,{onEnd:function(e){var m=mfData.aff.splice(e.oldIndex,1)[0];mfData.aff.splice(e.newIndex,0,m);mfSave('aff');}}));}
+  var ge=document.getElementById('goal-list');
+  if(ge&&ge.children.length){if(_sGoal)_sGoal.destroy();_sGoal=Sortable.create(ge,Object.assign({},so,{onEnd:function(e){var m=mfData.goals.splice(e.oldIndex,1)[0];mfData.goals.splice(e.newIndex,0,m);mfSave('goals');}}));}
+  var vb=document.querySelector('#vis-grid .mf-board');
+  if(vb&&vb.children.length){if(_sVis)_sVis.destroy();_sVis=Sortable.create(vb,Object.assign({},so,{onEnd:function(e){var m=mfData.vis.splice(e.oldIndex,1)[0];mfData.vis.splice(e.newIndex,0,m);mfSave('vis');}}));}
+}
+
 // Affirmations
 var MF_STARS=['✨','🌟','💫','⭐','🌸','🌙','💎','🦋'];
 function addAff(){var inp=document.getElementById('aff-inp'),v=inp.value.trim();if(!v)return;mfData.aff.unshift(v);mfSave('aff');inp.value='';renderAff();}
@@ -1080,8 +1126,9 @@ function renderAff(){
   var el=document.getElementById('aff-list');if(!el)return;
   if(!mfData.aff.length){el.innerHTML='<div class="mf-empty"><div class="mf-empty-e">🌸</div><div class="mf-empty-t">Add your first affirmation.<br>Write it like it\'s already true.</div></div>';return;}
   el.innerHTML=mfData.aff.map(function(a,i){
-    return '<div class="mf-aff-card"><span class="mf-aff-star">'+MF_STARS[i%MF_STARS.length]+'</span><span class="mf-aff-t">'+escH(a)+'</span><button class="mf-del" onclick="delAff('+i+')">✕</button></div>';
+    return '<div class="mf-aff-card"><span class="mf-drag-handle">⠿</span><span class="mf-aff-star">'+MF_STARS[i%MF_STARS.length]+'</span><span class="mf-aff-t">'+escH(a)+'</span><button class="mf-del" onclick="delAff('+i+')">✕</button></div>';
   }).join('');
+  setTimeout(initSortables,0);
 }
 
 // Goals
@@ -1093,8 +1140,9 @@ function renderGoals(){
   var el=document.getElementById('goal-list');if(!el)return;
   if(!mfData.goals.length){el.innerHTML='<div class="mf-empty"><div class="mf-empty-e">🎯</div><div class="mf-empty-t">Add your first goal.<br>Dream big — then make it happen.</div></div>';return;}
   el.innerHTML=mfData.goals.map(function(g,i){
-    return '<div class="mf-goal-card"><div class="mf-check'+(g.done?' done':'')+'" onclick="togGoal('+i+')">'+(g.done?'✓':'')+'</div><span class="mf-goal-t'+(g.done?' done':'')+'" >'+escH(g.t)+'</span><button class="mf-edit" onclick="editGoal('+i+')">✏</button><button class="mf-del" onclick="delGoal('+i+')">✕</button></div>';
+    return '<div class="mf-goal-card"><span class="mf-drag-handle">⠿</span><div class="mf-check'+(g.done?' done':'')+'" onclick="togGoal('+i+')">'+(g.done?'✓':'')+'</div><span class="mf-goal-t'+(g.done?' done':'')+'" >'+escH(g.t)+'</span><button class="mf-edit" onclick="editGoal('+i+')">✏</button><button class="mf-del" onclick="delGoal('+i+')">✕</button></div>';
   }).join('');
+  setTimeout(initSortables,0);
 }
 
 // Vision Board
@@ -1135,6 +1183,7 @@ function renderVis(){
       '</div>'+
     '</div>';
   }).join('')+'</div>';
+  setTimeout(initSortables,0);
 }
 
 document.getElementById('aff-inp').addEventListener('keydown',function(e){if(e.key==='Enter')addAff();});
