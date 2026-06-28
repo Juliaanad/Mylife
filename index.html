@@ -283,7 +283,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 
 /* MANIFESTATION PAGE — light pink & gold */
 #tab-mf{background:linear-gradient(160deg,#FFF0F8,#FCE8F2,#FFF5E8);min-height:100vh;position:relative;overflow:hidden;}
-#mf-sparks{position:fixed;inset:0;pointer-events:none;z-index:50;display:none;}
+#mf-sparks{position:fixed;inset:0;pointer-events:none;z-index:0;display:none;}
 .mf-wrap{position:relative;z-index:1;padding:0 0 100px;}
 .mf-hdr{padding:44px 20px 18px;text-align:center;}
 .mf-crown{font-size:46px;margin-bottom:10px;display:block;animation:mf-float 4s ease-in-out infinite;}
@@ -304,6 +304,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 .mf-aff-star{font-size:20px;flex-shrink:0;}
 .mf-aff-t{flex:1;font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:#5C2533;line-height:1.6;}
 .mf-del{background:none;border:none;color:rgba(196,123,138,0.4);font-size:13px;cursor:pointer;padding:4px;font-family:'DM Sans',sans-serif;}
+.mf-edit{background:none;border:none;color:rgba(196,123,138,0.4);font-size:13px;cursor:pointer;padding:4px;font-family:'DM Sans',sans-serif;}
+.mf-edit:hover{color:#C47B8A;}
 .mf-goal-card{background:rgba(255,255,255,0.75);border:1px solid rgba(212,169,106,0.3);border-radius:18px;padding:14px 16px;margin-bottom:9px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 16px rgba(196,123,138,0.12);}
 .mf-check{width:24px;height:24px;border-radius:50%;border:2px solid rgba(196,123,138,0.45);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all 0.2s;}
 .mf-check.done{background:linear-gradient(135deg,#D4A96A,#C47B8A);color:white;border-color:transparent;box-shadow:0 0 12px rgba(212,169,106,0.5);}
@@ -312,6 +314,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 .mf-empty{text-align:center;padding:44px 20px;border:1.5px dashed rgba(196,123,138,0.25);border-radius:18px;background:rgba(255,255,255,0.45);}
 .mf-empty-e{font-size:38px;opacity:0.55;margin-bottom:10px;}
 .mf-empty-t{font-size:12px;color:rgba(139,67,107,0.5);font-style:italic;line-height:1.7;}
+.wday-row{display:flex;gap:8px;padding:0 16px 16px;justify-content:center;}
+.wday{flex:1;max-width:80px;padding:10px 4px;background:rgba(255,255,255,0.8);border:1.5px solid #F0DDE4;border-radius:16px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#9B7B8A;cursor:pointer;text-align:center;line-height:1.3;}
+.wday span{font-size:10px;font-weight:400;display:block;color:#C4A0B0;margin-top:2px;}
+.wday.active{background:linear-gradient(135deg,var(--pink),var(--rose));color:white;border-color:transparent;box-shadow:0 4px 14px rgba(200,80,120,0.25);}
+.wday.active span{color:rgba(255,255,255,0.8);}
+.wday-content{display:none;}
+.wday-content.active{display:block;}
 .mf-board{display:flex;flex-wrap:wrap;gap:12px;padding:16px 4px 8px;justify-content:center;}
 .mf-polaroid{background:white;border-radius:4px;padding:10px 10px 0;box-shadow:0 4px 18px rgba(196,123,138,0.2),0 1px 4px rgba(0,0,0,0.08);position:relative;width:calc(50% - 10px);max-width:160px;transition:transform 0.2s;}
 .mf-polaroid:hover{transform:scale(1.04) rotate(0deg) !important;box-shadow:0 8px 28px rgba(196,123,138,0.35);}
@@ -577,35 +586,72 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="main">
     <div class="wh">
       <div class="dbl" id="wdate"></div>
-      <h2>&#127825; Booty &amp; Arms</h2>
-      <p>Monday · Wednesday · Friday · Gym</p>
-      <div style="margin-top:9px;display:flex;justify-content:center;"><div class="fb"><span class="fds"><span class="fd off">Su</span><span class="fd">M</span><span class="fd off">Tu</span><span class="fd">W</span><span class="fd off">Th</span><span class="fd">F</span><span class="fd off">Sa</span></span><span class="fl">· 3x/week</span></div></div>
+      <h2>&#127825; 4-Day Split</h2>
+      <p>Tue · Wed · Fri · Sun &nbsp;|&nbsp; Mon &amp; Sat Rest</p>
+      <div style="margin-top:9px;display:flex;justify-content:center;"><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd off">M</span><span class="fd">Tu</span><span class="fd">W</span><span class="fd off">Th</span><span class="fd">F</span><span class="fd off">Sa</span></span><span class="fl">· 4x/week</span></div></div>
     </div>
-    <div class="sec">
-      <div class="slbl">Glutes — Bigger &amp; Rounder</div>
-      <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Barbell Hip Thrust</div><div class="et">Go heavy — your #1 growth exercise</div></div></div><div class="es">4 × 8–12</div></div>
-      <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Romanian Deadlift</div><div class="et">Feel the stretch at the bottom</div></div></div><div class="es">3 × 10–12</div></div>
-      <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Cable Kickbacks</div><div class="et">Squeeze hard at the top</div></div></div><div class="es">3 × 15 each</div></div>
-      <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Sumo Squat</div><div class="et">Wide stance · Band above knees</div></div></div><div class="es">3 × 12</div></div>
-      <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Abductor Machine</div><div class="et">Side booty activation</div></div></div><div class="es">3 × 15–20</div></div>
-      <div class="ec"><div class="el"><div class="en">6</div><div><div class="enm">Walking Lunges</div><div class="et">Keep torso upright</div></div></div><div class="es">3 × 12 each</div></div>
+    <div class="wday-row">
+      <button class="wday active" onclick="WD('tue',this)">Tue<span>Glutes</span></button>
+      <button class="wday" onclick="WD('wed',this)">Wed<span>Back</span></button>
+      <button class="wday" onclick="WD('fri',this)">Fri<span>Push</span></button>
+      <button class="wday" onclick="WD('sun',this)">Sun<span>Legs</span></button>
     </div>
-    <div class="sec">
-      <div class="slbl">Quads &amp; Legs</div>
-      <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Leg Press</div><div class="et">Feet shoulder-width · Full range of motion</div></div></div><div class="es">4 × 10–12</div></div>
-      <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Hack Squat</div><div class="et">Toes slightly out · Go deep</div></div></div><div class="es">3 × 10–12</div></div>
-      <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Leg Extension</div><div class="et">Isolates quads — squeeze at top</div></div></div><div class="es">3 × 15</div></div>
-      <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Goblet Squat</div><div class="et">Deep squat · Chest up</div></div></div><div class="es">3 × 12</div></div>
+
+    <!-- TUESDAY — Glutes & Hamstrings -->
+    <div class="wday-content active" id="wd-tue">
+      <div class="sec">
+        <div class="slbl">Glutes &amp; Hamstrings 🍑</div>
+        <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Barbell Hip Thrust</div><div class="et">Go heavy — your #1 booty builder</div></div></div><div class="es">4 × 8–12</div></div>
+        <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Romanian Deadlift</div><div class="et">Feel the deep stretch at the bottom</div></div></div><div class="es">3 × 10–12</div></div>
+        <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Cable Kickbacks</div><div class="et">Squeeze hard at the top — slow reps</div></div></div><div class="es">3 × 15 each</div></div>
+        <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Sumo Squat + Band</div><div class="et">Wide stance · Band above knees</div></div></div><div class="es">3 × 12</div></div>
+        <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Lying Leg Curl</div><div class="et">Full range · Control the negative</div></div></div><div class="es">3 × 15</div></div>
+        <div class="ec"><div class="el"><div class="en">6</div><div><div class="enm">Abductor Machine</div><div class="et">Side booty — squeeze at widest point</div></div></div><div class="es">3 × 20</div></div>
+      </div>
+      <div class="tc" style="background:linear-gradient(135deg,#FFF0F3,#FFF8F0);"><div class="te">🥩</div><div class="ti"><div class="tn">High Protein Day</div><div class="td">Chicken · Fish · Eggs · Greek yogurt · Protein shake — aim 100g+</div></div></div>
     </div>
-    <div class="sec">
-      <div class="slbl">Arms — Toned &amp; Defined</div>
-      <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Dumbbell Bicep Curls</div><div class="et">Slow and controlled</div></div></div><div class="es">3 × 12</div></div>
-      <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Hammer Curls</div><div class="et">Builds arm thickness</div></div></div><div class="es">3 × 12</div></div>
-      <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Tricep Rope Pushdown</div><div class="et">Squeeze at the bottom</div></div></div><div class="es">3 × 15</div></div>
-      <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Overhead Tricep Extension</div><div class="et">Full range of motion</div></div></div><div class="es">3 × 12</div></div>
-      <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Lateral Raises</div><div class="et">Widens shoulders for balance</div></div></div><div class="es">3 × 15</div></div>
+
+    <!-- WEDNESDAY — Back & Biceps -->
+    <div class="wday-content" id="wd-wed">
+      <div class="sec">
+        <div class="slbl">Back &amp; Biceps 💪</div>
+        <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Lat Pulldown</div><div class="et">Wide grip · Pull to upper chest</div></div></div><div class="es">4 × 10–12</div></div>
+        <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Seated Cable Row</div><div class="et">Squeeze shoulder blades together</div></div></div><div class="es">3 × 12</div></div>
+        <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Single Arm DB Row</div><div class="et">Full stretch at bottom · Drive elbow up</div></div></div><div class="es">3 × 12 each</div></div>
+        <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Face Pulls</div><div class="et">External rotation · Great for posture</div></div></div><div class="es">3 × 15</div></div>
+        <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Dumbbell Bicep Curls</div><div class="et">Slow and controlled · Full range</div></div></div><div class="es">3 × 12</div></div>
+        <div class="ec"><div class="el"><div class="en">6</div><div><div class="enm">Hammer Curls</div><div class="et">Builds thickness — neutral grip</div></div></div><div class="es">3 × 12</div></div>
+      </div>
+      <div class="tc" style="background:linear-gradient(135deg,#FFF0F3,#FFF8F0);"><div class="te">💧</div><div class="ti"><div class="tn">Hydration Day</div><div class="td">2–3L water · Electrolytes after workout · Pre-workout if needed</div></div></div>
     </div>
-    <div class="tc" style="background:linear-gradient(135deg,#FFF0F3,#FFF8F0);"><div class="te">🥩</div><div class="ti"><div class="tn">Eat 100g+ Protein Today</div><div class="td">Eggs · Chicken · Fish · Greek yogurt · Protein shake</div></div></div>
+
+    <!-- FRIDAY — Chest, Shoulders & Triceps -->
+    <div class="wday-content" id="wd-fri">
+      <div class="sec">
+        <div class="slbl">Chest, Shoulders &amp; Triceps ✨</div>
+        <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Dumbbell Chest Press</div><div class="et">Full range · Lower slow, push fast</div></div></div><div class="es">4 × 10–12</div></div>
+        <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Cable Chest Fly</div><div class="et">Feel the stretch across chest</div></div></div><div class="es">3 × 12</div></div>
+        <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Dumbbell Shoulder Press</div><div class="et">Don't lock out at top</div></div></div><div class="es">3 × 12</div></div>
+        <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Lateral Raises</div><div class="et">Widens shoulders — light weight, strict form</div></div></div><div class="es">3 × 15</div></div>
+        <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Tricep Rope Pushdown</div><div class="et">Squeeze at bottom · Elbows locked in</div></div></div><div class="es">3 × 15</div></div>
+        <div class="ec"><div class="el"><div class="en">6</div><div><div class="enm">Overhead Tricep Extension</div><div class="et">Full range — great for long head</div></div></div><div class="es">3 × 12</div></div>
+      </div>
+      <div class="tc" style="background:linear-gradient(135deg,#FFF0F3,#FFF8F0);"><div class="te">🥩</div><div class="ti"><div class="tn">Eat 100g+ Protein Today</div><div class="td">Eggs · Chicken · Fish · Greek yogurt · Protein shake</div></div></div>
+    </div>
+
+    <!-- SUNDAY — Legs & Core -->
+    <div class="wday-content" id="wd-sun">
+      <div class="sec">
+        <div class="slbl">Legs &amp; Core 🔥</div>
+        <div class="ec"><div class="el"><div class="en">1</div><div><div class="enm">Leg Press</div><div class="et">Feet shoulder-width · Full range</div></div></div><div class="es">4 × 10–12</div></div>
+        <div class="ec"><div class="el"><div class="en">2</div><div><div class="enm">Hack Squat</div><div class="et">Toes slightly out · Go deep</div></div></div><div class="es">3 × 10–12</div></div>
+        <div class="ec"><div class="el"><div class="en">3</div><div><div class="enm">Walking Lunges</div><div class="et">Long stride · Chest up</div></div></div><div class="es">3 × 12 each</div></div>
+        <div class="ec"><div class="el"><div class="en">4</div><div><div class="enm">Leg Extension</div><div class="et">Squeeze at top · Isolates quads</div></div></div><div class="es">3 × 15</div></div>
+        <div class="ec"><div class="el"><div class="en">5</div><div><div class="enm">Plank</div><div class="et">Core tight · Don't drop hips</div></div></div><div class="es">3 × 45 sec</div></div>
+        <div class="ec"><div class="el"><div class="en">6</div><div><div class="enm">Bicycle Crunches</div><div class="et">Slow and controlled — feel every rep</div></div></div><div class="es">3 × 20</div></div>
+      </div>
+      <div class="tc" style="background:linear-gradient(135deg,#FFF0F3,#FFF8F0);"><div class="te">🌿</div><div class="ti"><div class="tn">Recovery Sunday</div><div class="td">Stretch after workout · Foam roll glutes · 8hrs sleep tonight</div></div></div>
+    </div>
   </div>
 </div>
 
@@ -679,10 +725,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
         <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#8B2252;margin-bottom:4px;">Your Vision Board</div>
         <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,123,138,0.6);">See it · Feel it · Receive it</div>
       </div>
-      <label class="mf-vis-add">
-        📸 Add a Photo
-        <input type="file" accept="image/*" multiple onchange="addVisFiles(this)" style="display:none;">
-      </label>
+      <button class="mf-vis-add" onclick="document.getElementById('vis-file-inp').click()">📸 Add a Photo</button>
+      <input id="vis-file-inp" type="file" accept="image/*" multiple accept="image/*" onchange="addVisFiles(this)" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none;">
       <div id="vis-grid"></div>
     </div>
   </div>
@@ -710,36 +754,34 @@ var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 var DATA={
-  0:{e:'☁️',v:'Calm rest day — slow down, breathe, recharge',s:[
-    {e:'🧘',n:'Morning Slow Start',d:'No alarm · Wake up naturally · Gentle stretches in bed',t:'tw',tl:'Wellness',f:'1x/week',fd:[0]},
-    {e:'📖',n:'Read or Journal',d:'Something that nourishes your mind — no social media rush',t:'tw',tl:'Calm',f:'1x/week',fd:[0]},
-    {e:'🫖',n:'Make Your Favourite Drink',d:'Tea · Coffee · Whatever feels cozy and slow today',t:'tw',tl:'Self Care',f:'1x/week',fd:[0]},
-    {e:'🛁',n:'Long Bath or Shower',d:'Exfoliate · Body scrub · Moisturize all over — take your time',t:'tb',tl:'Beauty',f:'1x/week',fd:[0]},
-    {e:'😴',n:'Early to Bed',d:'In bed by 10pm — let your body fully recover for the week ahead',t:'tw',tl:'Wellness',f:'1x/week',fd:[0]}
-  ],a:'A calm Sunday is the most productive thing you can do for your whole week. 🌿'},
-  1:{e:'🍑',v:'Gym day! Booty & Arms workout',s:[
-    {e:'🍑',n:'Booty & Arms Workout',d:'Hip thrusts · RDL · Cable kickbacks · Bicep curls',t:'tf',tl:'Fitness',f:'3x/week',fd:[1,3,5]},
-    {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',t:'th2',tl:'Hair',f:'3x/week',fd:[1,3,5]},
+  0:{e:'🔥',v:'Legs & Core — Finish the week strong!',s:[
+    {e:'🔥',n:'Legs & Core Workout',d:'Leg press · Hack squat · Lunges · Plank · Bicycle crunches',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
+    {e:'🌿',n:'Stretch After Workout',d:'Hip flexor · Quad · Glute stretches — foam roll if you can',t:'tf',tl:'Recovery',f:'Weekly',fd:[0]},
+    {e:'😴',n:'Early to Bed Tonight',d:'In bed by 10pm — let your body recover before Monday rest day',t:'tw',tl:'Wellness',f:'1x/week',fd:[0]}
+  ],a:'Sundays that end well set the tone for the whole week. 🌿'},
+  1:{e:'☁️',v:'Rest day — recover, recharge, reset',s:[
+    {e:'🧘',n:'Active Recovery',d:'Light walk · Gentle stretches · No intense training today',t:'tw',tl:'Wellness',f:'1x/week',fd:[1]},
+    {e:'📖',n:'Read or Journal',d:'Something that feeds your mind — plan your week ahead',t:'tw',tl:'Calm',f:'1x/week',fd:[1]},
+    {e:'🥩',n:'100g+ Protein',d:'Keep hitting your protein even on rest days — muscles rebuild now',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+  ],a:'Rest days are where the growth actually happens. Enjoy it. 💖'},
+  2:{e:'🍑',v:'Glutes & Hamstrings — build that booty!',s:[
+    {e:'🍑',n:'Glutes & Hamstrings Workout',d:'Hip thrust · RDL · Cable kickbacks · Sumo squat · Abductor machine',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
+    {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes while resting after gym — clinically proven for hair growth!',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
     {e:'🥩',n:'100g+ Protein',d:'Eggs · Chicken · Protein shake for muscle recovery',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
-  ],a:'Every rep is sculpting the version of you that turns heads. 💪'},
-  2:{e:'🌿',v:'Scalp massage & skin focus day',s:[
-    {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes while watching TV — clinically proven for hair growth!',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
-    {e:'💆',n:'Facial Gua Sha / Massage',d:'Lymphatic drainage massage for face slimming & glow',t:'tb',tl:'Beauty',f:'2x/week',fd:[2,5]},
-    {e:'🥑',n:'Eat for Your Skin',d:'Avocado · Salmon · Spinach · Sweet potato',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
-  ],a:'Consistency is the secret ingredient. Keep going. ✨'},
-  3:{e:'🍑',v:'Gym day! Booty & Arms workout',s:[
-    {e:'🍑',n:'Booty & Arms Workout',d:'Hip thrusts · Sumo squats · Abductor · Lateral raises',t:'tf',tl:'Fitness',f:'3x/week',fd:[1,3,5]},
-    {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',t:'th2',tl:'Hair',f:'3x/week',fd:[1,3,5]},
-    {e:'🥩',n:'100g+ Protein',d:'Fuel those growing glutes! Greek yogurt · Fish · Eggs',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+  ],a:'Every hip thrust is building the body you deserve. 🍑'},
+  3:{e:'💪',v:'Back & Biceps — strong and sculpted!',s:[
+    {e:'💪',n:'Back & Biceps Workout',d:'Lat pulldown · Cable row · DB row · Face pulls · Bicep curls',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
+    {e:'💧',n:'Extra Hydration Today',d:'2–3L water · Electrolytes after gym · Track your intake',t:'tw',tl:'Wellness',f:'Daily',fd:[0,1,2,3,4,5,6]},
+    {e:'🥩',n:'100g+ Protein',d:'Fuel that back growth! Greek yogurt · Fish · Eggs',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:"Halfway through the week — you're doing amazing. 🌟"},
-  4:{e:'🌿',v:'Recovery & scalp care day',s:[
+  4:{e:'🌿',v:'Rest day — stretch, glow & recover',s:[
     {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes tonight — your hair will thank you',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
-    {e:'🧘',n:'Stretch & Recovery',d:'Hip flexor stretches · Glute stretches for recovery',t:'tf',tl:'Recovery',f:'2x/week',fd:[2,4]},
+    {e:'🧘',n:'Stretch & Recovery',d:'Hip flexor stretches · Glute stretches — foam roll sore spots',t:'tf',tl:'Recovery',f:'Weekly',fd:[4]},
     {e:'🍵',n:'Collagen Drink',d:'Add collagen powder to tea or water tonight',t:'tw',tl:'Wellness',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:'Your body is changing even on rest days. Trust the process. 💖'},
-  5:{e:'🍑',v:'Last gym day of the week! Finish strong',s:[
-    {e:'🍑',n:'Booty & Arms Workout',d:'Walking lunges · RDL · Hammer curls · Overhead triceps',t:'tf',tl:'Fitness',f:'3x/week',fd:[1,3,5]},
-    {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',t:'th2',tl:'Hair',f:'3x/week',fd:[1,3,5]},
+  5:{e:'✨',v:'Chest, Shoulders & Triceps — push day!',s:[
+    {e:'✨',n:'Chest, Shoulders & Triceps Workout',d:'Chest press · Cable fly · Shoulder press · Lateral raises · Triceps',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
+    {e:'💆',n:'Facial Gua Sha / Massage',d:'Lymphatic drainage massage for face slimming & glow',t:'tb',tl:'Beauty',f:'2x/week',fd:[2,5]},
     {e:'💅',n:'Treat Yourself Tonight',d:'Face mask · Nail care · Wind down — you earned it!',t:'tb',tl:'Beauty',f:'1x/week',fd:[5]}
   ],a:"You showed up all week. That's what glow is made of. 🔥"},
   6:{e:'🏠',v:'Home day — groceries, cleaning & reset your space',s:[
@@ -863,7 +905,19 @@ function BR(el,tasks){
   });
   el.innerHTML=h;
 }
-BR(document.getElementById('wrem'),[{e:'🍑',n:'Booty & Arms Workout',d:'Hip thrusts · RDL · Cable kickbacks · Bicep curls',days:[1,3,5],freq:'3x/week'}]);
+BR(document.getElementById('wrem'),[
+  {e:'🍑',n:'Glutes & Hamstrings',d:'Hip thrust · RDL · Cable kickbacks · Abductor machine',days:[2],freq:'Tuesday'},
+  {e:'💪',n:'Back & Biceps',d:'Lat pulldown · Cable row · DB row · Bicep curls',days:[3],freq:'Wednesday'},
+  {e:'✨',n:'Chest, Shoulders & Triceps',d:'Chest press · Lateral raises · Tricep pushdown',days:[5],freq:'Friday'},
+  {e:'🔥',n:'Legs & Core',d:'Leg press · Hack squat · Lunges · Plank',days:[0],freq:'Sunday'}
+]);
+function WD(day,el){
+  document.querySelectorAll('.wday').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.wday-content').forEach(function(c){c.classList.remove('active');});
+  el.classList.add('active');
+  document.getElementById('wd-'+day).classList.add('active');
+}
+(function(){var m={0:'sun',2:'tue',3:'wed',5:'fri'};var t=m[new Date().getDay()];if(t){var b=document.querySelector('.wday[onclick*="\''+t+'\'"]');if(b)WD(t,b);}})();
 BR(document.getElementById('hrem'),[
   {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',days:[1,3,5],freq:'3x/week'},
   {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 mins massage while watching TV',days:[2,4,6],freq:'3x/week'},
@@ -926,7 +980,7 @@ function CM(){
 function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 var MF_DEF_GOALS=[
   {t:'🌏 Visit Australia — April 2027',done:false},
-  {t:'📚 Pass PST Exam — May 2027',done:false},
+  {t:'📚 Pass PTE Exam — May 2027',done:false},
   {t:'📋 Work & Holiday Visa (Subclass 462) activated — July 1, 2027',done:false},
   {t:'💍 Get engaged & receive Prospective Marriage Visa (Subclass 300)',done:false},
   {t:'👰 Get married — 2028',done:false},
@@ -1028,11 +1082,12 @@ function renderAff(){
 function addGoal(){var inp=document.getElementById('goal-inp'),v=inp.value.trim();if(!v)return;mfData.goals.unshift({t:v,done:false});mfSave('goals');inp.value='';renderGoals();}
 function togGoal(i){mfData.goals[i].done=!mfData.goals[i].done;mfSave('goals');renderGoals();}
 function delGoal(i){mfData.goals.splice(i,1);mfSave('goals');renderGoals();}
+function editGoal(i){var nl=prompt('Edit goal:',mfData.goals[i].t);if(nl===null||!nl.trim())return;mfData.goals[i].t=nl.trim();mfSave('goals');renderGoals();}
 function renderGoals(){
   var el=document.getElementById('goal-list');if(!el)return;
   if(!mfData.goals.length){el.innerHTML='<div class="mf-empty"><div class="mf-empty-e">🎯</div><div class="mf-empty-t">Add your first goal.<br>Dream big — then make it happen.</div></div>';return;}
   el.innerHTML=mfData.goals.map(function(g,i){
-    return '<div class="mf-goal-card"><div class="mf-check'+(g.done?' done':'')+'" onclick="togGoal('+i+')">'+(g.done?'✓':'')+'</div><span class="mf-goal-t'+(g.done?' done':'')+'" >'+escH(g.t)+'</span><button class="mf-del" onclick="delGoal('+i+')">✕</button></div>';
+    return '<div class="mf-goal-card"><div class="mf-check'+(g.done?' done':'')+'" onclick="togGoal('+i+')">'+(g.done?'✓':'')+'</div><span class="mf-goal-t'+(g.done?' done':'')+'" >'+escH(g.t)+'</span><button class="mf-edit" onclick="editGoal('+i+')">✏</button><button class="mf-del" onclick="delGoal('+i+')">✕</button></div>';
   }).join('');
 }
 
@@ -1057,7 +1112,7 @@ function addVisFiles(inp){
     };
     r.readAsDataURL(f);
   });
-  inp.value='';
+  document.getElementById('vis-file-inp').value='';
 }
 var VIS_ROTATIONS=[-2.5,-1,1.5,-1.8,2,-.8,1.2,-2,1.8,-.5,2.2,-1.5];
 function renderVis(){
