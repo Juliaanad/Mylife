@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Glow Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="fonts.css" rel="stylesheet">
 <style>
 :root{--pink:#C47B8A;--rose:#E8A0AD;--blush:#F2C4CE;--cream:#FDF6F0;--warm:#FFFAF7;--brown:#8B6B6B;--dark:#3D2B2B;--gold:#D4A96A;--sage:#A8C5A0;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -16,6 +16,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 .hdr h1{font-family:'Playfair Display',serif;font-size:26px;color:var(--dark);}
 .hdr h1 em{font-style:italic;color:var(--pink);}
 .hdr-date{font-size:12px;color:var(--brown);margin-top:6px;}
+.hdr-time{font-size:11px;color:var(--pink);margin-top:3px;font-weight:600;letter-spacing:0.5px;}
 .bible-btn{position:absolute;top:20px;right:14px;background:linear-gradient(135deg,var(--pink),var(--rose));border:none;border-radius:20px;padding:8px 13px;font-size:11px;font-weight:500;color:white;cursor:pointer;font-family:'DM Sans',sans-serif;}
 
 /* WEEK NAV */
@@ -351,6 +352,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="bhome">
     <div class="bhlbl">Choose a Category</div>
     <div class="cbar" onclick="OC('h')"><div class="cbi"><div class="cic ic-h">&#9986;</div><div class="ct"><div class="cn">Hair Guide</div><div class="cd">Best styles · Colors · What to avoid</div></div><div class="ca">›</div></div></div>
+    <div class="cbar" onclick="OC('sk')"><div class="cbi"><div class="cic" style="background:linear-gradient(135deg,#E0F5EE,#D0EEE0);">🥑</div><div class="ct"><div class="cn">Skincare Bible</div><div class="cd">Eat · Avoid · Vitamins · Peptides · K-Beauty</div></div><div class="ca">›</div></div></div>
     <div class="cbar" onclick="OC('c')"><div class="cbi"><div class="cic ic-c">👗</div><div class="ct"><div class="cn">Fashion &amp; Style</div><div class="cd">Methods · Best clothes · Elegance rules</div></div><div class="ca">›</div></div></div>
     <div class="cbar" onclick="OC('e')"><div class="cbi"><div class="cic ic-e">🛍️</div><div class="ct"><div class="cn">Essentials to Buy</div><div class="cd">Hair · Skincare · Makeup · Supplements</div></div><div class="ca">›</div></div></div>
     <div class="cbar" onclick="OC('l')"><div class="cbi"><div class="cic ic-l">👑</div><div class="ct"><div class="cn">Love &amp; Standards</div><div class="cd">Non-negotiables · Rules · Mantras</div></div><div class="ca">›</div></div></div>
@@ -383,6 +385,101 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
         <div class="sr"><span class="se">&#127851;</span><div><div class="sn2">Dark Chocolate Brown</div><div class="sd">Warms up your complexion beautifully.</div></div></div>
         <div class="sr"><span class="se">&#10024;</span><div><div class="sn2">Caramel Highlights (Balayage)</div><div class="sd">Adds dimension. Gorgeous in sunlight.</div></div></div>
         <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Ash/Cool Blonde or Platinum</div><div class="sd">Clashes with warm olive undertones</div><span class="avt">Avoid</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKINCARE BIBLE -->
+  <div class="bcat" id="cat-sk">
+    <div class="bctb"><button class="bk" onclick="CC('sk')">&#8592;</button><div class="bci">🥑</div><div><div class="bcit">Skincare Bible</div><div class="bcis">Glowing skin, inside &amp; out</div></div></div>
+    <div class="bits"><div class="bit active" onclick="SI('sk','se',this)">Eat</div><div class="bit" onclick="SI('sk','sa',this)">Avoid</div><div class="bit" onclick="SI('sk','sv',this)">Vitamins</div><div class="bit" onclick="SI('sk','sp',this)">Peptides</div><div class="bit" onclick="SI('sk','kb',this)">K-Beauty</div><div class="bit" onclick="SI('sk','sn',this)">Rules</div></div>
+    <div class="bcb">
+      <div class="bis active" id="sk-se">
+        <div class="acc open" id="ska1"><div class="ach" onclick="TA('ska1')"><div class="acl"><span class="ace">&#127814;</span><div><div class="act">Collagen &amp; Glow Foods</div><div class="acs">Eat these daily/weekly for elasticity + radiance</div></div></div><span class="acar">&#9660;</span></div><div class="acb"><div class="aci">
+          <div class="sr"><span class="se">&#127859;</span><div><div class="sn2">Bone Broth</div><div class="sd">Rich in collagen &amp; amino acids — rebuilds skin from within.</div></div></div>
+          <div class="sr"><span class="se">&#127794;</span><div><div class="sn2">Salmon &amp; Fatty Fish</div><div class="sd">Omega-3s keep skin plump, reduce inflammation and redness.</div></div></div>
+          <div class="sr"><span class="se">&#129360;</span><div><div class="sn2">Avocado</div><div class="sd">Healthy fats + vitamin E — deeply moisturizes skin from inside.</div></div></div>
+          <div class="sr"><span class="se">&#127815;</span><div><div class="sn2">Berries (Blueberries, Strawberries)</div><div class="sd">Loaded with antioxidants that fight free radicals &amp; aging.</div></div></div>
+          <div class="sr"><span class="se">&#127823;</span><div><div class="sn2">Bell Peppers</div><div class="sd">Highest vitamin C of any food — boosts collagen synthesis.</div></div></div>
+          <div class="sr"><span class="se">&#127805;</span><div><div class="sn2">Sweet Potato</div><div class="sd">Beta-carotene converts to vitamin A — natural inner glow.</div></div></div>
+          <div class="sr"><span class="se">&#129381;</span><div><div class="sn2">Walnuts, Chia &amp; Flax Seeds</div><div class="sd">Omega-3 + vitamin E — strengthens skin barrier.</div></div></div>
+          <div class="sr"><span class="se">&#127811;</span><div><div class="sn2">Leafy Greens (Spinach, Kale)</div><div class="sd">Vitamin A + C — repairs and protects skin cells.</div></div></div>
+          <div class="sr"><span class="se">&#127813;</span><div><div class="sn2">Tomatoes</div><div class="sd">Lycopene acts like natural sun protection from within.</div></div></div>
+          <div class="sr"><span class="se">&#127851;</span><div><div class="sn2">Dark Chocolate (70%+)</div><div class="sd">Flavonols protect skin against UV damage &amp; improve hydration.</div></div></div>
+        </div></div></div>
+        <div class="acc" id="ska2"><div class="ach" onclick="TA('ska2')"><div class="acl"><span class="ace">&#128167;</span><div><div class="act">Hydration &amp; Gut Health</div><div class="acs">Clear skin starts in the gut</div></div></div><span class="acar">&#9660;</span></div><div class="acb"><div class="aci">
+          <div class="sr"><span class="se">&#128167;</span><div><div class="sn2">2–3L Water Daily</div><div class="sd">The #1 rule. Dehydrated skin shows fine lines faster.</div></div></div>
+          <div class="sr"><span class="se">&#129360;</span><div><div class="sn2">Cucumber &amp; Watermelon</div><div class="sd">High water content — hydrates &amp; de-puffs.</div></div></div>
+          <div class="sr"><span class="se">&#129360;</span><div><div class="sn2">Fermented Foods (Kimchi, Yogurt)</div><div class="sd">Gut health directly reflects on skin clarity — reduces breakouts.</div></div></div>
+          <div class="sr"><span class="se">&#127749;</span><div><div class="sn2">Green Tea</div><div class="sd">Antioxidants (EGCG) reduce inflammation and protect collagen.</div></div></div>
+        </div></div></div>
+      </div>
+      <div class="bis" id="sk-sa">
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">High Sugar &amp; Refined Carbs</div><div class="sd">Causes glycation — literally breaks down collagen into wrinkles</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Fried &amp; Processed Foods</div><div class="sd">Triggers inflammation, dulls skin and clogs pores</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Excess Dairy</div><div class="sd">Can spike hormones that trigger breakouts for some skin types</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Alcohol</div><div class="sd">Dehydrates skin and breaks down collagen over time</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Excess Salt</div><div class="sd">Causes puffiness and water retention in the face</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Smoking / Vaping</div><div class="sd">Destroys collagen &amp; elastin — the #1 cause of premature wrinkles</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Very Hot Showers/Water on Face</div><div class="sd">Strips natural oils, weakens the skin barrier</div><span class="avt">Avoid</span></div></div>
+        <div class="avr"><span class="se">&#10060;</span><div><div class="sn2">Sleeping in Makeup</div><div class="sd">Clogs pores overnight — causes breakouts and premature aging</div><span class="avt">Avoid</span></div></div>
+      </div>
+      <div class="bis" id="sk-sv">
+        <div class="ec2"><div class="eic">&#127818;</div><div class="ein"><div class="enm2">Vitamin C</div><div class="ebr">500–1000mg daily</div><div class="ewy">Collagen synthesis + brightening</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#10024;</div><div class="ein"><div class="enm2">Collagen Peptides</div><div class="ebr">10g daily</div><div class="ewy">Skin elasticity + hydration from within</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#129365;</div><div class="ein"><div class="enm2">Vitamin E</div><div class="ebr">15mg daily</div><div class="ewy">Antioxidant — protects against UV damage</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">💊</div><div class="ein"><div class="enm2">Biotin</div><div class="ebr">5000mcg daily</div><div class="ewy">Hair, skin &amp; nail cell repair</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#129384;</div><div class="ein"><div class="enm2">Zinc</div><div class="ebr">15–30mg daily</div><div class="ewy">Reduces acne &amp; calms inflammation</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">🐟</div><div class="ein"><div class="enm2">Omega-3 Fish Oil</div><div class="ebr">1000mg daily</div><div class="ewy">Reduces inflammation, keeps skin plump</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#128167;</div><div class="ein"><div class="enm2">Hyaluronic Acid (Oral)</div><div class="ebr">120–240mg daily</div><div class="ewy">Deep hydration from within</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#128165;</div><div class="ein"><div class="enm2">Astaxanthin</div><div class="ebr">4–12mg daily</div><div class="ewy">Powerful antioxidant — reduces UV &amp; sun damage</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#10024;</div><div class="ein"><div class="enm2">Glutathione</div><div class="ebr">250–500mg daily</div><div class="ewy">Master antioxidant — brightening, popular in K-beauty</div></div><div class="epr">&#128176;&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#129381;</div><div class="ein"><div class="enm2">Probiotics</div><div class="ebr">10B+ CFU daily</div><div class="ewy">Gut-skin axis — clears skin from the inside</div></div><div class="epr">&#128176;</div></div>
+        <div class="mp" style="margin-top:10px;"><div class="mpt">💧 Drink Daily</div><div class="mpd">Lemon water on waking · Green tea mid-morning · Collagen in coffee or smoothie · Bone broth in the evening.</div></div>
+        <div class="tip" style="margin-top:10px;">💡 Always check with a doctor before starting new supplements, especially if combining several.</div>
+      </div>
+      <div class="bis" id="sk-sp">
+        <div class="sr"><span class="se">&#128142;</span><div><div class="sn2">Retinol / Retinoids</div><div class="sd">Gold standard anti-aging — speeds cell turnover, smooths fine lines. Use at night only.</div></div></div>
+        <div class="sr"><span class="se">&#10024;</span><div><div class="sn2">Niacinamide</div><div class="sd">Strengthens the skin barrier, minimizes pores, evens tone. Pairs with almost everything.</div></div></div>
+        <div class="sr"><span class="se">&#129516;</span><div><div class="sn2">Matrixyl (Palmitoyl Pentapeptide)</div><div class="sd">Signals skin to produce more collagen — visibly softens fine lines.</div></div></div>
+        <div class="sr"><span class="se">&#129517;</span><div><div class="sn2">Copper Peptides (GHK-Cu)</div><div class="sd">Repairs the skin barrier and boosts both collagen and elastin.</div></div></div>
+        <div class="sr"><span class="se">&#128165;</span><div><div class="sn2">Argireline (Acetyl Hexapeptide-8)</div><div class="sd">"Botox-like" peptide — relaxes expression lines over time.</div></div></div>
+        <div class="sr"><span class="se">&#128167;</span><div><div class="sn2">Hyaluronic Acid (Topical)</div><div class="sd">Holds 1000x its weight in water — instant plump &amp; hydration.</div></div></div>
+        <div class="sr"><span class="se">&#127818;</span><div><div class="sn2">Vitamin C (L-Ascorbic Acid)</div><div class="sd">Brightens, fades dark spots, antioxidant protection. Use in the morning under SPF.</div></div></div>
+        <div class="sr"><span class="se">&#129384;</span><div><div class="sn2">Ceramides</div><div class="sd">Restore and seal the skin barrier — essential after actives like retinol.</div></div></div>
+        <div class="sr"><span class="se">&#129514;</span><div><div class="sn2">AHA / BHA (Glycolic, Salicylic)</div><div class="sd">Gentle exfoliation — smoother texture, fewer clogged pores.</div></div></div>
+        <div class="avr"><span class="se">&#9728;</span><div><div class="sn2">SPF 50 — Every Single Day</div><div class="sd">Prevents up to 90% of visible skin aging. The one non-negotiable.</div></div></div>
+      </div>
+      <div class="bis" id="sk-kb">
+        <div class="mp"><div class="mpt">&#127991; The 10-Step Korean Routine</div><div class="mpd">Oil cleanse → water cleanse → toner → essence → serum → sheet mask → eye cream → moisturizer → sleeping mask → SPF (AM only).</div></div>
+        <div class="sr"><span class="se">&#128167;</span><div><div class="sn2">Double Cleansing</div><div class="sd">Oil cleanser dissolves makeup/SPF first, then a gentle water-based cleanser. Never skip step one.</div></div></div>
+        <div class="sr"><span class="se">&#128012;</span><div><div class="sn2">COSRX Advanced Snail 96 Mucin Power Essence</div><div class="sd">Cult-favorite for repair &amp; deep hydration.</div></div></div>
+        <div class="sr"><span class="se">&#127819;</span><div><div class="sn2">Beauty of Joseon Glow Serum</div><div class="sd">Propolis + niacinamide — brightening, dewy "glass skin" finish.</div></div></div>
+        <div class="sr"><span class="se">&#127807;</span><div><div class="sn2">SKIN1004 Centella Ampoule</div><div class="sd">Calms redness &amp; irritation — great for sensitive/reactive skin.</div></div></div>
+        <div class="sr"><span class="se">&#127811;</span><div><div class="sn2">Anua Heartleaf 77% Soothing Toner</div><div class="sd">Calms, hydrates and preps skin for the rest of the routine.</div></div></div>
+        <div class="sr"><span class="se">&#127866;</span><div><div class="sn2">Laneige Water Sleeping Mask</div><div class="sd">Overnight hydration — wake up with plump, dewy skin.</div></div></div>
+        <div class="sr"><span class="se">&#127793;</span><div><div class="sn2">Rice Water / Rice Bran</div><div class="sd">Ancient Korean brightening secret — evens tone, adds softness.</div></div></div>
+        <div class="sr"><span class="se">&#128301;</span><div><div class="sn2">Glass Skin Method</div><div class="sd">Layer thin, hydrating products (7 Skin Method) for a dewy, poreless finish.</div></div></div>
+        <div class="sr"><span class="se">&#128184;</span><div><div class="sn2">Gua Sha / Facial Massage</div><div class="sd">Daily 5 minutes — lymphatic drainage, de-puffing &amp; natural contour.</div></div></div>
+      </div>
+      <div class="bis" id="sk-sn">
+        <div class="lh" style="background:linear-gradient(135deg,#7FB89C,#A8C5A0);"><div class="lhe">🥑</div><div class="lht">Glow is a lifestyle.</div><div class="lhs">Your skin reflects what you eat, drink, and how consistent you are — every single day.</div></div>
+        <div class="nc"><div class="ni2">&#9728;</div><div class="nt">SPF every single day — rain, shine, or indoors near windows.</div></div>
+        <div class="nc"><div class="ni2">&#128164;</div><div class="nt">Never sleep with makeup on — no exceptions, ever.</div></div>
+        <div class="nc"><div class="ni2">🛏️</div><div class="nt">Change pillowcase 1–2x/week — silk preferred to reduce friction.</div></div>
+        <div class="nc"><div class="ni2">&#128564;</div><div class="nt">7–8 hours of sleep — this is when skin actually repairs itself.</div></div>
+        <div class="nc"><div class="ni2">&#128167;</div><div class="nt">2–3L water daily — hydration is the cheapest skincare product.</div></div>
+        <div class="nc"><div class="ni2">&#9995;</div><div class="nt">Don't touch your face throughout the day — hands carry bacteria.</div></div>
+        <div class="nc"><div class="ni2">&#129514;</div><div class="nt">Patch test every new product before applying to full face.</div></div>
+        <div class="nc"><div class="ni2">&#10024;</div><div class="nt">Consistency beats product — same routine, morning and night, always.</div></div>
+        <div class="mw">
+          <div class="mwt">Skin Bible Mantras</div>
+          <div class="mi"><span class="md">✦</span>My skin reflects how I treat my body.</div>
+          <div class="mi"><span class="md">✦</span>Glow is a lifestyle, not a filter.</div>
+          <div class="mi"><span class="md">✦</span>What I eat today shows on my face in six weeks.</div>
+          <div class="mi"><span class="md">✦</span>Consistency is my best skincare product.</div>
+          <div class="mi"><span class="md">✦</span>I protect my skin barrier before I chase results.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -433,7 +530,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
       <div class="bis active" id="e-eh">
         <div class="ec2"><div class="eic">&#127965;</div><div class="ein"><div class="enm2">Coconut / Argan Oil</div><div class="ebr">Moroccanoil · Parachute · OGX</div><div class="ewy">Pre-shampoo treatment</div></div><div class="epr">&#128176;</div></div>
         <div class="ec2"><div class="eic">&#129514;</div><div class="ein"><div class="enm2">Sulfate-Free Shampoo</div><div class="ebr">Maui Moisture · TRESemmé Keratin</div><div class="ewy">Cleanses without stripping</div></div><div class="epr">&#128176;</div></div>
-        <div class="ec2"><div class="eic">&#128154;</div><div class="ein"><div class="enm2">Weekly Hair Mask</div><div class="ebr">Garnier Fructis · Shea Moisture</div><div class="ewy">Deep repair every Sunday</div></div><div class="epr">&#128176;</div></div>
+        <div class="ec2"><div class="eic">&#128154;</div><div class="ein"><div class="enm2">Weekly Hair Mask</div><div class="ewy">Deep repair every Sunday</div></div><div class="epr">&#128176;</div></div>
         <div class="ec2"><div class="eic">&#127807;</div><div class="ein"><div class="enm2">Rosemary Oil</div><div class="ebr">Mielle Organics · The Ordinary</div><div class="ewy">Scalp massage 3x/week for growth</div></div><div class="epr">&#128176;</div></div>
         <div class="ec2"><div class="eic">💎</div><div class="ein"><div class="enm2">Olaplex No.3</div><div class="ebr">Olaplex</div><div class="ewy">Monthly bond repair treatment</div></div><div class="epr">&#128176;&#128176;</div></div>
         <div class="ec2"><div class="eic">🛏️</div><div class="ein"><div class="enm2">Silk Pillowcase</div><div class="ebr">LilySilk · SLIP</div><div class="ewy">Reduces breakage overnight</div></div><div class="epr">&#128176;&#128176;</div></div>
@@ -566,6 +663,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="hdr-lbl">Your Personal Guide</div>
   <h1>My <em>Glow</em> Calendar &#10024;</h1>
   <div class="hdr-date" id="hdate"></div>
+  <div class="hdr-time" id="hdtime"></div>
 </div>
 
 <!-- NAV -->
@@ -714,7 +812,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
     </div>
     <div class="sec">
       <div class="slbl">Sunday — Deep Treatment</div>
-      <div class="tc tap" onclick="OM('mask')"><div class="te">💆</div><div class="ti"><div class="tn">Weekly Hair Mask</div><div class="td">Garnier Fructis Hair Bomb or Shea Moisture — 20–30 mins</div><div class="th">Tap to see full routine →</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd off">M</span><span class="fd off">Tu</span><span class="fd off">W</span><span class="fd off">Th</span><span class="fd off">F</span><span class="fd off">Sa</span></span><span class="fl">· 1x/week</span></div></div><span class="tt th2">Repair</span></div>
+      <div class="tc tap" onclick="OM('mask')"><div class="te">💆</div><div class="ti"><div class="tn">Weekly Hair Mask</div><div class="td">20–30 mins</div><div class="th">Tap to see full routine →</div><div class="fb"><span class="fds"><span class="fd">Su</span><span class="fd off">M</span><span class="fd off">Tu</span><span class="fd off">W</span><span class="fd off">Th</span><span class="fd off">F</span><span class="fd off">Sa</span></span><span class="fl">· 1x/week</span></div></div><span class="tt th2">Repair</span></div>
       <div class="tc tap" onclick="OM('olaplex')"><div class="te">💎</div><div class="ti"><div class="tn">Olaplex No.3</div><div class="td">Protein treatment once a month</div><div class="th">Tap to see full routine →</div><div class="fb"><span class="fm">1x / month</span></div></div><span class="tt th2">Protein</span></div>
     </div>
     <div class="sec">
@@ -782,7 +880,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="rmb" id="mb"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="Sortable.min.js"></script>
 <script>
 var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -827,17 +925,19 @@ var DATA={
   ],a:'A beautiful space creates a beautiful life. Your home is your sanctuary. 🏠✨'}
 };
 
-var sel=new Date(), woff=0;
+function DKNow(){return new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Copenhagen'}));}
+
+var sel=DKNow(), woff=0;
 
 function GW(o){
-  var t=new Date(),sun=new Date(t);
+  var t=DKNow(),sun=new Date(t);
   sun.setDate(t.getDate()-t.getDay()+(o*7));
   var a=[];
   for(var i=0;i<7;i++){var d=new Date(sun);d.setDate(sun.getDate()+i);a.push(d);}
   return a;
 }
 function SD(a,b){return a.getDate()===b.getDate()&&a.getMonth()===b.getMonth()&&a.getFullYear()===b.getFullYear();}
-function IT(d){return SD(d,new Date());}
+function IT(d){return SD(d,DKNow());}
 
 function RW(){
   var dates=GW(woff),strip=document.getElementById('dstrip');
@@ -908,7 +1008,7 @@ function SI(cat,sec,el){
 function TA(id){var a=document.getElementById(id);if(a)a.classList.toggle('open');}
 
 // INIT
-var now=new Date();
+var now=DKNow();
 var ts=DN[now.getDay()]+', '+MN[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
 var tdow=now.getDay();
 document.getElementById('hdate').textContent=ts;
@@ -951,11 +1051,20 @@ function WD(day,el){
   el.classList.add('active');
   document.getElementById('wd-'+day).classList.add('active');
 }
-(function(){var m={0:'sun',2:'tue',3:'wed',5:'fri'};var t=m[new Date().getDay()];if(t){var b=document.querySelector('.wday[onclick*="\''+t+'\'"]');if(b)WD(t,b);}})();
+(function(){var m={0:'sun',2:'tue',3:'wed',5:'fri'};var t=m[DKNow().getDay()];if(t){var b=document.querySelector('.wday[onclick*="\''+t+'\'"]');if(b)WD(t,b);}})();
+
+function updateDKClock(){
+  var el=document.getElementById('hdtime');
+  if(!el)return;
+  var f=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Copenhagen',hour:'2-digit',minute:'2-digit'});
+  el.textContent='🇩🇰 '+f.format(new Date())+' Denmark Time';
+}
+updateDKClock();
+setInterval(updateDKClock,30000);
 BR(document.getElementById('hrem'),[
   {e:'🚿',n:'Hair Wash Day',d:'Pre-oil → Shampoo → Deep condition → Cold rinse',days:[1,3,5],freq:'3x/week'},
   {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 mins massage while watching TV',days:[2,4,6],freq:'3x/week'},
-  {e:'💆',n:'Weekly Hair Mask',d:'Garnier Fructis or Shea Moisture — 20-30 mins',days:[0],freq:'1x/week'},
+  {e:'💆',n:'Weekly Hair Mask',d:'20-30 mins',days:[0],freq:'1x/week'},
   {e:'💎',n:'Olaplex No.3',d:'Bond repair & strength — schedule this month!',days:[],freq:'1x/mo'}
 ]);
 RW();RD();
@@ -973,8 +1082,7 @@ var RTS={
       {n:6,t:'Leave It On',d:'Leave 20-30 minutes. Longer = better results.',tm:'20-30 mins'},
       {n:7,t:'Cold Rinse',d:'Rinse until clear. Cold water seals cuticle. No conditioner needed!',tm:'3 mins'},
       {n:8,t:'Air Dry',d:'Squeeze with microfiber towel. Air dry or diffuse on low.',tm:''}
-    ],
-    prod:'💚 Garnier Fructis Hair Bomb · Shea Moisture Manuka Honey Mask'},
+    ]},
   olaplex:{e:'💎',t:'Olaplex No.3 Treatment',s:'Once a month · 30-60 minutes (or overnight!)',
     tip:'<strong>💡 Key difference:</strong> A hair mask adds moisture. Olaplex No.3 repairs broken bonds <em>inside</em> the hair shaft. Both essential!',
     steps:[
@@ -997,7 +1105,7 @@ function OM(type){
   document.getElementById('ms2').textContent=r.s;
   var h='<div class="tip">'+r.tip+'</div><div class="msl">Step by Step</div>';
   r.steps.forEach(function(s){h+='<div class="ms"><div class="msn">'+s.n+'</div><div class="msc"><div class="mst">'+s.t+'</div><div class="msd">'+s.d+'</div>'+(s.tm?'<span class="mstm">⏱ '+s.tm+'</span>':'')+'</div></div>';});
-  h+='<div class="msl">Products</div><div class="tip" style="background:linear-gradient(135deg,#E8F5E8,#F0FAF0);border-color:#A5D6A7;color:#2E7D32;">'+r.prod+'</div>';
+  if(r.prod) h+='<div class="msl">Products</div><div class="tip" style="background:linear-gradient(135deg,#E8F5E8,#F0FAF0);border-color:#A5D6A7;color:#2E7D32;">'+r.prod+'</div>';
   if(type==='olaplex') h+='<div class="msl">Do Both Same Day?</div><div class="tip" style="background:linear-gradient(135deg,#EDE7F6,#F3E5F5);border-color:#CE93D8;color:#4A148C;"><strong>✅ Yes! Once a month combo:</strong><br>1. Olaplex No.3 on dry hair (30-60 mins)<br>2. Rinse → Shampoo<br>3. Hair Mask on damp hair (20-30 mins)<br>4. Cold rinse → Air dry<br><br>This combo = the most luscious hair of your life 🖤</div>';
   document.getElementById('mb').innerHTML=h;
   document.getElementById('rm').classList.add('open');
