@@ -669,9 +669,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 <!-- NAV -->
 <div class="bnav">
   <div class="ni active" onclick="ST('today',this)"><span class="ne">&#128197;</span><span class="nl">Today</span></div>
+  <div class="ni" onclick="ST('mf',this)"><span class="ne">🌙</span><span class="nl">Universe</span></div>
   <div class="ni" onclick="ST('workout',this)"><span class="ne">&#127825;</span><span class="nl">Workout</span></div>
   <div class="ni" onclick="ST('hair',this)"><span class="ne">&#9986;</span><span class="nl">Hair</span></div>
-  <div class="ni" onclick="ST('mf',this)"><span class="ne">🌙</span><span class="nl">Universe</span></div>
 </div>
 
 <!-- TODAY TAB -->
@@ -833,11 +833,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
       <div class="mf-divider"></div>
     </div>
     <div class="mf-tabs-row">
-      <div class="mf-tab active" onclick="MFT('aff',this)">✨ Affirmations</div>
+      <div class="mf-tab active" onclick="MFT('vis',this)">🖼️ Vision Board</div>
+      <div class="mf-tab" onclick="MFT('aff',this)">✨ Affirmations</div>
       <div class="mf-tab" onclick="MFT('goals',this)">🎯 Goals</div>
-      <div class="mf-tab" onclick="MFT('vis',this)">🖼️ Vision Board</div>
     </div>
-    <div class="mf-sec active" id="mf-aff-sec">
+    <div class="mf-sec active" id="mf-vis-sec">
+      <div style="text-align:center;margin-bottom:14px;">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#8B2252;margin-bottom:4px;">Your Vision Board</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,123,138,0.6);">See it · Feel it · Receive it</div>
+      </div>
+      <button class="mf-vis-add" onclick="document.getElementById('vis-file-inp').click()">📸 Add a Photo</button>
+      <input id="vis-file-inp" type="file" accept="image/*" multiple accept="image/*" onchange="addVisFiles(this)" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none;">
+      <div id="vis-grid"></div>
+    </div>
+    <div class="mf-sec" id="mf-aff-sec">
       <div class="mf-inp-row">
         <input id="aff-inp" class="mf-inp" placeholder="I am... I have... I attract...">
         <button class="mf-add" onclick="addAff()">+</button>
@@ -850,15 +859,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
         <button class="mf-add" onclick="addGoal()">+</button>
       </div>
       <div id="goal-list"></div>
-    </div>
-    <div class="mf-sec" id="mf-vis-sec">
-      <div style="text-align:center;margin-bottom:14px;">
-        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#8B2252;margin-bottom:4px;">Your Vision Board</div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,123,138,0.6);">See it · Feel it · Receive it</div>
-      </div>
-      <button class="mf-vis-add" onclick="document.getElementById('vis-file-inp').click()">📸 Add a Photo</button>
-      <input id="vis-file-inp" type="file" accept="image/*" multiple accept="image/*" onchange="addVisFiles(this)" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none;">
-      <div id="vis-grid"></div>
     </div>
   </div>
 </div>
@@ -1056,8 +1056,9 @@ function WD(day,el){
 function updateDKClock(){
   var el=document.getElementById('hdtime');
   if(!el)return;
-  var f=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Copenhagen',hour:'2-digit',minute:'2-digit'});
-  el.textContent='🇩🇰 '+f.format(new Date())+' Denmark Time';
+  var f=new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Copenhagen',hour:'numeric',minute:'2-digit',hour12:true});
+  var t=f.format(new Date()).replace(' ','').toLowerCase();
+  el.textContent='🇩🇰 '+t+' Denmark Time';
 }
 updateDKClock();
 setInterval(updateDKClock,30000);
