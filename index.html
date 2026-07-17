@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>My Glow Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#C47B8A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Glow Guide">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link href="fonts.css" rel="stylesheet">
 <style>
 :root{--pink:#C47B8A;--rose:#E8A0AD;--blush:#F2C4CE;--cream:#FDF6F0;--warm:#FFFAF7;--brown:#8B6B6B;--dark:#3D2B2B;--gold:#D4A96A;--sage:#A8C5A0;}
@@ -370,67 +376,44 @@ body{background:var(--blush);}
 @keyframes ckpop{0%{transform:scale(.5)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
 .rn{font-size:15px;}
 
-/* ===== SLEEP TAB ===== */
-.slh{background:linear-gradient(135deg,rgba(232,228,245,0.85),rgba(240,232,248,0.85));border-radius:18px;padding:18px;margin-bottom:18px;text-align:center;border:1px solid #D8D0E8;}
-.slh h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:5px;}
-.slh p{font-size:12px;color:var(--brown);}
-.sl-big{background:white;border-radius:18px;border:1px solid #F5EAEA;padding:18px;margin-bottom:14px;display:flex;align-items:center;gap:16px;}
-.sl-moon{font-size:36px;flex-shrink:0;}
-.sl-hours{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;color:var(--dark);line-height:1;}
-.sl-cap{font-size:11px;color:var(--brown);margin-top:5px;line-height:1.45;}
-.sl-stats{display:flex;gap:8px;margin-bottom:14px;}
-.sl-st{flex:1;background:white;border:1px solid #F5EAEA;border-radius:14px;padding:12px 6px;text-align:center;}
-.sl-sn{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--dark);}
-.sl-sl2{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--brown);margin-top:3px;}
-.sl-chart{background:white;border:1px solid #F5EAEA;border-radius:18px;padding:16px 14px 12px;margin-bottom:18px;}
-.sl-ct{font-size:13px;font-weight:600;color:var(--dark);}
-.sl-cs{font-size:10px;color:var(--brown);margin:2px 0 10px;}
-.sl-tip{font-size:10px;color:var(--brown);font-style:italic;margin-top:8px;line-height:1.5;}
-.al-row2{background:white;border:1px solid #F5EAEA;border-radius:14px;padding:12px 14px;margin-bottom:9px;display:flex;align-items:center;gap:12px;}
-.al-time{font-family:'Playfair Display',serif;font-size:21px;font-weight:600;color:var(--dark);}
-.al-lbl{font-size:10px;color:var(--brown);margin-top:1px;}
-.tgl{width:44px;height:26px;border-radius:20px;background:#EEE2E2;position:relative;cursor:pointer;transition:background .25s;flex-shrink:0;}
-.tgl::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:white;transition:left .25s;box-shadow:0 1px 4px rgba(0,0,0,.15);}
-.tgl.on{background:linear-gradient(135deg,var(--pink),var(--rose));}
-.tgl.on::after{left:21px;}
-.sl-add{display:flex;gap:8px;margin-bottom:9px;}
-.sl-inp{flex:1;min-width:0;padding:11px 13px;border:1.5px solid var(--blush);border-radius:13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--dark);background:white;outline:none;}
-.sl-btn{background:linear-gradient(135deg,var(--pink),var(--rose));border:none;border-radius:13px;padding:11px 16px;color:white;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;flex-shrink:0;}
-.sl-del{background:none;border:none;color:rgba(196,123,138,0.55);font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:4px;}
-.chip{display:inline-flex;align-items:center;gap:6px;background:white;border:1.5px solid var(--blush);border-radius:20px;padding:7px 12px;font-size:12px;color:var(--dark);margin:0 6px 8px 0;}
-.chip button{background:none;border:none;color:var(--pink);cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;padding:0;}
-.sl-note{font-size:10px;color:#7B6B3D;line-height:1.55;background:linear-gradient(135deg,#FFF8E1,#FFF3CD);border:1px solid #FFE082;border-radius:12px;padding:10px 12px;margin-top:8px;}
+/* ===== START YOUR DAY WIDGET ===== */
+.sday{background:linear-gradient(135deg,#C47B8A,#B8708A 55%,#D4A96A);border-radius:20px;padding:18px 18px;margin-bottom:18px;color:white;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 6px 22px rgba(196,123,138,.35);-webkit-tap-highlight-color:transparent;}
+.sday::after{content:'🌬️';position:absolute;right:-6px;bottom:-14px;font-size:76px;opacity:.16;}
+.sday:active{transform:scale(.98);}
+.sday-lbl{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+.sday-t{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;margin-bottom:4px;}
+.sday-d{font-size:11.5px;opacity:.9;line-height:1.45;max-width:230px;}
+.sday-go{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.9);color:#B8708A;font-size:11px;font-weight:600;padding:8px 16px;border-radius:22px;position:relative;z-index:2;}
+.sday-done{margin-top:11px;font-size:11px;font-weight:500;opacity:.92;position:relative;z-index:2;display:flex;align-items:center;gap:5px;}
 
-/* ===== ALARM + BEDTIME OVERLAYS ===== */
-.fso{position:fixed;inset:0;z-index:900;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;overflow:hidden;}
-.fso.on{display:flex;}
-#alarmov{background:linear-gradient(160deg,#C47B8A,#8E4A62,#5B2A44);z-index:950;}
-#bedov{background:linear-gradient(170deg,#140A20,#241238,#0D0616);}
-#bed-stars{position:absolute;inset:0;overflow:hidden;}
-.star{position:absolute;background:white;border-radius:50%;animation:twk linear infinite;}
-@keyframes twk{0%,100%{opacity:.12}50%{opacity:.85}}
-.alov-ring{position:absolute;left:50%;top:40%;width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:50%;border:2px solid rgba(255,255,255,.35);animation:ringpulse 2s ease-out infinite;}
-.alov-ring.r2{animation-delay:.66s}
-.alov-ring.r3{animation-delay:1.33s}
-@keyframes ringpulse{0%{transform:scale(.55);opacity:.9}100%{transform:scale(1.9);opacity:0}}
-.alov-bell{font-size:60px;animation:bellring .6s ease-in-out infinite;margin-bottom:10px;}
-@keyframes bellring{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(13deg)}}
-.alov-time{font-family:'Playfair Display',serif;font-size:54px;font-weight:600;text-shadow:0 4px 30px rgba(0,0,0,.3);}
-.alov-lbl{font-size:14px;opacity:.92;margin-top:6px;letter-spacing:1px;}
-.alov-btns{display:flex;gap:12px;margin-top:34px;position:relative;z-index:2;}
-.alov-b{border:none;border-radius:26px;padding:14px 26px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
-.alov-snz{background:rgba(255,255,255,.18);color:white;border:1.5px solid rgba(255,255,255,.5);}
-.alov-stop{background:white;color:#8E4A62;}
-.bed-moon{font-size:62px;animation:moonfloat 5s ease-in-out infinite;filter:drop-shadow(0 0 26px rgba(255,220,150,.4));}
-@keyframes moonfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.bed-t{font-family:'Playfair Display',serif;font-size:24px;font-style:italic;margin-top:14px;color:#F5E8FA;}
-.bed-s{font-size:12px;color:rgba(235,220,250,.72);margin-top:8px;line-height:1.65;max-width:280px;}
-.bed-cd{font-family:'Playfair Display',serif;font-size:15px;color:#D4A96A;margin-top:16px;letter-spacing:1px;}
-.bed-apps{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:18px;max-width:300px;position:relative;z-index:2;}
-.bed-app{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:7px 13px;font-size:11px;color:rgba(240,228,250,.85);}
-.bed-hold{margin-top:30px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.25);border-radius:26px;padding:13px 26px;font-size:12px;color:rgba(240,228,250,.75);cursor:pointer;font-family:'DM Sans',sans-serif;position:relative;overflow:hidden;z-index:2;-webkit-user-select:none;user-select:none;touch-action:none;}
-.bed-hold .fill{position:absolute;inset:0;background:rgba(212,169,106,.45);width:0%;}
-.bed-hold span{position:relative;z-index:1;}
+/* ===== BREATHING SESSION OVERLAY ===== */
+.bx{position:fixed;inset:0;z-index:700;background:linear-gradient(165deg,#F7DEE6,#F3E7DC 45%,#E7DFF0);transform:translateY(100%);transition:transform .42s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+.bx.open{transform:translateY(0);}
+.bx-close{position:absolute;top:44px;right:16px;background:rgba(255,255,255,.6);border:none;border-radius:50%;width:36px;height:36px;font-size:15px;color:var(--pink);cursor:pointer;font-family:'DM Sans',sans-serif;z-index:5;display:flex;align-items:center;justify-content:center;}
+.bx-screen{flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;padding:60px 26px 40px;text-align:center;}
+.bx-screen.active{display:flex;animation:bxfade .5s ease both;}
+@keyframes bxfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.bx-ey{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
+.bx-h{font-family:'Playfair Display',serif;font-size:27px;font-style:italic;color:var(--dark);line-height:1.3;margin-bottom:10px;}
+.bx-p{font-size:13px;color:var(--brown);line-height:1.6;max-width:300px;margin-bottom:24px;}
+.bx-inp{width:100%;max-width:320px;padding:15px 18px;border:1.5px solid rgba(196,123,138,.35);border-radius:16px;font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--dark);background:rgba(255,255,255,.7);outline:none;text-align:center;margin-bottom:16px;}
+.bx-inp::placeholder{color:rgba(139,107,107,.45);font-style:italic;}
+.bx-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:320px;margin-bottom:30px;}
+.bx-chip{background:rgba(255,255,255,.6);border:1px solid rgba(196,123,138,.3);border-radius:20px;padding:8px 15px;font-size:12px;color:var(--pink);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.bx-chip:active,.bx-chip.on{background:linear-gradient(135deg,var(--pink),var(--rose));color:white;border-color:transparent;}
+.bx-btn{background:linear-gradient(135deg,var(--pink),#B8708A);border:none;border-radius:26px;padding:15px 40px;color:white;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 6px 20px rgba(196,123,138,.4);letter-spacing:.5px;}
+.bx-btn.ghost{background:rgba(255,255,255,.55);color:var(--pink);box-shadow:none;border:1.5px solid rgba(196,123,138,.3);margin-top:14px;padding:12px 30px;font-size:12px;}
+.bx-cyc{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:30px;min-height:14px;}
+.bx-stage{position:relative;width:270px;height:270px;display:flex;align-items:center;justify-content:center;margin-bottom:30px;}
+.bx-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(196,123,138,.25);transform:scale(.55);opacity:.5;}
+.bx-circle{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F2C4CE,#C47B8A 70%,#B8708A);box-shadow:0 10px 40px rgba(196,123,138,.45),inset 0 4px 20px rgba(255,255,255,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:scale(.55);transition:transform 4s ease-in-out;}
+.bx-phase{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:white;text-shadow:0 2px 8px rgba(139,60,90,.35);}
+.bx-num{font-size:13px;color:rgba(255,255,255,.85);margin-top:3px;font-weight:500;}
+.bx-intxt{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--pink);margin-bottom:16px;min-height:22px;}
+.bx-sub{font-size:13px;font-weight:600;color:var(--brown);margin-bottom:22px;min-height:16px;}
+.bx-voice{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--brown);margin-bottom:14px;cursor:pointer;}
+.bx-voice input{width:16px;height:16px;accent-color:var(--pink);}
+.bx-safe{font-size:10.5px;line-height:1.5;color:#B0808A;background:rgba(255,255,255,.5);border:1px solid rgba(196,123,138,.25);border-radius:12px;padding:10px 13px;max-width:320px;margin-bottom:22px;}
 </style>
 </head>
 <body>
@@ -764,7 +747,6 @@ body{background:var(--blush);}
   <div class="ni" onclick="ST('mf',this)"><span class="ne">🌙</span><span class="nl">Universe</span></div>
   <div class="ni" onclick="ST('workout',this)"><span class="ne">&#127825;</span><span class="nl">Workout</span></div>
   <div class="ni" onclick="ST('hair',this)"><span class="ne">&#9986;</span><span class="nl">Hair</span></div>
-  <div class="ni" onclick="ST('sl',this)"><span class="ne">&#128564;</span><span class="nl">Sleep</span></div>
 </div>
 
 <!-- TODAY TAB -->
@@ -780,6 +762,12 @@ body{background:var(--blush);}
       <div class="b-lbl">Today</div>
       <div class="b-day" id="bday"></div>
       <div class="b-vibe" id="bvibe"></div>
+    </div>
+    <div class="sday" id="sday" onclick="openBreath()">
+      <div class="sday-lbl">Morning Ritual</div>
+      <div class="sday-t">Start Your Day</div>
+      <div class="sday-d">Set your intention, then breathe. A guided Wim Hof session with voice — 3 rounds to energize before the day begins.</div>
+      <div id="sday-cta"><span class="sday-go">Begin ritual →</span></div>
     </div>
     <div class="pring">
       <div class="rw">
@@ -910,40 +898,6 @@ body{background:var(--blush);}
   </div>
 </div>
 
-<!-- SLEEP TAB -->
-<div class="tab" id="tab-sl">
-  <div class="main">
-    <div class="slh"><h2>&#128564; Sleep &amp; Alarms</h2><p>Wind down, wake up, protect your glow</p></div>
-    <div class="sl-big"><div class="sl-moon">&#127769;</div><div><div class="sl-hours" id="sl-lastn">–</div><div class="sl-cap" id="sl-lastcap"></div></div></div>
-    <div class="sl-stats">
-      <div class="sl-st"><div class="sl-sn" id="sl-avg">–</div><div class="sl-sl2">Avg / night</div></div>
-      <div class="sl-st"><div class="sl-sn" id="sl-goalmet">–</div><div class="sl-sl2">Nights 8h+</div></div>
-      <div class="sl-st"><div class="sl-sn" id="sl-breaks">0</div><div class="sl-sl2">Bedtime breaks</div></div>
-    </div>
-    <div class="sl-chart">
-      <div class="sl-ct">Last 7 Nights</div>
-      <div class="sl-cs">Estimated from when you stop &amp; start using your phone here</div>
-      <div id="sl-svg"></div>
-      <div class="sl-tip" id="sl-insight"></div>
-    </div>
-    <div class="sec">
-      <div class="slbl">Alarms</div>
-      <div class="sl-add"><input type="time" id="al-time-inp" class="sl-inp" value="06:30" style="flex:0 0 112px"><input type="text" id="al-lbl-inp" class="sl-inp" placeholder="Label (optional)"><button class="sl-btn" onclick="alAdd()">Add</button></div>
-      <div id="al-list"></div>
-      <div class="sl-note">&#9200; Alarms ring while this page is open — keep it open on your nightstand and it works like a real alarm clock, with sound and a full-screen wake-up.</div>
-    </div>
-    <div class="sec">
-      <div class="slbl">Bedtime &amp; App Lock</div>
-      <div class="al-row2"><div style="flex:1"><div class="al-time" id="bed-disp">10:00pm</div><div class="al-lbl">Bedtime · phone down</div></div><input type="time" id="bed-inp" class="sl-inp" style="flex:0 0 112px" value="22:00"><div class="tgl" id="bed-tgl" onclick="bedToggle()"></div></div>
-      <div class="al-row2"><div style="flex:1"><div class="al-time" id="wake-disp">6:30am</div><div class="al-lbl">Wake time · lock lifts</div></div><input type="time" id="wake-inp" class="sl-inp" style="flex:0 0 112px" value="06:30"></div>
-      <div class="slbl" style="margin-top:14px">Apps I Lock At Bedtime</div>
-      <div id="lock-chips"></div>
-      <div class="sl-add"><input type="text" id="lock-inp" class="sl-inp" placeholder="Add an app (e.g. TikTok)"><button class="sl-btn" onclick="lockAdd()">Add</button></div>
-      <div class="sl-note">&#128274; At bedtime this app locks itself into a wind-down screen showing your locked list. A web page can't force-close other apps, so mirror this list in Settings &#8594; Screen Time &#8594; Downtime — this screen is your nightly ritual and accountability.</div>
-    </div>
-  </div>
-</div>
-
 <!-- MANIFESTATION TAB -->
 <div class="tab" id="tab-mf">
   <div class="mf-wrap">
@@ -1001,24 +955,53 @@ body{background:var(--blush);}
   <div class="rmb" id="mb"></div>
 </div>
 
-<!-- BEDTIME LOCK OVERLAY -->
-<div class="fso" id="bedov">
-  <div id="bed-stars"></div>
-  <div class="bed-moon">&#127769;</div>
-  <div class="bed-t">It's bedtime, princess</div>
-  <div class="bed-s">The phone goes down so the glow can come up.<br>8 hours of sleep is part of the plan.</div>
-  <div class="bed-cd" id="bed-cd"></div>
-  <div class="bed-apps" id="bed-apps"></div>
-  <button class="bed-hold" id="bed-hold"><div class="fill"></div><span>Hold 3s to break bedtime</span></button>
-</div>
+<!-- BREATHING SESSION -->
+<div class="bx" id="bx">
+  <button class="bx-close" onclick="closeBreath()">✕</button>
 
-<!-- ALARM OVERLAY -->
-<div class="fso" id="alarmov">
-  <div class="alov-ring"></div><div class="alov-ring r2"></div><div class="alov-ring r3"></div>
-  <div class="alov-bell">&#9200;</div>
-  <div class="alov-time" id="alov-time"></div>
-  <div class="alov-lbl" id="alov-lbl"></div>
-  <div class="alov-btns"><button class="alov-b alov-snz" onclick="alSnooze()">Snooze 5 min</button><button class="alov-b alov-stop" onclick="alStop()">I'm up &#10024;</button></div>
+  <!-- Screen 1: Intention -->
+  <div class="bx-screen active" id="bx-s1">
+    <div class="bx-ey">Wim Hof Method · 3 Rounds</div>
+    <div class="bx-h">What do you want<br>to feel today?</div>
+    <div class="bx-p">Set your intention, then we'll breathe together — guided out loud, step by step.</div>
+    <input class="bx-inp" id="bx-intention" placeholder="I am calm and in control..." maxlength="60">
+    <div class="bx-chips" id="bx-chips">
+      <div class="bx-chip" onclick="pickIntention(this,'Calm &amp; grounded')">🕊️ Calm</div>
+      <div class="bx-chip" onclick="pickIntention(this,'Focused &amp; clear')">🎯 Focused</div>
+      <div class="bx-chip" onclick="pickIntention(this,'Grateful')">🌸 Grateful</div>
+      <div class="bx-chip" onclick="pickIntention(this,'Confident &amp; radiant')">👑 Confident</div>
+      <div class="bx-chip" onclick="pickIntention(this,'Energized')">⚡ Energized</div>
+    </div>
+    <label class="bx-voice"><input type="checkbox" id="bx-voice-cb" checked> 🔊 Voice guidance</label>
+    <button class="bx-btn ghost" style="margin:0 0 14px" onclick="whTest()">🔊 Tap to test voice</button>
+    <div class="bx-safe">⚠️ Never do this in or near water, or while driving. Sit or lie down safely. Stop if you feel dizzy — this is normal, just breathe normally and rest.</div>
+    <button class="bx-btn" onclick="beginBreath()">Begin Breathing →</button>
+  </div>
+
+  <!-- Screen 2: Breathing -->
+  <div class="bx-screen" id="bx-s2">
+    <div class="bx-intxt" id="bx-showint"></div>
+    <div class="bx-cyc" id="bx-cyc">Round 1 of 3</div>
+    <div class="bx-sub" id="bx-sub">Get comfortable...</div>
+    <div class="bx-stage">
+      <div class="bx-ring"></div>
+      <div class="bx-circle" id="bx-circle">
+        <div class="bx-phase" id="bx-phase">Ready</div>
+        <div class="bx-num" id="bx-num"></div>
+      </div>
+    </div>
+    <button class="bx-btn" id="bx-breathe" style="display:none" onclick="endRetention()">I need to breathe →</button>
+    <button class="bx-btn ghost" onclick="finishBreath()">End session</button>
+  </div>
+
+  <!-- Screen 3: Complete -->
+  <div class="bx-screen" id="bx-s3">
+    <div class="bx-ey">Your day begins now</div>
+    <div style="font-size:52px;margin-bottom:14px;">🌸</div>
+    <div class="bx-h" id="bx-done-h">Beautiful.</div>
+    <div class="bx-p" id="bx-done-p">Carry this feeling with you. You've got everything you need.</div>
+    <button class="bx-btn" onclick="closeBreath()">Done</button>
+  </div>
 </div>
 
 <script src="Sortable.min.js"></script>
@@ -1030,39 +1013,46 @@ var DATA={
   0:{e:'🔥',v:'Legs & Core — Finish the week strong!',s:[
     {e:'🔥',n:'Legs & Core Workout',d:'Leg press · Hack squat · Lunges · Plank · Bicycle crunches',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
     {e:'🌿',n:'Stretch After Workout',d:'Hip flexor · Quad · Glute stretches — foam roll if you can',t:'tf',tl:'Recovery',f:'Weekly',fd:[0]},
-    {e:'😴',n:'Early to Bed Tonight',d:'In bed by 10pm — let your body recover before Monday rest day',t:'tw',tl:'Wellness',f:'1x/week',fd:[0]}
+    {e:'😴',n:'Early to Bed Tonight',d:'In bed by 10pm — let your body recover before Monday rest day',t:'tw',tl:'Wellness',f:'1x/week',fd:[0]},
+    {e:'🌬️',n:'Breathe In, Breathe Out',d:'One minute of calm — 4 in · 4 hold · 4 out. Reset your nervous system',t:'tw',tl:'Calm',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:'Sundays that end well set the tone for the whole week. 🌿'},
   1:{e:'☁️',v:'Rest day — recover, recharge, reset',s:[
     {e:'🧘',n:'Active Recovery',d:'Light walk · Gentle stretches · No intense training today',t:'tw',tl:'Wellness',f:'1x/week',fd:[1]},
     {e:'📖',n:'Read or Journal',d:'Something that feeds your mind — plan your week ahead',t:'tw',tl:'Calm',f:'1x/week',fd:[1]},
-    {e:'🥩',n:'100g+ Protein',d:'Keep hitting your protein even on rest days — muscles rebuild now',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+    {e:'🥩',n:'100g+ Protein',d:'Keep hitting your protein even on rest days — muscles rebuild now',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]},
+    {e:'🌬️',n:'Breathe In, Breathe Out',d:'One minute of calm — 4 in · 4 hold · 4 out. Reset your nervous system',t:'tw',tl:'Calm',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:'Rest days are where the growth actually happens. Enjoy it. 💖'},
   2:{e:'🍑',v:'Glutes & Hamstrings — build that booty!',s:[
     {e:'🍑',n:'Glutes & Hamstrings Workout',d:'Hip thrust · RDL · Cable kickbacks · Sumo squat · Abductor machine',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
     {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes while resting after gym — clinically proven for hair growth!',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
-    {e:'🥩',n:'100g+ Protein',d:'Eggs · Chicken · Protein shake for muscle recovery',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+    {e:'🥩',n:'100g+ Protein',d:'Eggs · Chicken · Protein shake for muscle recovery',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]},
+    {e:'🌬️',n:'Breathe In, Breathe Out',d:'One minute of calm — 4 in · 4 hold · 4 out. Reset your nervous system',t:'tw',tl:'Calm',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:'Every hip thrust is building the body you deserve. 🍑'},
   3:{e:'💪',v:'Back & Biceps — strong and sculpted!',s:[
     {e:'💪',n:'Back & Biceps Workout',d:'Lat pulldown · Cable row · DB row · Face pulls · Bicep curls',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
     {e:'💧',n:'Extra Hydration Today',d:'2–3L water · Electrolytes after gym · Track your intake',t:'tw',tl:'Wellness',f:'Daily',fd:[0,1,2,3,4,5,6]},
-    {e:'🥩',n:'100g+ Protein',d:'Fuel that back growth! Greek yogurt · Fish · Eggs',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]}
+    {e:'🥩',n:'100g+ Protein',d:'Fuel that back growth! Greek yogurt · Fish · Eggs',t:'tw',tl:'Nutrition',f:'Daily',fd:[0,1,2,3,4,5,6]},
+    {e:'🌬️',n:'Breathe In, Breathe Out',d:'One minute of calm — 4 in · 4 hold · 4 out. Reset your nervous system',t:'tw',tl:'Calm',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:"Halfway through the week — you're doing amazing. 🌟"},
   4:{e:'🌿',v:'Rest day — stretch, glow & recover',s:[
     {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes tonight — your hair will thank you',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
     {e:'🧘',n:'Stretch & Recovery',d:'Hip flexor stretches · Glute stretches — foam roll sore spots',t:'tf',tl:'Recovery',f:'Weekly',fd:[4]},
-    {e:'🍵',n:'Collagen Drink',d:'Add collagen powder to tea or water tonight',t:'tw',tl:'Wellness',f:'Daily',fd:[0,1,2,3,4,5,6]}
+    {e:'🍵',n:'Collagen Drink',d:'Add collagen powder to tea or water tonight',t:'tw',tl:'Wellness',f:'Daily',fd:[0,1,2,3,4,5,6]},
+    {e:'🌬️',n:'Breathe In, Breathe Out',d:'One minute of calm — 4 in · 4 hold · 4 out. Reset your nervous system',t:'tw',tl:'Calm',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:'Your body is changing even on rest days. Trust the process. 💖'},
   5:{e:'✨',v:'Chest, Shoulders & Triceps — push day!',s:[
     {e:'✨',n:'Chest, Shoulders & Triceps Workout',d:'Chest press · Cable fly · Shoulder press · Lateral raises · Triceps',t:'tf',tl:'Fitness',f:'4x/week',fd:[0,2,3,5]},
     {e:'💆',n:'Facial Gua Sha / Massage',d:'Lymphatic drainage massage for face slimming & glow',t:'tb',tl:'Beauty',f:'2x/week',fd:[2,5]},
-    {e:'💅',n:'Treat Yourself Tonight',d:'Face mask · Nail care · Wind down — you earned it!',t:'tb',tl:'Beauty',f:'1x/week',fd:[5]}
+    {e:'💅',n:'Treat Yourself Tonight',d:'Face mask · Nail care · Wind down — you earned it!',t:'tb',tl:'Beauty',f:'1x/week',fd:[5]},
+    {e:'🌬️',n:'Breathe In, Breathe Out',d:'One minute of calm — 4 in · 4 hold · 4 out. Reset your nervous system',t:'tw',tl:'Calm',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:"You showed up all week. That's what glow is made of. 🔥"},
   6:{e:'🏠',v:'Home day — groceries, cleaning & reset your space',s:[
     {e:'🛒',n:'Grocery Shopping',d:'Stock up on your weekly essentials — healthy foods, skincare, home needs',t:'tw',tl:'Home',f:'1x/week',fd:[6]},
     {e:'🧹',n:'Full Home Clean',d:'Vacuum · Mop · Wipe surfaces · Bathroom · Kitchen deep clean',t:'tw',tl:'Home',f:'1x/week',fd:[6]},
     {e:'🌿',n:'Freshen Up Your Space',d:'Change bedsheets · Open windows · Light a candle · Add fresh flowers if you can',t:'tw',tl:'Home',f:'1x/week',fd:[6]},
     {e:'👗',n:'Laundry & Clothes',d:'Wash · Fold · Organise your wardrobe · Plan your outfits for the week',t:'tb',tl:'Style',f:'1x/week',fd:[6]},
-    {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes for hair growth while you tidy up',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]}
+    {e:'🌿',n:'Rosemary Oil Scalp Massage',d:'5 minutes for hair growth while you tidy up',t:'th2',tl:'Hair',f:'3x/week',fd:[2,4,6]},
+    {e:'🌬️',n:'Breathe In, Breathe Out',d:'One minute of calm — 4 in · 4 hold · 4 out. Reset your nervous system',t:'tw',tl:'Calm',f:'Daily',fd:[0,1,2,3,4,5,6]}
   ],a:'A beautiful space creates a beautiful life. Your home is your sanctuary. 🏠✨'}
 };
 
@@ -1154,7 +1144,6 @@ function ST(n,el){
   document.getElementById('mf-sparks').style.display=mfAnimating?'block':'none';
   document.querySelector('.hdr').style.display=mfAnimating?'none':'';
   if(mfAnimating){resizeSparks();animSparks();}
-  if(n==='sl')renderSleep();
   window.scrollTo(0,0);
 }
 
@@ -1223,7 +1212,7 @@ BR(document.getElementById('hrem'),[
   {e:'💆',n:'Weekly Hair Mask',d:'20-30 mins',days:[0],freq:'1x/week'},
   {e:'💎',n:'Olaplex No.3',d:'Bond repair & strength — schedule this month!',days:[],freq:'1x/mo'}
 ]);
-RW();RD();
+RW();RD();markSdayDone();
 
 // MODALS
 var RTS={
@@ -1272,6 +1261,221 @@ function CM(){
   document.getElementById('rm').classList.remove('open');
   document.getElementById('ov').classList.remove('open');
   document.body.style.overflow='';
+}
+
+/* ===== START YOUR DAY — WIM HOF BREATHING RITUAL (with voice) ===== */
+var WHM_ROUNDS=3;        // number of rounds
+var WHM_BREATHS=30;      // power breaths per round
+var WHM_IN=1.8;          // inhale seconds
+var WHM_OUT=1.4;         // exhale seconds
+var WHM_RECOVERY=15;     // recovery hold seconds (full lungs)
+var whRunning=false,whVoice=true,whRound=0,whBreath=0,whHold=0;
+var whTimeout=null,whInterval=null,whVoices=[],whUnlocked=false;
+
+function whLoadVoices(){
+  if(!('speechSynthesis' in window))return;
+  try{whVoices=speechSynthesis.getVoices()||[];}catch(e){}
+}
+if('speechSynthesis' in window){
+  whLoadVoices();
+  try{speechSynthesis.onvoiceschanged=whLoadVoices;}catch(e){}
+}
+function whPickVoice(u){
+  if(!whVoices.length)whLoadVoices();
+  var en=whVoices.filter(function(x){return /^en(\b|-|_)/i.test(x.lang);});
+  if(!en.length)return;
+  var pref=null;
+  ['Samantha','Google US English','Karen','Moira','Serena','Zira','Female','Fiona','Tessa'].some(function(nm){
+    var m=en.filter(function(x){return x.name.indexOf(nm)>=0;})[0];
+    if(m){pref=m;return true;}return false;
+  });
+  u.voice=pref||en[0];
+}
+// Safari won't unlock on a silent utterance, and cancel-before-speak drops audio,
+// so we no longer prime here — the first real spoken line runs inside a tap gesture.
+function whUnlock(){}
+function whMakeUtter(t){
+  var u=new SpeechSynthesisUtterance(t);
+  u.rate=0.92;u.pitch=1.05;u.volume=1;u.lang='en-US';
+  whPickVoice(u);
+  return u;
+}
+function whSay(t){
+  if(!whVoice||!('speechSynthesis' in window))return;
+  try{
+    var u=whMakeUtter(t);
+    // Safari drops audio if you cancel() then speak() in the same tick.
+    // Only cancel when something is actually talking, and defer the new line.
+    if(speechSynthesis.speaking||speechSynthesis.pending){
+      speechSynthesis.cancel();
+      setTimeout(function(){try{speechSynthesis.speak(u);}catch(e){}},140);
+    }else{
+      speechSynthesis.speak(u);
+    }
+  }catch(e){}
+}
+function whShutUp(){try{if('speechSynthesis' in window)speechSynthesis.cancel();}catch(e){}}
+function whTest(){
+  if(!('speechSynthesis' in window)){alert('This browser can’t do voice. Open the file in Chrome or Safari instead.');return;}
+  try{
+    // No cancel() here — Safari stays silent if you cancel right before speaking.
+    var u=whMakeUtter('Hi Julia. Voice is working. Let us breathe together.');
+    u.onerror=function(ev){alert('Speech error: '+(ev.error||'unknown')+'. Check volume and the silent switch.');};
+    speechSynthesis.speak(u);
+  }catch(e){alert('Speech error: '+e.message);}
+}
+
+function bxScreen(id){
+  document.querySelectorAll('.bx-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+}
+function bxKey(){return 'sday_'+dkey(DKNow());}
+
+function openBreath(){
+  whUnlock();
+  bxScreen('bx-s1');
+  var saved=localStorage.getItem(bxKey()+'_int')||'';
+  document.getElementById('bx-intention').value=saved;
+  document.querySelectorAll('#bx-chips .bx-chip').forEach(function(c){c.classList.remove('on');});
+  document.getElementById('bx').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeBreath(){
+  whStop();whShutUp();
+  document.getElementById('bx').classList.remove('open');
+  document.body.style.overflow='';
+}
+function pickIntention(el,txt){
+  document.querySelectorAll('#bx-chips .bx-chip').forEach(function(c){c.classList.remove('on');});
+  el.classList.add('on');
+  document.getElementById('bx-intention').value=txt.replace('&amp;','&');
+}
+function beginBreath(){
+  var it=document.getElementById('bx-intention').value.trim();
+  var cb=document.getElementById('bx-voice-cb');
+  whVoice=cb?cb.checked:true;
+  document.getElementById('bx-showint').textContent=it?'“'+it+'”':'';
+  document.getElementById('bx-done-p').textContent=it
+    ? 'Carry this with you: “'+it+'.” You’ve got everything you need.'
+    : 'Carry this energy with you. You’ve got everything you need.';
+  if(it){localStorage.setItem(bxKey()+'_int',it);}
+  bxScreen('bx-s2');
+  // prime speech within the tap gesture (needed on mobile)
+  whSay(it? 'Let us begin. Get comfortable.' : 'Let us begin. Get comfortable.');
+  whRunning=true;whRound=0;
+  whTimeout=setTimeout(startRound,2200);
+}
+
+function setBtns(showBreathe){
+  document.getElementById('bx-breathe').style.display=showBreathe?'inline-block':'none';
+}
+
+function startRound(){
+  if(!whRunning)return;
+  whBreath=0;
+  setBtns(false);
+  document.getElementById('bx-cyc').textContent='Round '+(whRound+1)+' of '+WHM_ROUNDS;
+  document.getElementById('bx-sub').textContent=WHM_BREATHS+' deep breaths';
+  whSay('Round '+(whRound+1)+'. '+WHM_BREATHS+' deep breaths. Follow the circle.');
+  whTimeout=setTimeout(function(){powerBreath(0);},2600);
+}
+
+function powerBreath(n){
+  if(!whRunning)return;
+  if(n>=WHM_BREATHS){retention();return;}
+  whBreath=n+1;
+  document.getElementById('bx-sub').textContent='Breath '+whBreath+' / '+WHM_BREATHS;
+  var circle=document.getElementById('bx-circle');
+  // inhale
+  document.getElementById('bx-phase').textContent='Breathe In';
+  document.getElementById('bx-num').textContent='';
+  circle.style.transition='transform '+WHM_IN+'s ease-in-out';
+  circle.style.transform='scale(1)';
+  whSay('In');
+  // exhale
+  whTimeout=setTimeout(function(){
+    if(!whRunning)return;
+    document.getElementById('bx-phase').textContent='Let Go';
+    circle.style.transition='transform '+WHM_OUT+'s ease-in-out';
+    circle.style.transform='scale(.6)';
+    whSay('Out');
+    whTimeout=setTimeout(function(){powerBreath(n+1);},WHM_OUT*1000);
+  },WHM_IN*1000);
+}
+
+function retention(){
+  if(!whRunning)return;
+  document.getElementById('bx-cyc').textContent='Round '+(whRound+1)+' of '+WHM_ROUNDS;
+  document.getElementById('bx-sub').textContent='Hold — empty lungs';
+  document.getElementById('bx-phase').textContent='Exhale & Hold';
+  var circle=document.getElementById('bx-circle');
+  circle.style.transition='transform 2s ease-in-out';
+  circle.style.transform='scale(.5)';
+  whSay('Now exhale all your air. And hold. Relax, and stay calm.');
+  setBtns(true);
+  whHold=0;
+  document.getElementById('bx-num').textContent='0s';
+  clearInterval(whInterval);
+  whInterval=setInterval(function(){
+    if(!whRunning)return;
+    whHold++;
+    document.getElementById('bx-num').textContent=whHold+'s';
+    if(whHold===30)whSay('Keep holding. You are doing great.');
+    if(whHold===60)whSay('One minute. Only when you need to, take your breath.');
+    if(whHold>=180){endRetention();}  // safety cap 3 min
+  },1000);
+}
+
+function endRetention(){
+  if(!whRunning)return;
+  clearInterval(whInterval);
+  recovery();
+}
+
+function recovery(){
+  if(!whRunning)return;
+  document.getElementById('bx-sub').textContent='Recovery — hold full';
+  document.getElementById('bx-phase').textContent='Breathe In & Hold';
+  setBtns(false);
+  var circle=document.getElementById('bx-circle');
+  circle.style.transition='transform '+WHM_IN+'s ease-in-out';
+  circle.style.transform='scale(1)';
+  whSay('Breathe in fully. And hold for fifteen seconds.');
+  var left=WHM_RECOVERY;
+  document.getElementById('bx-num').textContent=left+'s';
+  clearInterval(whInterval);
+  whInterval=setInterval(function(){
+    if(!whRunning)return;
+    left--;
+    document.getElementById('bx-num').textContent=(left>0?left:'')+(left>0?'s':'');
+    if(left<=0){
+      clearInterval(whInterval);
+      whSay('And release.');
+      whRound++;
+      if(whRound>=WHM_ROUNDS){whTimeout=setTimeout(whComplete,1500);}
+      else{whTimeout=setTimeout(startRound,2500);}
+    }
+  },1000);
+}
+
+function whStop(){
+  whRunning=false;
+  clearTimeout(whTimeout);
+  clearInterval(whInterval);
+}
+function finishBreath(){whStop();whShutUp();whComplete();}
+function whComplete(){
+  whStop();
+  document.getElementById('bx-done-h').textContent = whRound>=WHM_ROUNDS ? 'Beautifully done.' : 'Well done.';
+  whSay('Beautifully done. Notice how you feel. Your day begins now.');
+  localStorage.setItem(bxKey(),'1');
+  bxScreen('bx-s3');
+  markSdayDone();
+}
+function markSdayDone(){
+  if(localStorage.getItem(bxKey())!=='1')return;
+  var it=localStorage.getItem(bxKey()+'_int')||'';
+  document.getElementById('sday-cta').innerHTML='<div class="sday-done">✓ Ritual complete'+(it?' · “'+it+'”':'')+'</div>';
 }
 
 // MANIFESTATION
@@ -1337,7 +1541,14 @@ var mfData={
     return mapped;
   })()
 };
-function mfSave(k){try{localStorage.setItem('mf_'+k,JSON.stringify(mfData[k]));}catch(e){alert('Storage full — try removing some vision board images.');}}
+function mfSave(k){
+  try{localStorage.setItem('mf_'+k,JSON.stringify(mfData[k]));}
+  catch(e){
+    try{mfData[k]=JSON.parse(localStorage.getItem('mf_'+k)||'[]');}catch(e2){}
+    if(k==='vis')renderVis();else if(k==='aff')renderAff();else renderGoals();
+    alert('Storage is full — that could not be saved. Remove a few vision board photos and try again.');
+  }
+}
 
 function MFT(sec,el){
   document.querySelectorAll('.mf-sec').forEach(function(s){s.classList.remove('active');});
@@ -1419,14 +1630,30 @@ function editVisLabel(i){
   mfData.vis[i].label=nl.trim();
   mfSave('vis');renderVis();
 }
+function shrinkImg(src,cb){
+  var img=new Image();
+  img.onload=function(){
+    var max=1000,w=img.width,h=img.height;
+    if(w>max||h>max){var sc=max/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
+    var c=document.createElement('canvas');c.width=w;c.height=h;
+    try{
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      cb(c.toDataURL('image/jpeg',0.8));
+    }catch(e){cb(src);}
+  };
+  img.onerror=function(){cb(src);};
+  img.src=src;
+}
 function addVisFiles(inp){
   var files=Array.from(inp.files),pending=files.length;if(!pending)return;
   files.forEach(function(f){
     var r=new FileReader();
     r.onload=function(e){
-      var name=f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
-      mfData.vis.unshift({src:e.target.result,label:name});
-      pending--;if(!pending){mfSave('vis');renderVis();}
+      shrinkImg(e.target.result,function(small){
+        var name=f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+        mfData.vis.unshift({src:small,label:name});
+        pending--;if(!pending){mfSave('vis');renderVis();}
+      });
     };
     r.readAsDataURL(f);
   });
@@ -1453,259 +1680,6 @@ function renderVis(){
 document.getElementById('aff-inp').addEventListener('keydown',function(e){if(e.key==='Enter')addAff();});
 document.getElementById('goal-inp').addEventListener('keydown',function(e){if(e.key==='Enter')addGoal();});
 renderAff();renderGoals();renderVis();
-
-// ================= SLEEP · ALARMS · BEDTIME =================
-function fmt12(hm){var p=hm.split(':'),h=+p[0],m=+p[1],ap=h>=12?'pm':'am';h=h%12;if(h===0)h=12;return h+':'+pad2(m)+ap;}
-var SL={
-  alarms:JSON.parse(localStorage.getItem('sl_alarms')||'[]'),
-  bed:JSON.parse(localStorage.getItem('sl_bed')||'null')||{bed:'22:00',wake:'06:30',on:false,apps:['TikTok','Instagram','Facebook','YouTube']},
-  log:JSON.parse(localStorage.getItem('sl_log')||'{}'),
-  breaks:JSON.parse(localStorage.getItem('sl_breaks')||'[]'),
-  unlockedUntil:+(localStorage.getItem('sl_unlock')||0)
-};
-function slSave(){
-  localStorage.setItem('sl_alarms',JSON.stringify(SL.alarms));
-  localStorage.setItem('sl_bed',JSON.stringify(SL.bed));
-  localStorage.setItem('sl_log',JSON.stringify(SL.log));
-  localStorage.setItem('sl_breaks',JSON.stringify(SL.breaks));
-  localStorage.setItem('sl_unlock',String(SL.unlockedUntil));
-}
-
-// --- Sleep estimation: gap between last phone-down at night and first pickup in the morning ---
-function slEstimateFrom(last,nowMs){
-  if(!last)return;
-  var gapH=(nowMs-last)/3600000;
-  if(gapH<3||gapH>16)return;
-  var now=new Date(nowMs),lastD=new Date(last);
-  var nh=now.getHours();if(nh<3||nh>13)return;
-  var lh=lastD.getHours();if(!(lh>=18||lh<=4))return;
-  var k=dkey(now);
-  if(SL.log[k])return;
-  SL.log[k]={h:Math.round(gapH*10)/10,from:last,to:nowMs};
-  slSave();
-  var st=document.getElementById('tab-sl');
-  if(st&&st.classList.contains('active'))renderSleep();
-}
-var _lastActSave=0;
-function actPing(){
-  var n=Date.now(),prev=+(localStorage.getItem('sl_lastActive')||0);
-  if(prev&&n-prev>3*3600000)slEstimateFrom(prev,n);
-  if(n-_lastActSave>20000){localStorage.setItem('sl_lastActive',String(n));_lastActSave=n;}
-}
-['touchstart','mousedown','keydown','scroll'].forEach(function(ev){document.addEventListener(ev,actPing,{passive:true});});
-document.addEventListener('visibilitychange',function(){
-  if(document.hidden){localStorage.setItem('sl_lastActive',String(Date.now()));_lastActSave=Date.now();}
-  else slEstimateFrom(+(localStorage.getItem('sl_lastActive')||0),Date.now());
-});
-slEstimateFrom(+(localStorage.getItem('sl_lastActive')||0),Date.now());
-
-// --- Alarm sound: soft two-tone bell via Web Audio, no sound file needed ---
-var alAudio=null,alRing=null,curAlarm=null;
-function alCtx(){
-  try{
-    if(!alAudio)alAudio=new (window.AudioContext||window.webkitAudioContext)();
-    if(alAudio.state==='suspended')alAudio.resume();
-    return alAudio;
-  }catch(e){return null;}
-}
-document.addEventListener('touchstart',function(){alCtx();},{once:true,passive:true});
-document.addEventListener('mousedown',function(){alCtx();},{once:true,passive:true});
-function bell(){
-  var ctx=alCtx();if(!ctx)return;
-  var t=ctx.currentTime;
-  [[880,0],[659,.18]].forEach(function(pr){
-    var o=ctx.createOscillator(),g=ctx.createGain();
-    o.type='sine';o.frequency.value=pr[0];
-    g.gain.setValueAtTime(.0001,t+pr[1]);
-    g.gain.exponentialRampToValueAtTime(.35,t+pr[1]+.02);
-    g.gain.exponentialRampToValueAtTime(.0001,t+pr[1]+.9);
-    o.connect(g);g.connect(ctx.destination);
-    o.start(t+pr[1]);o.stop(t+pr[1]+1);
-  });
-}
-function alFire(a){
-  curAlarm=a;
-  document.getElementById('alov-time').textContent=fmt12(a.t);
-  document.getElementById('alov-lbl').textContent=a.l||'Rise & glow';
-  document.getElementById('alarmov').classList.add('on');
-  bell();
-  if(alRing)clearInterval(alRing);
-  alRing=setInterval(bell,1300);
-  try{if(navigator.vibrate)navigator.vibrate([300,150,300,150,300]);}catch(e){}
-  try{if(window.Notification&&Notification.permission==='granted')new Notification('⏰ '+fmt12(a.t),{body:a.l||'Alarm'});}catch(e){}
-}
-function alStop(){
-  document.getElementById('alarmov').classList.remove('on');
-  if(alRing){clearInterval(alRing);alRing=null;}
-  curAlarm=null;
-}
-function alSnooze(){
-  if(curAlarm){curAlarm.snz=Date.now()+300000;slSave();}
-  alStop();
-}
-function alAdd(){
-  var t=document.getElementById('al-time-inp').value;if(!t)return;
-  var l=document.getElementById('al-lbl-inp').value.trim();
-  SL.alarms.push({t:t,l:l,on:true});
-  slSave();
-  document.getElementById('al-lbl-inp').value='';
-  renderSleep();
-  try{if(window.Notification&&Notification.permission==='default')Notification.requestPermission();}catch(e){}
-}
-function alTog(i){SL.alarms[i].on=!SL.alarms[i].on;slSave();renderSleep();}
-function alDel(i){SL.alarms.splice(i,1);slSave();renderSleep();}
-
-// --- Bedtime lock ---
-function bedInWindow(n){
-  if(!SL.bed.on)return false;
-  var hm=n.getHours()*60+n.getMinutes();
-  var b=SL.bed.bed.split(':'),w=SL.bed.wake.split(':');
-  var bm=+b[0]*60+(+b[1]),wm=+w[0]*60+(+w[1]);
-  if(bm===wm)return false;
-  return bm<wm?(hm>=bm&&hm<wm):(hm>=bm||hm<wm);
-}
-function nextWake(n){
-  var w=SL.bed.wake.split(':'),d=new Date(n);
-  d.setHours(+w[0],+w[1],0,0);
-  if(d<=n)d.setDate(d.getDate()+1);
-  return d;
-}
-function bedShow(){
-  var stars=document.getElementById('bed-stars');
-  if(!stars.children.length){
-    var h='';
-    for(var i=0;i<44;i++){
-      var s2=(1+Math.random()*2).toFixed(1);
-      h+='<span class="star" style="left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*100).toFixed(1)+'%;width:'+s2+'px;height:'+s2+'px;animation-duration:'+(2+Math.random()*3).toFixed(1)+'s;animation-delay:-'+(Math.random()*3).toFixed(1)+'s"></span>';
-    }
-    stars.innerHTML=h;
-  }
-  document.getElementById('bed-apps').innerHTML=SL.bed.apps.map(function(a){return '<span class="bed-app">🔒 '+escH(a)+'</span>';}).join('');
-  document.getElementById('bedov').classList.add('on');
-  document.body.style.overflow='hidden';
-}
-function bedHide(){
-  document.getElementById('bedov').classList.remove('on');
-  if(!document.getElementById('bs').classList.contains('open'))document.body.style.overflow='';
-}
-function bedCountdown(n){
-  var w=nextWake(n),ms=w-n,h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000);
-  document.getElementById('bed-cd').textContent=h+'h '+m+'m until '+fmt12(SL.bed.wake);
-}
-function bedCheck(){
-  var n=new Date(),ov=document.getElementById('bedov');
-  var show=bedInWindow(n)&&Date.now()>SL.unlockedUntil;
-  if(show&&!ov.classList.contains('on'))bedShow();
-  else if(!show&&ov.classList.contains('on'))bedHide();
-  if(ov.classList.contains('on'))bedCountdown(n);
-}
-function bedBreak(){
-  SL.unlockedUntil=nextWake(new Date()).getTime();
-  SL.breaks.push({d:dkey(new Date()),ts:Date.now()});
-  slSave();bedHide();renderSleep();
-}
-(function(){
-  var btn=document.getElementById('bed-hold'),fill=btn.querySelector('.fill'),hT=null,prog=0;
-  function start(e){
-    if(e.cancelable)e.preventDefault();
-    prog=0;
-    if(hT)clearInterval(hT);
-    hT=setInterval(function(){
-      prog+=100/30;
-      fill.style.width=Math.min(prog,100)+'%';
-      if(prog>=100){end();bedBreak();}
-    },100);
-  }
-  function end(){if(hT){clearInterval(hT);hT=null;}fill.style.width='0%';}
-  btn.addEventListener('touchstart',start,{passive:false});
-  btn.addEventListener('touchend',end);
-  btn.addEventListener('touchcancel',end);
-  btn.addEventListener('mousedown',start);
-  btn.addEventListener('mouseup',end);
-  btn.addEventListener('mouseleave',end);
-})();
-function bedToggle(){SL.bed.on=!SL.bed.on;slSave();renderSleep();bedCheck();}
-function lockAdd(){var i2=document.getElementById('lock-inp'),v=i2.value.trim();if(!v)return;SL.bed.apps.push(v);i2.value='';slSave();renderSleep();}
-function lockDel(i){SL.bed.apps.splice(i,1);slSave();renderSleep();}
-document.getElementById('bed-inp').addEventListener('change',function(){SL.bed.bed=this.value||'22:00';slSave();renderSleep();bedCheck();});
-document.getElementById('wake-inp').addEventListener('change',function(){SL.bed.wake=this.value||'06:30';slSave();renderSleep();bedCheck();});
-document.getElementById('lock-inp').addEventListener('keydown',function(e){if(e.key==='Enter')lockAdd();});
-
-// --- Master clock: fires alarms + enforces bedtime, checks every 4s ---
-setInterval(function(){
-  var n=new Date(),hm=pad2(n.getHours())+':'+pad2(n.getMinutes()),today=dkey(n);
-  SL.alarms.forEach(function(a){
-    if(a.snz){if(Date.now()>=a.snz){a.snz=0;slSave();alFire(a);}return;}
-    if(a.on&&a.t===hm&&a.fired!==today+a.t){a.fired=today+a.t;slSave();alFire(a);}
-  });
-  bedCheck();
-},4000);
-
-// --- Sleep chart: last 7 nights, 8h goal line ---
-function slChart(){
-  var days=[];
-  for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);days.push(d);}
-  var W=320,H=150,padL=8,padR=8,padB=20,padT=16,nB=7;
-  var bw=26,gap=(W-padL-padR-bw*nB)/(nB-1);
-  var max=12;
-  function gy(h){return padT+(H-padT-padB)*(1-Math.min(h,max)/max);}
-  var base=H-padB,goalY=gy(8);
-  var s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="display:block">';
-  s+='<defs><linearGradient id="slg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#B8708A"/><stop offset="100%" stop-color="#C47B8A"/></linearGradient></defs>';
-  s+='<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+base+'" y2="'+base+'" stroke="#F0E4E4" stroke-width="1"/>';
-  s+='<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+goalY+'" y2="'+goalY+'" stroke="#A67C3B" stroke-width="1.5" stroke-dasharray="4 4" opacity=".85"/>';
-  s+='<text x="'+(W-padR)+'" y="'+(goalY-4)+'" text-anchor="end" font-size="8" fill="#9C742F" font-family="DM Sans,sans-serif" font-weight="600">goal 8h</text>';
-  days.forEach(function(d,i){
-    var k=dkey(d),e=SL.log[k],x=padL+i*(bw+gap),cx=x+bw/2,isT=(i===6);
-    if(e){
-      var y=gy(e.h);
-      s+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+Math.max(base-y,3)+'" rx="4" fill="url(#slg)"><title>'+e.h+' hours</title></rect>';
-      s+='<text x="'+cx+'" y="'+(y-4)+'" text-anchor="middle" font-size="8.5" fill="#3D2B2B" font-family="DM Sans,sans-serif" font-weight="600">'+e.h+'</text>';
-    }else{
-      s+='<text x="'+cx+'" y="'+(base-5)+'" text-anchor="middle" font-size="9" fill="#C8B4B4" font-family="DM Sans,sans-serif">–</text>';
-    }
-    s+='<text x="'+cx+'" y="'+(H-6)+'" text-anchor="middle" font-size="8.5" fill="'+(isT?'#A05A6E':'#8B6B6B')+'" font-family="DM Sans,sans-serif" font-weight="'+(isT?'700':'400')+'">'+DN[d.getDay()]+'</text>';
-  });
-  s+='</svg>';
-  return s;
-}
-function renderSleep(){
-  var el=document.getElementById('al-list');
-  if(!el)return;
-  el.innerHTML=SL.alarms.length?SL.alarms.map(function(a,i){
-    return '<div class="al-row2"><div style="flex:1"><div class="al-time">'+fmt12(a.t)+'</div><div class="al-lbl">'+(a.l?escH(a.l):'Alarm')+'</div></div><div class="tgl'+(a.on?' on':'')+'" onclick="alTog('+i+')"></div><button class="sl-del" onclick="alDel('+i+')">✕</button></div>';
-  }).join(''):'<div class="sl-tip" style="text-align:center;padding:6px 0">No alarms yet — add your wake-up above.</div>';
-  document.getElementById('bed-inp').value=SL.bed.bed;
-  document.getElementById('wake-inp').value=SL.bed.wake;
-  document.getElementById('bed-disp').textContent=fmt12(SL.bed.bed);
-  document.getElementById('wake-disp').textContent=fmt12(SL.bed.wake);
-  document.getElementById('bed-tgl').classList.toggle('on',!!SL.bed.on);
-  document.getElementById('lock-chips').innerHTML=SL.bed.apps.length?SL.bed.apps.map(function(a,i){
-    return '<span class="chip">🔒 '+escH(a)+'<button onclick="lockDel('+i+')">✕</button></span>';
-  }).join(''):'<div class="sl-tip">Add the apps that steal your sleep.</div>';
-  var vals=[];
-  for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);var e=SL.log[dkey(d)];if(e)vals.push(e.h);}
-  var last=SL.log[dkey(new Date())];
-  if(!last){var yd=new Date();yd.setDate(yd.getDate()-1);last=SL.log[dkey(yd)];}
-  var tf=function(ms){return new Date(ms).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}).toLowerCase().replace(' ','');};
-  document.getElementById('sl-lastn').textContent=last?last.h+'h':'–';
-  document.getElementById('sl-lastcap').textContent=last?('Last night · phone down '+tf(last.from)+' → picked up '+tf(last.to)):'Nothing tracked yet. It learns from when you stop using your phone at night and pick it up in the morning.';
-  var avg=vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length*10)/10:0;
-  document.getElementById('sl-avg').textContent=vals.length?avg+'h':'–';
-  document.getElementById('sl-goalmet').textContent=vals.length?vals.filter(function(v){return v>=8;}).length+'/'+vals.length:'–';
-  var wk=Date.now()-7*86400000;
-  var br=SL.breaks.filter(function(b){return b.ts>wk;}).length;
-  document.getElementById('sl-breaks').textContent=br;
-  document.getElementById('sl-svg').innerHTML=slChart();
-  var ins;
-  if(!vals.length)ins='Turn on bedtime lock tonight and open the app when you wake up — your first night will appear here.';
-  else if(avg>=8)ins='Averaging '+avg+'h — goal met. The glow is earned while you sleep.';
-  else ins='Averaging '+avg+'h, '+(Math.round((8-avg)*10)/10)+'h under goal. Tonight: phone down at '+fmt12(SL.bed.bed)+'.';
-  if(br>0)ins+=' Bedtime broken '+br+'x this week.';
-  document.getElementById('sl-insight').textContent=ins;
-}
-renderSleep();
-bedCheck();
 
 // --- Floating petals ---
 (function(){
@@ -1757,12 +1731,17 @@ document.addEventListener('touchend',function(e){
     if(dx>0&&mfi>0){mfts[mfi-1].click();return;}
   }
   // Main tabs
-  var tabs=['today','mf','workout','hair','sl'];
+  var tabs=['today','mf','workout','hair'];
   var nis=document.querySelectorAll('.ni');
   var ci=tabs.findIndex(function(t){var el=document.getElementById('tab-'+t);return el&&el.classList.contains('active');});
   if(dx<0&&ci<tabs.length-1)ST(tabs[ci+1],nis[ci+1]);
   else if(dx>0&&ci>0)ST(tabs[ci-1],nis[ci-1]);
 },{passive:true});
+
+// OFFLINE APP: register the service worker (needs http/https hosting, not file://)
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
+  navigator.serviceWorker.register('sw.js');
+}
 </script>
 
 </body>
