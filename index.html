@@ -423,19 +423,6 @@ body{background:var(--blush);}
 .toastn-body{flex:1;min-width:0;}
 .toastn-title{font-size:12.5px;font-weight:600;line-height:1.3;}
 .toastn-sub{font-size:11px;color:rgba(255,255,255,0.65);margin-top:1px;line-height:1.3;}
-
-/* ===== DIALKIT — dev panel for tuning the toast's spring live ===== */
-.dk-fab{position:fixed;right:14px;bottom:100px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--rose));border:none;box-shadow:0 4px 14px rgba(196,123,138,0.4);color:#fff;font-size:17px;cursor:pointer;z-index:850;display:flex;align-items:center;justify-content:center;}
-.dk-panel{position:fixed;right:14px;bottom:150px;width:250px;background:var(--warm);border:1px solid var(--blush);border-radius:16px;padding:14px 14px 6px;box-shadow:0 10px 32px rgba(61,43,43,0.25);z-index:850;font-family:'DM Sans',sans-serif;transform:scale(0.94) translateY(6px);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;}
-.dk-panel.open{opacity:1;transform:none;pointer-events:all;}
-.dk-h{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
-.dk-row{margin-bottom:10px;}
-.dk-lbl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--brown);margin-bottom:3px;}
-.dk-lbl b{color:var(--dark);font-weight:600;}
-.dk-row input[type=range]{width:100%;accent-color:var(--pink);}
-.dk-btns{display:flex;gap:6px;margin:10px 0 12px;}
-.dk-btn{flex:1;background:linear-gradient(135deg,var(--pink),var(--rose));border:none;border-radius:10px;padding:8px;color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
-.dk-btn.ghost{background:none;border:1px solid var(--blush);color:var(--pink);}
 </style>
 </head>
 <body>
@@ -1032,21 +1019,6 @@ body{background:var(--blush);}
   <div class="toastn-body">
     <div class="toastn-title" id="toastn-title">Nice work</div>
     <div class="toastn-sub" id="toastn-sub">Task marked complete</div>
-  </div>
-</div>
-
-<!-- ===== DIALKIT — tune the toast's spring, opacity & offset live ===== -->
-<button class="dk-fab" id="dk-fab" title="DialKit">🎛️</button>
-<div class="dk-panel" id="dk-panel">
-  <div class="dk-h">DialKit <span id="dk-close" style="cursor:pointer;">✕</span></div>
-  <div class="dk-row"><div class="dk-lbl"><span>Stiffness</span><b id="dk-stiffness-v"></b></div><input type="range" id="dk-stiffness" min="40" max="800" step="1"></div>
-  <div class="dk-row"><div class="dk-lbl"><span>Damping</span><b id="dk-damping-v"></b></div><input type="range" id="dk-damping" min="2" max="60" step="1"></div>
-  <div class="dk-row"><div class="dk-lbl"><span>Mass</span><b id="dk-mass-v"></b></div><input type="range" id="dk-mass" min="0.2" max="5" step="0.1"></div>
-  <div class="dk-row"><div class="dk-lbl"><span>Opacity</span><b id="dk-opacity-v"></b></div><input type="range" id="dk-opacity" min="0.2" max="1" step="0.01"></div>
-  <div class="dk-row"><div class="dk-lbl"><span>Vertical offset</span><b id="dk-offset-v"></b></div><input type="range" id="dk-offset" min="0" max="100" step="1"></div>
-  <div class="dk-btns">
-    <button class="dk-btn" id="dk-preview" type="button">Preview toast</button>
-    <button class="dk-btn ghost" id="dk-reset" type="button">Reset</button>
   </div>
 </div>
 
@@ -1792,23 +1764,18 @@ if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
 
 <script id="dk-toast-js">
 (function(){
-  // ---- spring-tunable notification toast ----
+  // ---- spring-animated notification toast ----
   // Real damped-spring integration (Hooke's law + damping), stepped every
-  // animation frame so DialKit's sliders affect motion that's already in flight.
-  var DEFAULTS={stiffness:220,damping:18,mass:1,opacity:0.94,offset:16};
-  var DK={}; for(var k0 in DEFAULTS)DK[k0]=DEFAULTS[k0];
-  var STORE_KEY='dialkit-toast-config';
-  try{
-    var saved=JSON.parse(localStorage.getItem(STORE_KEY));
-    if(saved)for(var k1 in DEFAULTS)if(typeof saved[k1]==='number')DK[k1]=saved[k1];
-  }catch(e){}
+  // animation frame. Values below are the tuned result of the earlier
+  // DialKit pass (now removed) — edit them directly to retune.
+  var CONFIG={stiffness:220,damping:18,mass:1,opacity:0.94,offset:16};
 
   var el=document.getElementById('toastn');
   var raf=null,pos=0,vel=0,startY=0,restY=0,target=0,hideTimer=null;
   var EPS=0.4;
 
   function frame(){
-    var k=DK.stiffness,c=DK.damping,m=Math.max(DK.mass,0.05);
+    var k=CONFIG.stiffness,c=CONFIG.damping,m=Math.max(CONFIG.mass,0.05);
     var dt=1/60;
     var accel=(-k*(pos-target)-c*vel)/m;
     vel+=accel*dt;
@@ -1817,12 +1784,12 @@ if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
     var span=(restY-startY)||1;
     var progress=Math.max(0,Math.min(1,(pos-startY)/span));
     el.style.transform='translate(-50%,'+pos.toFixed(2)+'px)';
-    el.style.opacity=String(progress*DK.opacity);
+    el.style.opacity=String(progress*CONFIG.opacity);
 
     if(Math.abs(vel)<EPS&&Math.abs(pos-target)<EPS){
       pos=target;vel=0;
       el.style.transform='translate(-50%,'+pos.toFixed(2)+'px)';
-      el.style.opacity=String((target>=restY?1:0)*DK.opacity);
+      el.style.opacity=String((target>=restY?1:0)*CONFIG.opacity);
       raf=null;
       if(target<=startY)el.classList.remove('showing');
       return;
@@ -1838,7 +1805,7 @@ if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
     document.getElementById('toastn-sub').textContent=sub||'';
     document.getElementById('toastn-emoji').textContent=emoji||'✨';
 
-    restY=DK.offset;
+    restY=CONFIG.offset;
     if(!el.classList.contains('showing')){
       startY=-(el.offsetHeight+40||120);
       pos=startY;vel=0;
@@ -1850,40 +1817,6 @@ if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
     hideTimer=setTimeout(function(){ target=startY; startSpring(); },2600);
   };
   el.onclick=function(){ if(target>=restY){clearTimeout(hideTimer);target=startY;startSpring();} };
-
-  // ---- DialKit panel wiring ----
-  var fab=document.getElementById('dk-fab'),panel=document.getElementById('dk-panel');
-  fab.onclick=function(){panel.classList.toggle('open');};
-  document.getElementById('dk-close').onclick=function(){panel.classList.remove('open');};
-
-  var FIELDS=[['stiffness','',0],['damping','',0],['mass','',1],['opacity','',2],['offset','px',0]];
-  function syncField(name,suffix,dec){
-    var input=document.getElementById('dk-'+name),out=document.getElementById('dk-'+name+'-v');
-    input.value=DK[name];
-    out.textContent=DK[name].toFixed(dec)+suffix;
-  }
-  FIELDS.forEach(function(f){
-    var name=f[0],suffix=f[1],dec=f[2];
-    syncField(name,suffix,dec);
-    document.getElementById('dk-'+name).oninput=function(ev){
-      DK[name]=parseFloat(ev.target.value);
-      document.getElementById('dk-'+name+'-v').textContent=DK[name].toFixed(dec)+suffix;
-      try{localStorage.setItem(STORE_KEY,JSON.stringify(DK));}catch(e){}
-      // live-nudge a resting toast so opacity/offset feel instant, not just on next preview
-      if((name==='offset'||name==='opacity')&&el.classList.contains('showing')&&target>=restY){
-        restY=DK.offset;target=restY;startSpring();
-      }
-    };
-  });
-
-  document.getElementById('dk-preview').onclick=function(){
-    window.showGoalToast('Goal complete','DialKit is tuning this spring live 🌸','🎉');
-  };
-  document.getElementById('dk-reset').onclick=function(){
-    for(var k2 in DEFAULTS)DK[k2]=DEFAULTS[k2];
-    FIELDS.forEach(function(f){syncField(f[0],f[1],f[2]);});
-    try{localStorage.setItem(STORE_KEY,JSON.stringify(DK));}catch(e){}
-  };
 })();
 </script>
 
