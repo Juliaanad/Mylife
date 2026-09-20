@@ -720,11 +720,16 @@ body{background:var(--blush);}
     <div class="bcb">
       <div class="lh" style="background:linear-gradient(135deg,#C47B8A,#E8A0AD);"><div class="lhe">📌</div><div class="lht">Your Daily Standards</div><div class="lhs">These are not optional. They are your foundation — the minimum you owe yourself every single day.</div></div>
       <div class="msl">Daily Times</div>
+      <div class="nc"><div class="ni2">⏰</div><div class="nt"><strong>6:30 AM — Wake Up</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Same time, every day. No snoozing — feet on the floor and the day begins.</span></div></div>
       <div class="nc"><div class="ni2">💧</div><div class="nt"><strong>First Thing — Drink a Full Glass of Water</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Before your phone, before coffee. Hydrate your body the moment you wake.</span></div></div>
+      <div class="nc"><div class="ni2">🪥</div><div class="nt"><strong>6:40 AM — Brush Your Teeth</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Two minutes, both sides. Non-negotiable, no matter how rushed you are.</span></div></div>
       <div class="nc"><div class="ni2">📓</div><div class="nt"><strong>First Thing — Journal</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Write before the world gets in. Thoughts, gratitude, intentions — 5 mins is enough.</span></div></div>
+      <div class="nc"><div class="ni2">💊</div><div class="nt"><strong>6:50 AM — Take Your Vitamins</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Biotin · Collagen · Vitamin E · Iron — with water, before you rush out the door.</span></div></div>
       <div class="nc"><div class="ni2">⏰</div><div class="nt"><strong>7:00 AM — Morning Skincare</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Vitamin C serum · SPF 50 · Eye cream. No skipping, ever.</span></div></div>
-      <div class="nc"><div class="ni2">🌙</div><div class="nt"><strong>7:00 PM — Night Skincare</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Remove makeup · Retinol · Hyaluronic acid · Eye cream.</span></div></div>
+      <div class="nc"><div class="ni2">👗</div><div class="nt"><strong>7:20 AM — Get Dressed</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Outfit ready (laid out the night before makes this effortless) — dressed and put together before work.</span></div></div>
+      <div class="nc"><div class="ni2">💼</div><div class="nt"><strong>9:00 AM – 3:00 PM — Work (Denmark Time)</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Your focused work block. Everything above happens before you clock in.</span></div></div>
       <div class="nc"><div class="ni2">🏋️</div><div class="nt"><strong>5:30 PM — Workout Time</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">This slot is protected. Nothing gets scheduled here.</span></div></div>
+      <div class="nc"><div class="ni2">🌙</div><div class="nt"><strong>7:00 PM — Night Skincare</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">Remove makeup · Retinol · Hyaluronic acid · Eye cream.</span></div></div>
       <div class="msl">Home Standards</div>
       <div class="nc"><div class="ni2">🍽️</div><div class="nt"><strong>Wash Plates Immediately</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">No dishes left in the sink. Clean as you go — always.</span></div></div>
       <div class="nc"><div class="ni2">🏡</div><div class="nt"><strong>Clean Environment Before Sleeping</strong><br><span style="font-size:11px;color:var(--brown);font-weight:400;">10 minutes to reset your space every night. Never sleep in mess.</span></div></div>
@@ -1080,9 +1085,12 @@ function pad2(n){return (n<10?'0':'')+n;}
 function dkey(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());}
 var FDN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 var ED=[
+  {id:'ed6',e:'⏰',n:'Wake Up',d:'6:30 AM — Same time every day. Feet on the floor, no snoozing.',t:'tw',tl:'Wellness',f:'Daily'},
   {id:'ed0',e:'☀️',n:'Vitamin C Serum + SPF',d:'Apply before going out. SPF is your #1 anti-aging secret.',t:'ts',tl:'Skin',f:'Daily'},
-  {id:'ed1',e:'💊',n:'Take Supplements',d:'Biotin · Collagen · Vitamin E · Iron',t:'tw',tl:'Wellness',f:'Daily'},
+  {id:'ed7',e:'🪥',n:'Brush Your Teeth',d:'6:40 AM — Two minutes, both sides.',t:'tw',tl:'Wellness',f:'Daily'},
+  {id:'ed1',e:'💊',n:'Take Vitamins',d:'6:50 AM — Biotin · Collagen · Vitamin E · Iron, with water.',t:'tw',tl:'Wellness',f:'Daily'},
   {id:'ed2',e:'💧',n:'Drink 2L Water',d:'Keeps skin plump, hair shiny, and body energized.',t:'tw',tl:'Wellness',f:'Daily'},
+  {id:'ed8',e:'👗',n:'Get Dressed',d:'7:20 AM — Outfit on and put together before work.',t:'tb',tl:'Style',f:'Daily'},
   {id:'ed3',e:'🌙',n:'Night Routine',d:'Remove makeup · Retinol · Hyaluronic acid · Eye cream',t:'ts',tl:'Skin',f:'Daily'}
 ];
 function getDone(k){try{return JSON.parse(localStorage.getItem('glow_done_'+k)||'[]');}catch(e){return [];}}
